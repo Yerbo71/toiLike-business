@@ -1,0 +1,41 @@
+{
+  "system": {
+    "home": "Главная",
+    "applications": "Заявки",
+    "order": "Заказать",
+    "chats": "Чаты",
+    "profile": "Профиль",
+    "language": "Язык",
+    "city": "Город",
+    "notifications": "Уведомление",
+    "choose": "Выбрать",
+    "techSupport": "Тех поддержка",
+    "aboutApp": "Про приложение",
+    "rating": "Рейтинг",
+    "theme": "Тема",
+    "search": "Поиск"
+  },
+  "staffOrderingPage": {
+    "title": "Доверьтесь команде EventApp",
+    "description": "Предоставим официальный договор, гарантию качества",
+    "orderItems1": "Консультация организатора 24/7",
+    "orderItems2": "Подберём ресторан",
+    "orderItems3": "Организуем шоу-программу",
+    "orderItems4": "Проконтролируем весь процесс",
+    "orderNow": "Оставить заявку"
+  },
+  "orderModal": {
+    "orderOne": {
+      "title": "Подать заявку",
+      "description": "Создать запрос вручную"
+    },
+    "orderTwo": {
+      "title": "Помощь специалиста",
+      "description": "Доверьте организацию специалисту"
+    },
+    "orderThree": {
+      "title": "Помощь ИИ",
+      "description": "Доверьте организацию ИИ"
+    }
+  }
+}

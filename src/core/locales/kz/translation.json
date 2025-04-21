@@ -1,0 +1,41 @@
+{
+  "system": {
+    "home": "Басты бет",
+    "applications": "Өтінімдер",
+    "order": "Тапсырыс беру",
+    "chats": "Чаттар",
+    "profile": "Профиль",
+    "language": "Тіл",
+    "city": "Қала",
+    "notifications": "Хабарландыру",
+    "choose": "Таңдау",
+    "techSupport": "Тех қолдау",
+    "aboutApp": "Қосымша жайлы",
+    "rating": "Рейтинг",
+    "theme": "Тема",
+    "search": "Іздеу"
+  },
+  "staffOrderingPage": {
+    "title": "EventApp командасына сенім арт",
+    "description": "Ресми келісімшарт пен сапа кепілдігін ұсынамыз",
+    "orderItems1": "Ұйымдастырушының 24/7 кеңесі",
+    "orderItems2": "Мейрамхананы таңдап береміз",
+    "orderItems3": "Шоу-бағдарламаны ұйымдастырамыз",
+    "orderItems4": "Бүкіл процесті бақылаймыз",
+    "orderNow": "Өтініш қалдыру"
+  },
+  "orderModal": {
+    "orderOne": {
+      "title": "Өтінім беру",
+      "description": "Сұранысты қолмен жасау"
+    },
+    "orderTwo": {
+      "title": "Маманның көмегі",
+      "description": "Ұйымдастыруды маманға тапсырыңыз"
+    },
+    "orderThree": {
+      "title": "ЖИ көмегі",
+      "description": "Ұйымдастыруды ЖИ-ға тапсырыңыз"
+    }
+  }
+}

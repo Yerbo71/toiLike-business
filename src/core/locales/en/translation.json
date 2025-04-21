@@ -1,0 +1,43 @@
+{
+  "system": {
+    "home": "Home",
+    "applications": "Applications",
+    "order": "Order",
+    "chats": "Chats",
+    "profile": "Profile",
+    "language": "Language",
+    "city": "City",
+    "notifications": "Notifications",
+    "choose": "Choose",
+    "techSupport": "Tech Support",
+    "aboutApp": "About application",
+    "rating": "Rating",
+    "theme": "Theme",
+    "search": "Search"
+  },
+  "staffOrderingPage": {
+    "title": "Trust the EventApp Team",
+    "description": "We provide an official contract and quality guarantee",
+    "orderItems1": "24/7 organizer consultation",
+    "orderItems2": "We will find a restaurant",
+    "orderItems3": "We will organize a show program",
+    "orderItems4": "We will control the entire process",
+    "orderNow": "Order now",
+    "successTitle": "Order confirmed!",
+    "successMessage": "Our manager will contact you shortly"
+  },
+  "orderModal": {
+    "orderOne": {
+      "title": "Submit application",
+      "description": "Create a request manually"
+    },
+    "orderTwo": {
+      "title": "Specialist help",
+      "description": "Entrust the organization to a specialist"
+    },
+    "orderThree": {
+      "title": "AI help",
+      "description": "Entrust the organization to AI"
+    }
+  }
+}
