@@ -29,19 +29,11 @@ function RootLayoutContent() {
                 />
                 <Stack>
                   <Stack.Screen
-                    name="(application)"
+                    name="(protected)"
                     options={{ headerShown: false }}
                   />
                   <Stack.Screen
                     name="(auth)"
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name="(ordering)"
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name="(chats)"
                     options={{ headerShown: false }}
                   />
                 </Stack>

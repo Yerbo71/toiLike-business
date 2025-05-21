@@ -109,7 +109,7 @@
     "rateOnStore": "Rate us on app stores"
   },
   "loginPage": {
-    "welcome": "Welcome back!",
+    "welcome": "Login and start using ToiLike Business!",
     "instruction": "Enter your details to continue",
     "usernameOrEmail": "Username or email",
     "password": "Password",
@@ -122,7 +122,7 @@
     "passwordMin": "Password must be at least 6 characters"
   },
   "registrationPage": {
-    "title": "Join the community",
+    "title": "Start your business with ToiLike Business!",
     "subtitle": "Create an account to find amazing events",
     "username": "Username",
     "email": "Email",

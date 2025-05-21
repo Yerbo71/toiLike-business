@@ -12,6 +12,7 @@ interface AuthContextType {
   signIn: (token: string) => Promise<void>;
   signOut: () => Promise<void>;
   updateUser: (userData: User) => void;
+  isLoading: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -21,34 +22,42 @@ export const AuthContext = createContext<AuthContextType>({
   signIn: async () => {},
   signOut: async () => {},
   updateUser: () => {},
+  isLoading: false,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const verifyAuth = async () => {
-      const storedToken = await AsyncStorage.getItem('accessToken');
-      if (storedToken) {
-        setToken(storedToken);
-        setIsAuthenticated(true);
-        try {
-          const currentUser = await getCurrentUser(storedToken);
-          setUser(currentUser);
-        } catch (error) {
-          console.error('Error fetching user:', error);
+      setIsLoading(true);
+      try {
+        const storedToken = await AsyncStorage.getItem('accessToken');
+        if (storedToken) {
+          setToken(storedToken);
+          setIsAuthenticated(true);
+          try {
+            const currentUser = await getCurrentUser(storedToken);
+            setUser(currentUser);
+          } catch (error) {
+            console.error('Error fetching user:', error);
+            setUser(null);
+          }
+        } else {
+          setIsAuthenticated(false);
+          setToken(null);
           setUser(null);
         }
-      } else {
-        setIsAuthenticated(false);
-        setToken(null);
-        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
     };
     verifyAuth();
   }, []);
+
 
   const signIn = async (newToken: string) => {
     await AsyncStorage.setItem('accessToken', newToken);
@@ -75,7 +84,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, token, signIn, signOut, user, updateUser }}
+      value={{ isAuthenticated, token, signIn, signOut, user, updateUser,isLoading }}
     >
       {children}
     </AuthContext.Provider>

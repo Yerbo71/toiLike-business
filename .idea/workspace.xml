@@ -1,83 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/even_native_app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/ravee-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(application)/details/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(application)/details/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(protected)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/globalLogic/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/chats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/chats/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/details/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/details/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/empty/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/empty/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/myApplications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/myApplications/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/placeDetails/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/placeDetails/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(application)/vendorDetails/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/vendorDetails/[id].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(auth)/registration/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/registration/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/reset-password-email/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(chats)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(chats)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(ordering)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/countryChoose/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/hallChoose/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/manualOrdering/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(chats)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(chats)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(chats)/chat/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(chats)/chat/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(chats)/chat/gemini/[eventId].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(chats)/chat/gemini/[eventId].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/cityChoose/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/cityChoose/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/manualOrdering/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/manualOrdering/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/placeChoose/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/placeChoose/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/staffOrdering/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/staffOrdering/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(ordering)/vendorsChoose/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/vendorsChoose/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/api/apiConst.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api/apiConst.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/mock/chats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/mock/chats.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/mock/restaurants.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/EventContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/EventContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/api/chatgpt.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/api/gemini.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/create-event/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/delete-event/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/event/delete-event/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/get-event/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/event/get-event/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/get-popular-event-templates-id/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/get-popular-event-templates/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/get-popular-vendors/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/event/update-event/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/place/get-places/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user/getCurrentUser/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user/postUploadAvatarUser/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user/postUploadBackgroundUser/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/chats/chatPage/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/chats/chatPage/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/chats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/chats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/countryChoose/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileCommentBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileDescriptionBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileServiceBlocks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileServiceBlocks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileSocialNetBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/details/detailProfile/components/detailProfileSocialNetBlock.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/details/detailProfile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/details/detailProfile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/hallChoose/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeArtistsBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeEventBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeSearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeSearchBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeServicesBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/manualOrdering/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/manualOrdering/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/myApplications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myApplications/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/profileBackground/profileBackgroundImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/profileBackground/profileBackgroundImage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/profileTechSupport.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/profileTechSupport.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/cTextInput/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/cTextInput/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/chevronButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/chevronButton/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/detailAvatar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/detailAvatar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/detailRateBlock/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/detailRateBlock/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/previewCard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/previewCard/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/ratingChip/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/ratingChip/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/withoutToken/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/withoutToken/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,17 +62,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Makima/Desktop/Event_repo/toiLike-business&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Makima/Desktop/Event_repo/toiLike-business",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\prettier",
+    "ts.external.directory.path": "C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(flow)" />
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)" />
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)\chat" />
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)" />
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(application)" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -135,6 +105,7 @@
       <updated>1747844376491</updated>
       <workItem from="1747844377644" duration="136000" />
       <workItem from="1747844730083" duration="13000" />
+      <workItem from="1747844744197" duration="3390000" />
     </task>
     <servers />
   </component>

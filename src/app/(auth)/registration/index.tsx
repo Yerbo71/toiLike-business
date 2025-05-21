@@ -34,7 +34,7 @@ export default function Registration() {
     setIsPending(true);
     try {
       const { confirmPassword, ...rest } = data;
-      const requestData: SignUpRequest = { ...rest, role: 'ROLE_USER' };
+      const requestData: SignUpRequest = { ...rest, role: 'ROLE_BUSINESS' };
       const response = await signUp(requestData);
       Toast.show({
         type: 'success',
@@ -75,6 +75,7 @@ export default function Registration() {
                 fontWeight: 'bold',
                 color: theme.colors.primary,
                 marginBottom: 5,
+                textAlign: 'center',
               }}
             >
               {t('registrationPage.title')}

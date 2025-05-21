@@ -31,7 +31,8 @@ export default function Login() {
     try {
       const response = await login(data);
       await signIn(response.accessToken);
-      router.replace('/(application)');
+      // @ts-ignore
+      router.replace('/(protected)/(application)');
     } catch (err) {
       Toast.show({
         type: 'error',
@@ -58,6 +59,7 @@ export default function Login() {
                 fontWeight: 'bold',
                 color: theme.colors.primary,
                 marginBottom: 5,
+                textAlign: 'center',
               }}
             >
               {t('loginPage.welcome')}
