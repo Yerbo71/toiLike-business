@@ -85,25 +85,6 @@ const FooterMenuModal: FC<Props> = ({ close }) => {
             }}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            close();
-            router.push('/chats');
-          }}
-        >
-          <Card.Title
-            title={t('orderModal.orderThree.title')}
-            subtitle={t('orderModal.orderThree.description')}
-            left={(props) => <Avatar.Icon {...props} icon="robot-happy" />}
-            right={(props) => <IconButton {...props} icon="chevron-right" />}
-            style={{
-              borderStyle: 'solid',
-              borderWidth: 2,
-              borderRadius: 10,
-              borderColor: theme.colors.surfaceVariant,
-            }}
-          />
-        </TouchableOpacity>
       </Modal>
     </Portal>
   );

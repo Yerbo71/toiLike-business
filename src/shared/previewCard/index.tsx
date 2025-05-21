@@ -8,6 +8,8 @@ import {
 import { Card, Text, useTheme } from 'react-native-paper';
 import { RatingChip } from '@/src/shared/ratingChip';
 import Entypo from '@expo/vector-icons/Entypo';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 interface Props {
   image: ImageSourcePropType;
@@ -15,6 +17,9 @@ interface Props {
   description: string;
   rating?: number;
   location?: string;
+  averageCost?: number;
+  serviceType?: string;
+  experience?: string;
   onPress: (event: GestureResponderEvent) => void;
 }
 
@@ -25,13 +30,24 @@ export const PreviewCard: FC<Props> = ({
   onPress,
   rating = 10,
   location = 'Almaty',
+  averageCost,
+  serviceType,
+  experience,
 }) => {
   const theme = useTheme();
+  const isDark = theme.dark;
 
   return (
     <Card
       onPress={onPress}
-      style={[styles.card, { backgroundColor: theme.colors.surface }]}
+      style={[
+        styles.card,
+        {
+          backgroundColor: isDark
+            ? theme.colors.elevation.level1
+            : theme.colors.surface,
+        },
+      ]}
       elevation={2}
     >
       <Card.Cover
@@ -61,21 +77,130 @@ export const PreviewCard: FC<Props> = ({
         </Text>
       </Card.Content>
 
-      <View style={styles.footer}>
-        <Entypo
-          name="location-pin"
-          size={16}
-          color={theme.colors.primary}
-          style={styles.locationIcon}
-        />
-        <Text
-          variant="bodyMedium"
-          style={[styles.location, { color: theme.colors.onSurfaceVariant }]}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-        >
-          {location}
-        </Text>
+      <View style={styles.detailsGrid}>
+        {experience && (
+          <View
+            style={[
+              styles.detailItem,
+              {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(0, 0, 0, 0.03)',
+              },
+            ]}
+          >
+            <FontAwesome
+              name="certificate"
+              size={14}
+              color={theme.colors.primary}
+              style={styles.detailIcon}
+            />
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.detailText,
+                { color: theme.colors.onSurfaceVariant },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {experience}
+            </Text>
+          </View>
+        )}
+
+        {averageCost && (
+          <View
+            style={[
+              styles.detailItem,
+              {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(0, 0, 0, 0.03)',
+              },
+            ]}
+          >
+            <MaterialIcons
+              name="attach-money"
+              size={14}
+              color={theme.colors.primary}
+              style={styles.detailIcon}
+            />
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.detailText,
+                { color: theme.colors.onSurfaceVariant },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {averageCost.toLocaleString()} ₸
+            </Text>
+          </View>
+        )}
+
+        {serviceType && (
+          <View
+            style={[
+              styles.detailItem,
+              {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(0, 0, 0, 0.03)',
+              },
+            ]}
+          >
+            <MaterialIcons
+              name="work"
+              size={14}
+              color={theme.colors.primary}
+              style={styles.detailIcon}
+            />
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.detailText,
+                { color: theme.colors.onSurfaceVariant },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {serviceType}
+            </Text>
+          </View>
+        )}
+
+        {location && (
+          <View
+            style={[
+              styles.detailItem,
+              {
+                backgroundColor: isDark
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(0, 0, 0, 0.03)',
+              },
+            ]}
+          >
+            <Entypo
+              name="location-pin"
+              size={14}
+              color={theme.colors.primary}
+              style={styles.detailIcon}
+            />
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.detailText,
+                { color: theme.colors.onSurfaceVariant },
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {location}
+            </Text>
+          </View>
+        )}
       </View>
     </Card>
   );
@@ -90,10 +215,11 @@ const styles = StyleSheet.create({
   },
   cover: {
     height: 180,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
   },
   content: {
     padding: 12,
-    paddingBottom: 8,
     gap: 5,
   },
   title: {
@@ -106,18 +232,25 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     marginTop: 4,
   },
-  footer: {
+  detailsGrid: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
     paddingHorizontal: 12,
     paddingBottom: 12,
-    marginTop: 5,
   },
-  locationIcon: {
-    marginRight: 4,
+  detailItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
-  location: {
-    fontSize: 13,
-    flex: 1,
+  detailIcon: {
+    marginRight: 6,
+  },
+  detailText: {
+    fontSize: 11,
+    fontWeight: '500',
   },
 });

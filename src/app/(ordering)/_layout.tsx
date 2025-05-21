@@ -8,10 +8,11 @@ const OrderLayout = () => {
         headerTitle: '',
       }}
     >
-      <Stack.Screen name="staffOrdering" options={{ headerTitle: '' }} />
-      <Stack.Screen name="countryChoose" options={{ headerTitle: '' }} />
-      <Stack.Screen name="manualOrdering" options={{ headerTitle: '' }} />
-      <Stack.Screen name="hallChoose" options={{ headerTitle: '' }} />
+      <Stack.Screen name="staffOrdering/index" options={{ headerTitle: '' }} />
+      <Stack.Screen name="cityChoose/index" options={{ headerTitle: '' }} />
+      <Stack.Screen name="manualOrdering/index" options={{ headerTitle: '' }} />
+      <Stack.Screen name="placeChoose/index" options={{ headerTitle: '' }} />
+      <Stack.Screen name="vendorsChoose/index" options={{ headerTitle: '' }} />
     </Stack>
   );
 };

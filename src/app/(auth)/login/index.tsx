@@ -9,10 +9,12 @@ import { login } from '@/src/core/rest/auth/login-in';
 import Toast from 'react-native-toast-message';
 import type { components } from '@/src/types/api';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useI18n } from '@/src/context/LocaleContext';
 
 export default function Login() {
   const { signIn } = useContext(AuthContext);
   const theme = useTheme();
+  const { t } = useI18n();
   const { control, handleSubmit } = useForm<
     components['schemas']['LoginInRequest']
   >({
@@ -58,7 +60,7 @@ export default function Login() {
                 marginBottom: 5,
               }}
             >
-              Welcome Back!
+              {t('loginPage.welcome')}
             </Text>
             <Text
               variant="titleMedium"
@@ -70,7 +72,7 @@ export default function Login() {
                 textAlign: 'center',
               }}
             >
-              Please enter your details to continue
+              {t('loginPage.instruction')}
             </Text>
           </View>
 
@@ -78,24 +80,24 @@ export default function Login() {
             <CTextInput
               control={control}
               name="usernameOrEmail"
-              label="Username or email"
+              label={t('loginPage.usernameOrEmail')}
               rules={{
-                required: 'Username or email is required',
+                required: t('loginPage.usernameOrEmailRequired'),
                 minLength: {
                   value: 4,
-                  message: 'Username or email must be at least 4 characters',
+                  message: t('loginPage.usernameOrEmailMin'),
                 },
               }}
             />
             <CTextInput
               control={control}
               name="password"
-              label="Password"
+              label={t('loginPage.password')}
               rules={{
-                required: 'Password is required',
+                required: t('loginPage.passwordRequired'),
                 minLength: {
                   value: 6,
-                  message: 'Password must be at least 6 characters',
+                  message: t('loginPage.passwordMin'),
                 },
               }}
               secureTextEntry
@@ -110,10 +112,10 @@ export default function Login() {
               }}
               onPress={() => {
                 // @ts-ignore
-                router.push('/(auth)/reset-password-email');
+                router.push('(auth)/send-reset-code');
               }}
             >
-              Forgot your password?
+              {t('loginPage.forgotPassword')}
             </Text>
           </View>
 
@@ -126,7 +128,7 @@ export default function Login() {
             contentStyle={styles.buttonContent}
             labelStyle={styles.buttonLabel}
           >
-            Sign In
+            {t('loginPage.signIn')}
           </Button>
 
           <Text
@@ -141,7 +143,7 @@ export default function Login() {
               router.push('/(auth)/registration');
             }}
           >
-            Create new account
+            {t('loginPage.createAccount')}
           </Text>
         </Surface>
       </LinearGradient>

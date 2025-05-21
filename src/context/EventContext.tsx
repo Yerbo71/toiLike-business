@@ -1,15 +1,13 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useCallback,
+} from 'react';
 
 interface EventService {
   id: number;
-}
-
-interface Place {
-  id: number;
-  title: string;
-  city?: string;
-  street?: string;
-  description?: string;
 }
 
 interface Event {
@@ -17,14 +15,14 @@ interface Event {
   startedAt: string;
   endedAt: string;
   description: string;
-  hallId: number;
-  place?: Place;
+  placeId: number;
   eventServices: EventService[];
 }
 
 interface EventContextType {
   event: Event;
   setEvent: (event: Event) => void;
+  resetEvent: () => void;
 }
 
 const defaultEvent: Event = {
@@ -32,7 +30,7 @@ const defaultEvent: Event = {
   startedAt: new Date().toISOString(),
   endedAt: new Date().toISOString(),
   description: '',
-  hallId: 0,
+  placeId: 0,
   eventServices: [],
 };
 
@@ -41,8 +39,12 @@ const EventContext = createContext<EventContextType | undefined>(undefined);
 export const EventProvider = ({ children }: { children: ReactNode }) => {
   const [event, setEvent] = useState<Event>(defaultEvent);
 
+  const resetEvent = useCallback(() => {
+    setEvent(defaultEvent);
+  }, []);
+
   return (
-    <EventContext.Provider value={{ event, setEvent }}>
+    <EventContext.Provider value={{ event, setEvent, resetEvent }}>
       {children}
     </EventContext.Provider>
   );

@@ -2,8 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { router } from 'expo-router';
+import { useI18n } from '@/src/context/LocaleContext';
 
 export const WithoutToken = () => {
+  const { t } = useI18n();
   return (
     <View
       style={{
@@ -13,8 +15,8 @@ export const WithoutToken = () => {
         gap: 5,
       }}
     >
-      <Text variant="titleMedium">Log in to your account</Text>
-      <Text variant="bodyMedium">Log in to view the data on this page.</Text>
+      <Text variant="titleMedium">{t('withoutToken.title')}</Text>
+      <Text variant="bodyMedium">{t('withoutToken.description')}</Text>
       <Button
         mode="contained"
         onPress={() => {
@@ -25,7 +27,7 @@ export const WithoutToken = () => {
           marginTop: 10,
         }}
       >
-        Login
+        {t('withoutToken.loginButton')}
       </Button>
     </View>
   );

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Icon, Switch, Text, useTheme } from 'react-native-paper';
 import {
   View,
@@ -14,6 +14,8 @@ interface Props {
   rightTitle?: string;
   onPress?: () => void;
   isToggled?: boolean;
+  isSwitchOn?: boolean;
+  onToggleSwitch?: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -31,11 +33,23 @@ export const ChevronButton: FC<Props> = ({
   rightTitle,
   onPress,
   isToggled,
+  isSwitchOn = false,
+  onToggleSwitch,
 }) => {
   const colorScheme = useColorScheme();
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
   const theme = useTheme();
+
+  const handlePress = () => {
+    if (onPress) {
+      onPress();
+    }
+  };
+
+  const handleToggle = () => {
+    if (onToggleSwitch) {
+      onToggleSwitch();
+    }
+  };
 
   return (
     <TouchableOpacity
@@ -49,7 +63,7 @@ export const ChevronButton: FC<Props> = ({
         borderColor: colorScheme === 'dark' ? '#838383' : '#777777',
         borderRadius: 12,
       }}
-      onPress={onPress}
+      onPress={handlePress}
       activeOpacity={0.7}
     >
       <View style={styles.side}>
@@ -57,7 +71,7 @@ export const ChevronButton: FC<Props> = ({
         <Text variant="bodyMedium">{leftTitle}</Text>
       </View>
       {isToggled ? (
-        <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
+        <Switch value={isSwitchOn} onValueChange={handleToggle} />
       ) : (
         <View style={styles.side}>
           <Text variant="bodyMedium">{rightTitle}</Text>

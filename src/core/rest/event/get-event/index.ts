@@ -2,7 +2,8 @@ import axios from 'axios';
 import type { operations } from '@/src/types/api2';
 import { EVENT_BASE_URL } from '@/src/constants/api/apiConst';
 
-type GetEventResponse = operations['getEvent']['responses'][200]['content'];
+type GetEventResponse =
+  operations['getEvent']['responses'][200]['content']['*/*'];
 
 export const getEvent = async (
   id: number,

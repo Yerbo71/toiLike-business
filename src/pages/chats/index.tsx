@@ -23,7 +23,8 @@ const ChatsPage = () => {
             right={() => <Text>{item.time}</Text>}
             onPress={() => {
               router.push({
-                pathname: '/chat/[id]',
+                pathname:
+                  item.model === 'gemini' ? '/chat/gemini/[id]' : '/chat/[id]',
                 params: {
                   id: item.id,
                   model: item.model,

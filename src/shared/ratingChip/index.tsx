@@ -10,13 +10,13 @@ interface Props {
 
 export const RatingChip: FC<Props> = ({ rating, size = 'medium' }) => {
   const theme = useTheme();
-  const roundedRating = Math.round(rating * 10) / 10; // Округляем до 1 знака после запятой
+  const roundedRating = Math.round(rating * 10) / 10;
 
   const getColor = () => {
-    if (rating >= 4.5) return '#4CAF50'; // Зеленый для высоких оценок
-    if (rating >= 3.5) return '#FFC107'; // Желтый для средних оценок
-    if (rating >= 2.5) return '#FF9800'; // Оранжевый
-    return '#F44336'; // Красный для низких оценок
+    if (rating >= 4.5) return '#4CAF50';
+    if (rating >= 3.5) return '#FFC107';
+    if (rating >= 2.5) return '#FF9800';
+    return '#F44336';
   };
 
   const getSizeStyles = () => {
@@ -37,7 +37,7 @@ export const RatingChip: FC<Props> = ({ rating, size = 'medium' }) => {
           paddingV: 4,
           borderRadius: 8,
         };
-      default: // medium
+      default:
         return {
           iconSize: 15,
           textSize: 14,

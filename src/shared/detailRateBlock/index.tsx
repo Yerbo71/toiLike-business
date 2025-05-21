@@ -31,7 +31,7 @@ export const DetailRateBlock: React.FC<DetailRateBlockProps> = ({
   const roundedRating = Math.round(rating * 10) / 10;
 
   const getRatingColor = () => {
-    if (rating >= 8) return '#4CAF50';
+    if (rating >= 7.5) return '#4CAF50';
     if (rating >= 6) return '#FFC107';
     return '#F44336';
   };

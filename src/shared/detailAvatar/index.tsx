@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Avatar, useTheme } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
-import { postUploadAvatarUser } from '@/src/core/rest/user/postUploadAvatarUser';
 import { useContext } from 'react';
 import { AuthContext } from '@/src/context/AuthContext';
-import { getCurrentUser } from '@/src/core/rest/user/getCurrentUser';
+import { getCurrentUser, postUploadAvatarUser } from '@/src/core/rest/user';
 
 interface ProfileAvatarImageProps {
   initialBackgroundUri?: string;
@@ -14,7 +13,7 @@ interface ProfileAvatarImageProps {
 export const DetailAvatar: React.FC<ProfileAvatarImageProps> = ({
   initialBackgroundUri,
 }) => {
-  const { token } = useContext(AuthContext);
+  const { token, updateUser } = useContext(AuthContext);
   const theme = useTheme();
   const [avatarUri, setAvatarUri] = useState<string | null>(
     initialBackgroundUri || null,
@@ -34,8 +33,8 @@ export const DetailAvatar: React.FC<ProfileAvatarImageProps> = ({
       if (token) {
         try {
           await postUploadAvatarUser(token, fileUri);
-          console.log('Avatar uploaded successfully!');
-          await getCurrentUser(token);
+          const updatedUser = await getCurrentUser(token);
+          updateUser(updatedUser);
         } catch (error) {
           console.error('Failed to upload avatar:', error);
         }

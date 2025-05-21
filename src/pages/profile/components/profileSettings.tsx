@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Menu, Surface, useTheme } from 'react-native-paper';
+import { Menu, Surface } from 'react-native-paper';
 import { ChevronButton } from '@/src/shared/chevronButton';
 import { useI18n } from '@/src/context/LocaleContext';
 import { router } from 'expo-router';
-import { useEvent } from '@/src/context/EventContext';
+import { Alert } from 'react-native';
+import { useGlobalFilters } from '@/src/context/GlobalFilterContext';
 
 const ProfileSettings = () => {
   const { locale, setLocale, t } = useI18n();
   const [menuVisible, setMenuVisible] = useState(false);
-  const theme = useTheme();
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const stringLocale =
     locale === 'ru' ? 'Русский' : locale === 'kz' ? 'Қазақша' : 'English';
-  const { event } = useEvent();
+  const { city } = useGlobalFilters();
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
   const closeMenu = () => setMenuVisible(false);
@@ -20,6 +21,29 @@ const ProfileSettings = () => {
     setLocale(newLocale);
     closeMenu();
   };
+
+  const toggleNotifications = async () => {
+    try {
+      setNotificationsEnabled(!notificationsEnabled);
+      if (!notificationsEnabled) {
+        Alert.alert(
+          t('notifications.enabled'),
+          t('notifications.enabledMessage'),
+          [{ text: t('system.ok') }],
+        );
+      } else {
+        Alert.alert(
+          t('notifications.disabled'),
+          t('notifications.disabledMessage'),
+          [{ text: t('system.ok') }],
+        );
+      }
+    } catch (error) {
+      console.error('Error toggling notifications:', error);
+      Alert.alert(t('system.error'), t('notifications.toggleError'));
+    }
+  };
+
   return (
     <Surface
       style={{
@@ -36,11 +60,12 @@ const ProfileSettings = () => {
         leftIcon="city"
         leftTitle={t('system.city')}
         rightIcon="chevron-right"
-        rightTitle={event.city || t('system.choose')}
+        rightTitle={city || t('system.choose')}
         onPress={() => {
-          router.push('/(ordering)/countryChoose');
+          router.push('/(ordering)/cityChoose');
         }}
       />
+
       <Menu
         visible={menuVisible}
         onDismiss={closeMenu}
@@ -63,10 +88,14 @@ const ProfileSettings = () => {
         <Menu.Item onPress={() => changeLanguage('kz')} title="Қазақша" />
         <Menu.Item onPress={() => changeLanguage('en')} title="English" />
       </Menu>
+
       <ChevronButton
         leftIcon="bell"
         leftTitle={t('system.notifications')}
-        isToggled
+        isToggled={true}
+        onPress={toggleNotifications}
+        isSwitchOn={notificationsEnabled}
+        onToggleSwitch={toggleNotifications}
       />
     </Surface>
   );

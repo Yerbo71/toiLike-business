@@ -20,6 +20,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/auth-service/auth/send-verification-code/{email}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["sendVerificationCode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth-service/auth/send-reset-code/{email}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["sendResetCode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/auth-service/auth/login-in": {
         parameters: {
             query?: never;
@@ -30,6 +62,54 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["loginIn"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth-service/auth/confirm-reset-code/{email}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["resetPassword"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth-service/auth/confirm-email/{email}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["confirmEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth-service/auth/get-current-user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getCurrentUser"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -77,13 +157,13 @@ export interface components {
             email: string;
             password: string;
             /** @enum {string} */
-            role: "ROLE_USER" | "ROLE_RESTAURANT_OWNER" | "ROLE_SERVICE_VENDOR";
+            role: "ROLE_USER" | "ROLE_BUSINESS";
         };
         Role: {
             /** Format: int64 */
             id?: number;
             /** @enum {string} */
-            name?: "ROLE_USER" | "ROLE_RESTAURANT_OWNER" | "ROLE_SERVICE_VENDOR";
+            name?: "ROLE_USER" | "ROLE_BUSINESS";
         };
         User: {
             /** Format: int64 */
@@ -91,10 +171,17 @@ export interface components {
             username: string;
             email: string;
             password: string;
+            isEnabled?: boolean;
             roles: components["schemas"]["Role"][];
+            enabled?: boolean;
         };
         UserPayload: {
             user: components["schemas"]["User"];
+            message: string;
+        };
+        ApiResponse: {
+            /** @enum {string} */
+            status: "SUCCESS" | "FAIL";
             message: string;
         };
         LoginInRequest: {
@@ -138,6 +225,50 @@ export interface operations {
             };
         };
     };
+    sendVerificationCode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                email: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    sendResetCode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                email: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
     loginIn: {
         parameters: {
             query?: never;
@@ -158,6 +289,75 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["Token"];
+                };
+            };
+        };
+    };
+    resetPassword: {
+        parameters: {
+            query: {
+                code: string;
+                newPassword: string;
+            };
+            header?: never;
+            path: {
+                email: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    confirmEmail: {
+        parameters: {
+            query: {
+                code: string;
+            };
+            header?: never;
+            path: {
+                email: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    getCurrentUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["User"];
                 };
             };
         };

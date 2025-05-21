@@ -2,8 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { Searchbar } from 'react-native-paper';
+import { useI18n } from '@/src/context/LocaleContext';
 
 const HomeSearchBar = () => {
+  const { t } = useI18n();
   const { control } = useForm({
     defaultValues: {
       search: '',
@@ -17,9 +19,9 @@ const HomeSearchBar = () => {
     >
       <Controller
         control={control}
-        render={({ field: { onChange, onBlur, value } }) => (
+        render={({ field: { onChange, value } }) => (
           <Searchbar
-            placeholder="Search"
+            placeholder={t('system.search')}
             onChangeText={onChange}
             value={value}
           />

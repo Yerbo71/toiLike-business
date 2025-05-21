@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "even_native_app",
-    "slug": "even_native_app",
+    "name": "toiLike",
+    "slug": "toiLike",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/ravee-icon.png",
+    "icon": "./assets/images/toiLike.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,10 +14,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/ravee-icon.png",
+        "foregroundImage": "./assets/images/toiLike.png",
         "backgroundColor": "#ffffff"
       },
-      "newArchEnabled": true
+      "newArchEnabled": true,
+      "permissions": [
+        "READ_CONTACTS",
+        "WRITE_CONTACTS"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -35,7 +39,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/ravee-icon.png",
+          "image": "./assets/images/toiLike.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"

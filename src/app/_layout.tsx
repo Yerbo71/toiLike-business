@@ -9,7 +9,8 @@ import { I18nProvider } from '@/src/context/LocaleContext';
 import Toast from 'react-native-toast-message';
 import { EventProvider } from '@/src/context/EventContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { GlobalFilterProvider } from '@/src/context/GlobalFilterContext';
+import { Theme } from '@react-navigation/native';
 const queryClient = new QueryClient();
 
 function RootLayoutContent() {
@@ -17,26 +18,34 @@ function RootLayoutContent() {
 
   return (
     <PaperProvider theme={paperTheme}>
-      <ThemeProvider value={paperTheme}>
+      <ThemeProvider value={paperTheme as unknown as Theme}>
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
             <EventProvider>
-              <StatusBar
-                barStyle={theme === 'Dark' ? 'light-content' : 'dark-content'}
-                backgroundColor={theme === 'Dark' ? '#2b2732' : '#f3edf6'}
-              />
-              <Stack>
-                <Stack.Screen
-                  name="(application)"
-                  options={{ headerShown: false }}
+              <GlobalFilterProvider>
+                <StatusBar
+                  barStyle={theme === 'Dark' ? 'light-content' : 'dark-content'}
+                  backgroundColor={theme === 'Dark' ? '#2b2732' : '#f3edf6'}
                 />
-                <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="(ordering)"
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen name="(chats)" options={{ headerShown: false }} />
-              </Stack>
+                <Stack>
+                  <Stack.Screen
+                    name="(application)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="(auth)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="(ordering)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="(chats)"
+                    options={{ headerShown: false }}
+                  />
+                </Stack>
+              </GlobalFilterProvider>
             </EventProvider>
             <Toast />
           </AuthProvider>

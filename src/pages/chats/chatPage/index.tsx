@@ -15,8 +15,6 @@ import {
   useTheme,
   IconButton,
 } from 'react-native-paper';
-import { askChatGPT } from '@/src/core/api/chatgpt';
-import { generateGeminiResponse } from '@/src/core/api/gemini';
 import { useLocalSearchParams } from 'expo-router';
 
 type Role = 'user' | 'assistant';
@@ -30,7 +28,7 @@ const ChatPage = () => {
   const { model } = useLocalSearchParams<{ model: 'gpt' | 'gemini' }>();
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Привет! Чем могу помочь?' },
+    { role: 'assistant', content: 'Hello?' },
   ]);
   const scrollRef = useRef<ScrollView>(null);
   const theme = useTheme();
@@ -53,15 +51,9 @@ const ChatPage = () => {
     try {
       let reply: string;
 
-      if (model === 'gpt') {
-        reply = await askChatGPT(input);
-      } else {
-        reply = await generateGeminiResponse(input);
-      }
-
       const assistantMessage: Message = {
         role: 'assistant',
-        content: reply,
+        content: '',
       };
 
       setMessages((prev) => [...prev, assistantMessage]);

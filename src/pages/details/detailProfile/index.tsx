@@ -1,69 +1,76 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   Image,
   View,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
   Dimensions,
+  RefreshControl,
 } from 'react-native';
-import { Avatar, Button, Text, useTheme } from 'react-native-paper';
-import DetailProfileDescriptionBlock from './components/detailProfileDescriptionBlock';
+import { Avatar, Text, useTheme } from 'react-native-paper';
+import DetailsDescriptionBlock from '../components/detailsDescriptionBlock';
 import DetailProfileSocialNetBlock from './components/detailProfileSocialNetBlock';
-import { DetailRateBlock } from '@/src/shared';
-import { useQuery } from '@tanstack/react-query';
-import { getPopularEventByIDTemplates } from '@/src/core/rest/event/get-popular-event-templates-id';
+import {
+  DetailRateBlock,
+  EmptyView,
+  ErrorView,
+  LoadingView,
+} from '@/src/shared';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { getPopularEventByIDTemplates } from '@/src/core/rest/templates';
 import { useLocalSearchParams } from 'expo-router';
-import DetailProfileCommentBlock from '@/src/pages/details/detailProfile/components/detailProfileCommentBlock';
+import DetailsCommentBlock from '@/src/pages/details/components/detailsCommentBlock';
 import DetailProfileServiceBlocks from '@/src/pages/details/detailProfile/components/detailProfileServiceBlocks';
+import DetailProfileContactBlock from '@/src/pages/details/detailProfile/components/detailProfileContactBlock';
 
 const { width } = Dimensions.get('window');
 
-const DetailProfile = () => {
+const DetailProfilePage = () => {
   const theme = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const queryClient = useQueryClient();
   const {
     data: event,
     isLoading,
     error,
+    refetch,
+    isRefetching,
   } = useQuery({
     queryKey: ['eventDetails', id],
     queryFn: () => getPopularEventByIDTemplates(Number(id)),
     staleTime: 5 * 60 * 1000,
   });
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator
-          animating={true}
-          size="large"
-          color={theme.colors.primary}
-        />
-      </View>
-    );
+  const onRefresh = useCallback(() => {
+    refetch();
+    queryClient.invalidateQueries({ queryKey: ['eventDetails', id] });
+  }, [id, refetch, queryClient]);
+
+  if (isLoading && !isRefetching) {
+    return <LoadingView />;
   }
 
   if (error) {
-    return (
-      <View style={styles.errorContainer}>
-        <Text style={{ color: theme.colors.error }}>
-          Failed to load event details
-        </Text>
-      </View>
-    );
+    return <ErrorView />;
   }
 
   if (!event) {
-    return (
-      <View style={styles.errorContainer}>
-        <Text>Event not found</Text>
-      </View>
-    );
+    return <EmptyView />;
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefetching}
+          onRefresh={onRefresh}
+          colors={[theme.colors.primary]}
+          progressBackgroundColor={theme.colors.surface}
+          tintColor={theme.colors.primary}
+        />
+      }
+    >
       <Image
         source={{ uri: event.secondaryImage || 'https://picsum.photos/701' }}
         style={styles.headerImage}
@@ -100,22 +107,20 @@ const DetailProfile = () => {
           commentCount={event.ratings?.length || 0}
         />
 
-        <Button
-          mode="contained"
-          icon="chat"
-          style={styles.messageButton}
-          labelStyle={styles.buttonLabel}
-        >
-          Contact Organizer
-        </Button>
+        <DetailProfileContactBlock
+          phoneNumber={event.phoneNumber}
+          contactName={event.title}
+        />
 
-        {/* Social Networks - Now with proper horizontal scrolling */}
         <View style={styles.socialContainer}>
-          <DetailProfileSocialNetBlock />
+          <DetailProfileSocialNetBlock socialMedia={event.socialMedia} />
         </View>
-        <DetailProfileDescriptionBlock description={event.description} />
+
+        <DetailsDescriptionBlock description={event.description} />
+
         <DetailProfileServiceBlocks services={event.services} />
-        <DetailProfileCommentBlock
+
+        <DetailsCommentBlock
           commentCount={event.ratings.length}
           ratings={event.ratings}
         />
@@ -209,4 +214,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailProfile;
+export default DetailProfilePage;

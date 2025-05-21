@@ -52,6 +52,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user-vendor/rate-user-vendor": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["rateUserVendor"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user-vendor/create-user-vendor": {
         parameters: {
             query?: never;
@@ -62,6 +78,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["createUserVendor"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/rate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["rateUserVendor_1"];
         delete?: never;
         options?: never;
         head?: never;
@@ -84,7 +116,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/event-service/event-vendor/request-event-service-by-vendor/{eventVendorId}": {
+    "/event-service/event/ai-review/{eventId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -93,14 +125,14 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["requestEventServiceByVendor"];
+        post: operations["getEvents"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/event-service/event-vendor/request-event-service-by-user/{eventVendorId}": {
+    "/event-service/event-vendor/request/{eventVendorId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -110,6 +142,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["requestEventService"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/event-vendor/confirm/{eventVendorId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["confirmEventService"];
         delete?: never;
         options?: never;
         head?: never;
@@ -148,6 +196,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user-vendor/get-user-vendor/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserVendorById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/user-vendor/get-rating/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserVendorRating"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user-vendor/get-popular-vendors": {
         parameters: {
             query?: never;
@@ -155,7 +235,39 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getEvents"];
+        get: operations["getUserVendor"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["searchUserVendors_1"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/get-rating/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserVendorRating_1"];
         put?: never;
         post?: never;
         delete?: never;
@@ -172,6 +284,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getEvents_1"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/get-place/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPlace"];
         put?: never;
         post?: never;
         delete?: never;
@@ -288,7 +416,7 @@ export interface components {
             endedAt?: string;
             description?: string;
             /** Format: int64 */
-            hallId: number;
+            placeId: number;
             eventServices: components["schemas"]["EventServiceRequest"][];
         };
         EventServiceRequest: {
@@ -303,51 +431,81 @@ export interface components {
             startedAt?: string;
             /** Format: date-time */
             endedAt?: string;
+            /** Format: float */
+            totalCost: number;
             description?: string;
-            hall?: components["schemas"]["HallResponse"];
-            eventServices: components["schemas"]["UserVendorResponse"][];
+            place?: components["schemas"]["PlaceResponse"];
+            eventServices: components["schemas"]["EventVendorResponse"][];
         };
-        HallResponse: {
+        EventVendorResponse: {
             /** Format: int64 */
             id: number;
             title: string;
             description?: string;
-            /** Format: double */
-            cost?: number;
-            placeInfoDto?: components["schemas"]["PlaceInfoDto"];
+            /** Format: float */
+            experience?: number;
+            /** Format: float */
+            averageCost?: number;
+            serviceType: string;
+            /** Format: float */
+            rating?: number;
+            mainImage?: string;
+            secondaryImage?: string;
+            /** Format: int64 */
+            eventVendorId: number;
+            /** @enum {string} */
+            status?: "CONFIRMED" | "PENDING" | "REJECTED";
         };
-        PlaceInfoDto: {
+        PlaceResponse: {
             /** Format: int64 */
             id: number;
             title: string;
             city?: string;
             street?: string;
             description?: string;
-        };
-        UserVendorResponse: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            description?: string;
-            experience?: string;
+            mainImage?: string;
+            secondaryImage?: string;
             /** Format: float */
-            averageCost?: number;
-            /** @enum {string} */
-            serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
+            rating?: number;
+            /** Format: float */
+            cost?: number;
         };
         ApiResponse: {
             /** @enum {string} */
             status: "SUCCESS" | "FAIL";
             message: string;
         };
+        RateRequest: {
+            /** Format: int64 */
+            id: number;
+            comment: string;
+            /** Format: float */
+            rating: number;
+        };
         UserVendorRequest: {
             title: string;
             description?: string;
-            experience?: string;
+            /** Format: float */
+            experience?: number;
             /** Format: float */
             averageCost?: number;
             /** @enum {string} */
             serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
+        };
+        UserVendorResponse: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            description?: string;
+            /** Format: float */
+            experience?: number;
+            /** Format: float */
+            averageCost?: number;
+            serviceType: string;
+            /** Format: float */
+            rating?: number;
+            mainImage?: string;
+            secondaryImage?: string;
         };
         EventVendorByUser: {
             /** Format: float */
@@ -374,13 +532,33 @@ export interface components {
             totalPages: number;
             list: components["schemas"]["UserVendorResponse"][];
         };
-        PlaceResponse: {
+        PageableResponseRatingResponse: {
+            /** Format: int32 */
+            totalCount: number;
+            /** Format: int32 */
+            totalPages: number;
+            list: components["schemas"]["RatingResponse"][];
+        };
+        RatingResponse: {
             /** Format: int64 */
             id: number;
-            title: string;
-            city?: string;
-            street?: string;
-            description?: string;
+            /** Format: float */
+            rating: number;
+            comment: string;
+            user: components["schemas"]["UserDetails"];
+        };
+        UserDetails: {
+            /** Format: int64 */
+            id: number;
+            username: string;
+            avatarUrl?: string;
+        };
+        PageableResponsePlaceResponse: {
+            /** Format: int32 */
+            totalCount: number;
+            /** Format: int32 */
+            totalPages: number;
+            list: components["schemas"]["PlaceResponse"][];
         };
         PageableResponseEventResponse: {
             /** Format: int32 */
@@ -389,7 +567,7 @@ export interface components {
             totalPages: number;
             list: components["schemas"]["EventResponse"][];
         };
-        EventVendorResponse: {
+        FullEventVendorResponse: {
             /** Format: int64 */
             id: number;
             /** Format: float */
@@ -397,12 +575,12 @@ export interface components {
             event: components["schemas"]["EventResponse"];
             userVendor: components["schemas"]["UserVendorResponse"];
         };
-        PageableResponseEventVendorResponse: {
+        PageableResponseFullEventVendorResponse: {
             /** Format: int32 */
             totalCount: number;
             /** Format: int32 */
             totalPages: number;
-            list: components["schemas"]["EventVendorResponse"][];
+            list: components["schemas"]["FullEventVendorResponse"][];
         };
         EventTemplateResponse: {
             /** Format: int64 */
@@ -435,15 +613,17 @@ export interface components {
             description?: string;
             mainImage?: string;
             secondaryImage?: string;
+            phoneNumber?: string;
             /** Format: double */
             rating?: number;
+            socialMedia: components["schemas"]["SocialMediaEventTemplate"][];
             services: components["schemas"]["UserVendorTemplateResponse"][];
             ratings: components["schemas"]["EventTemplateRatingResponse"][];
         };
-        UserDetails: {
-            /** Format: int64 */
-            id: number;
-            username: string;
+        SocialMediaEventTemplate: {
+            url: string;
+            /** @enum {string} */
+            socialMediaType: "WHATS_UP" | "TELEGRAM" | "INSTAGRAM" | "OTHERS";
         };
         UserVendorTemplateResponse: {
             /** Format: int64 */
@@ -544,6 +724,30 @@ export interface operations {
             };
         };
     };
+    rateUserVendor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RateRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
     createUserVendor: {
         parameters: {
             query: {
@@ -562,6 +766,30 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["UserVendorResponse"];
+                };
+            };
+        };
+    };
+    rateUserVendor_1: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RateRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
                 };
             };
         };
@@ -590,20 +818,16 @@ export interface operations {
             };
         };
     };
-    requestEventServiceByVendor: {
+    getEvents: {
         parameters: {
             query?: never;
             header?: never;
             path: {
-                eventVendorId: number;
+                eventId: number;
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EventVendorByUser"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {
@@ -642,6 +866,28 @@ export interface operations {
             };
         };
     };
+    confirmEventService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventVendorId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
     getCurrentUser: {
         parameters: {
             query?: never;
@@ -666,9 +912,11 @@ export interface operations {
         parameters: {
             query?: {
                 q?: string;
-                experience?: string;
+                minExperience?: number;
+                maxExperience?: number;
                 serviceType?: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
-                averageCost?: number;
+                minCost?: number;
+                maxCost?: number;
                 page?: number;
                 size?: number;
             };
@@ -689,7 +937,54 @@ export interface operations {
             };
         };
     };
-    getEvents: {
+    getUserVendorById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserVendorResponse"];
+                };
+            };
+        };
+    };
+    getUserVendorRating: {
+        parameters: {
+            query?: {
+                page?: number;
+                size?: number;
+            };
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageableResponseRatingResponse"];
+                };
+            };
+        };
+    };
+    getUserVendor: {
         parameters: {
             query?: never;
             header?: never;
@@ -705,6 +1000,57 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["UserVendorResponse"][];
+                };
+            };
+        };
+    };
+    searchUserVendors_1: {
+        parameters: {
+            query?: {
+                q?: string;
+                city?: string;
+                street?: string;
+                page?: number;
+                size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageableResponsePlaceResponse"];
+                };
+            };
+        };
+    };
+    getUserVendorRating_1: {
+        parameters: {
+            query?: {
+                page?: number;
+                size?: number;
+            };
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageableResponseRatingResponse"];
                 };
             };
         };
@@ -725,6 +1071,28 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["PlaceResponse"][];
+                };
+            };
+        };
+    };
+    getPlace: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PlaceResponse"];
                 };
             };
         };
@@ -789,7 +1157,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["PageableResponseEventVendorResponse"];
+                    "*/*": components["schemas"]["PageableResponseFullEventVendorResponse"];
                 };
             };
         };

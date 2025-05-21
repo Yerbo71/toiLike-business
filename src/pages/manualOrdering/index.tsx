@@ -1,55 +1,93 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import React, { FC, useContext, useEffect, useState } from 'react';
+import {
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  Easing,
+} from 'react-native';
 import { useI18n } from '@/src/context/LocaleContext';
 import { useForm } from 'react-hook-form';
 import { CTextInput } from '@/src/shared';
-import { Button, Text, TextInput } from 'react-native-paper';
+import {
+  Button,
+  HelperText,
+  Icon,
+  Surface,
+  Text,
+  TextInput,
+} from 'react-native-paper';
 import { DatePickerModal, TimePickerModal } from 'react-native-paper-dates';
-import { postCreateEvent } from '@/src/core/rest/event/create-event';
+import { postEvent } from '@/src/core/rest/event';
 import { AuthContext } from '@/src/context/AuthContext';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
 import { useEvent } from '@/src/context/EventContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import type { components } from '@/src/types/api2';
+
+interface Props {
+  eventData?: components['schemas']['EventResponse'];
+}
 
 type FormData = {
   title: string;
   startedAt: string;
   endedAt: string;
   description: string;
-  hallId: number;
+  placeId: number;
   eventServices: {
     id: number;
   }[];
 };
 
-const ManualOrderingPage = () => {
+const ManualOrderingPage: FC<Props> = ({ eventData }) => {
   const { t, locale } = useI18n();
   const { token } = useContext(AuthContext);
-  const { event } = useEvent();
+  const { event, resetEvent } = useEvent();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [startDatePickerVisible, setStartDatePickerVisible] = useState(false);
   const [startTimePickerVisible, setStartTimePickerVisible] = useState(false);
   const [endDatePickerVisible, setEndDatePickerVisible] = useState(false);
   const [endTimePickerVisible, setEndTimePickerVisible] = useState(false);
 
-  const { control, handleSubmit, setValue, watch } = useForm<FormData>({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
     mode: 'onSubmit',
     defaultValues: {
-      title: '',
-      startedAt: new Date().toISOString(),
-      endedAt: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
-      description: '',
-      hallId: event.hallId || 0,
-      eventServices: [],
+      title: eventData?.title || '',
+      description: eventData?.description || '',
+      startedAt: eventData?.startedAt || new Date().toISOString(),
+      endedAt:
+        eventData?.endedAt ||
+        new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
+      placeId: eventData?.place?.id || 0,
+      eventServices: eventData?.eventServices?.map((s) => ({ id: s.id })) || [],
     },
   });
-
-  useEffect(() => {
-    setValue('hallId', event.hallId);
-  }, [event.hallId, setValue]);
+  console.log('eventData', eventData);
 
   const startedAt = new Date(watch('startedAt'));
   const endedAt = new Date(watch('endedAt'));
+  const placeId = watch('placeId');
+  const eventServices = watch('eventServices');
+
+  useEffect(() => {
+    if (event.placeId) {
+      setValue('placeId', event.placeId);
+    }
+    if (event.eventServices.length > 0) {
+      setValue('eventServices', event.eventServices);
+    }
+  }, [event.placeId, event.eventServices]);
+
   const createSafeDate = (date?: Date | string | number) => {
     try {
       const d = date ? new Date(date) : new Date();
@@ -72,7 +110,7 @@ const ManualOrderingPage = () => {
     const current = formatDateTime(createSafeDate(startedAt));
     const newDate = new Date(date);
     newDate.setHours(current.dateObj.getHours(), current.dateObj.getMinutes());
-    setValue('startedAt', newDate.toISOString());
+    setValue('startedAt', newDate.toISOString(), { shouldValidate: true });
   };
 
   const handleStartTimeChange = ({
@@ -85,13 +123,14 @@ const ManualOrderingPage = () => {
     const current = formatDateTime(createSafeDate(startedAt));
     const newDate = new Date(current.dateObj);
     newDate.setHours(hours, minutes);
-    setValue('startedAt', newDate.toISOString());
+    setValue('startedAt', newDate.toISOString(), { shouldValidate: true });
   };
+
   const handleEndDateChange = (date: Date) => {
     const current = formatDateTime(createSafeDate(endedAt));
     const newDate = new Date(date);
     newDate.setHours(current.dateObj.getHours(), current.dateObj.getMinutes());
-    setValue('endedAt', newDate.toISOString());
+    setValue('endedAt', newDate.toISOString(), { shouldValidate: true });
   };
 
   const handleEndTimeChange = ({
@@ -104,7 +143,7 @@ const ManualOrderingPage = () => {
     const current = formatDateTime(createSafeDate(endedAt));
     const newDate = new Date(current.dateObj);
     newDate.setHours(hours, minutes);
-    setValue('endedAt', newDate.toISOString());
+    setValue('endedAt', newDate.toISOString(), { shouldValidate: true });
   };
 
   const onSubmit = async (data: FormData) => {
@@ -112,20 +151,22 @@ const ManualOrderingPage = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await postCreateEvent(token, data);
-
+      const response = await postEvent(token, data);
       Toast.show({
         type: 'success',
-        text1: 'Event Created',
-        text2: 'Your event has been successfully created',
+        text1: t('manualOrderingPage.eventCreated'),
+        text2: t('manualOrderingPage.eventCreatedSuccess'),
       });
 
       router.replace('/(application)');
+      reset();
+      resetEvent();
     } catch (err) {
       Toast.show({
         type: 'error',
         text1: 'Error',
-        text2: (err as Error).message || 'Failed to create event',
+        text2:
+          (err as Error).message || t('manualOrderingPage.eventCreationError'),
       });
     } finally {
       setIsSubmitting(false);
@@ -135,61 +176,183 @@ const ManualOrderingPage = () => {
   const startFormatted = formatDateTime(createSafeDate(startedAt));
   const endFormatted = formatDateTime(createSafeDate(endedAt));
 
-  return (
-    <View style={styles.container}>
-      <CTextInput
-        control={control}
-        name="title"
-        label="Event Title"
-        rules={{ required: 'Title is required' }}
-      />
-      <CTextInput
-        control={control}
-        name="description"
-        label="Description"
-        rules={{ required: 'Description is required' }}
-        multiline
-      />
-      <TouchableOpacity
-        onPress={() => router.push('/(ordering)/hallChoose')}
-        style={styles.placeInput}
-      >
-        <TextInput
-          label="Hall"
-          value={event.hallId ? `Hall ${event.place?.title}` : 'Choose Hall'}
-          editable={false}
-          mode="outlined"
-          theme={{ roundness: 10 }}
-        />
-      </TouchableOpacity>
-      <Text style={styles.sectionTitle}>Start Date & Time</Text>
-      <View style={styles.datetimeContainer}>
-        <View style={styles.dateInput}>
-          <TouchableOpacity onPress={() => setStartDatePickerVisible(true)}>
-            <TextInput
-              theme={{ roundness: 10 }}
-              style={styles.input}
-              label="Start Date"
-              mode="outlined"
-              value={startFormatted.dateStr}
-              editable={false}
-            />
-          </TouchableOpacity>
-        </View>
+  const fadeAnim = useState(new Animated.Value(0))[0];
+  const slideAnim = useState(new Animated.Value(30))[0];
 
-        <View style={styles.timeInput}>
-          <TouchableOpacity onPress={() => setStartTimePickerVisible(true)}>
-            <TextInput
-              theme={{ roundness: 10 }}
-              style={styles.input}
-              label="Start Time"
-              mode="outlined"
-              value={startFormatted.timeStr}
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 400,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+        <Text style={styles.headerTitle}>
+          {t('manualOrderingPage.headerTitle')}
+        </Text>
+        <Text style={styles.headerDescription}>
+          {t('manualOrderingPage.headerDescription')}
+        </Text>
+      </LinearGradient>
+      <Animated.View
+        style={[
+          styles.formContainer,
+          {
+            opacity: fadeAnim,
+            transform: [{ translateY: slideAnim }],
+          },
+        ]}
+      >
+        <Surface style={styles.inputCard}>
+          <CTextInput
+            control={control}
+            name="title"
+            label={t('manualOrderingPage.eventTitle')}
+            rules={{
+              required:
+                t('manualOrderingPage.eventTitle') +
+                ' ' +
+                t('system.isRequired'),
+            }}
+          />
+          <CTextInput
+            control={control}
+            name="description"
+            label={t('manualOrderingPage.description')}
+            rules={{
+              required:
+                t('manualOrderingPage.description') +
+                ' ' +
+                t('system.isRequired'),
+            }}
+            multiline
+          />
+          <Text style={styles.sectionHeader}>
+            <Icon source="animation" size={18} />
+            {'  '}
+            {t('manualOrderingPage.choosingServices')}
+          </Text>
+          <TouchableOpacity
+            onPress={() => router.push('/(ordering)/placeChoose')}
+          >
+            <CTextInput
+              control={control}
+              name="placeId"
+              label={t('manualOrderingPage.place')}
+              rules={{
+                required:
+                  t('manualOrderingPage.place') + ' ' + t('system.isRequired'),
+                validate: (value: number) =>
+                  value > 0 ||
+                  t('manualOrderingPage.place') + ' ' + t('system.isRequired'),
+              }}
               editable={false}
             />
           </TouchableOpacity>
-        </View>
-      </View>
+
+          <TouchableOpacity
+            onPress={() => router.push('/(ordering)/vendorsChoose')}
+          >
+            <CTextInput
+              control={control}
+              name="eventServices"
+              label={t('manualOrderingPage.vendors')}
+              rules={{
+                required:
+                  t('manualOrderingPage.vendors') +
+                  ' ' +
+                  t('system.isRequired'),
+                validate: (value: number[]) =>
+                  value.length > 0 ||
+                  t('manualOrderingPage.vendors') +
+                    ' ' +
+                    t('system.isRequired'),
+              }}
+              editable={false}
+            />
+          </TouchableOpacity>
+
+          <Text style={styles.sectionHeader}>
+            <Icon source="av-timer" size={18} />
+            {'  '}
+            {t('manualOrderingPage.choosingDate')}
+          </Text>
+          <View style={styles.datetimeContainer}>
+            <View style={styles.dateInput}>
+              <TouchableOpacity onPress={() => setStartDatePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label="Start Date"
+                  mode="outlined"
+                  value={startFormatted.dateStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.timeInput}>
+              <TouchableOpacity onPress={() => setStartTimePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label="Start Time"
+                  mode="outlined"
+                  value={startFormatted.timeStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.datetimeContainer}>
+            <View style={styles.dateInput}>
+              <TouchableOpacity onPress={() => setEndDatePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label="End Date"
+                  mode="outlined"
+                  value={endFormatted.dateStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.timeInput}>
+              <TouchableOpacity onPress={() => setEndTimePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label="End Time"
+                  mode="outlined"
+                  value={endFormatted.timeStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          {errors.endedAt && (
+            <HelperText type="error">{errors.endedAt.message}</HelperText>
+          )}
+          <Button
+            mode="contained"
+            onPress={handleSubmit(onSubmit)}
+            loading={isSubmitting}
+            disabled={isSubmitting}
+            style={styles.submitButton}
+            labelStyle={styles.submitButtonLabel}
+          >
+            {t('system.send')}
+          </Button>
+        </Surface>
+      </Animated.View>
       <DatePickerModal
         locale={locale === 'kz' ? 'ru' : 'en'}
         mode="single"
@@ -203,7 +366,7 @@ const ManualOrderingPage = () => {
           setStartDatePickerVisible(false);
         }}
         validRange={{
-          startDate: new Date(), // Нельзя выбрать дату раньше сегодня
+          startDate: new Date(),
         }}
       />
       <TimePickerModal
@@ -214,34 +377,6 @@ const ManualOrderingPage = () => {
         hours={startFormatted.dateObj.getHours()}
         minutes={startFormatted.dateObj.getMinutes()}
       />
-      <Text style={styles.sectionTitle}>End Date & Time</Text>
-      <View style={styles.datetimeContainer}>
-        <View style={styles.dateInput}>
-          <TouchableOpacity onPress={() => setEndDatePickerVisible(true)}>
-            <TextInput
-              theme={{ roundness: 10 }}
-              style={styles.input}
-              label="End Date"
-              mode="outlined"
-              value={endFormatted.dateStr}
-              editable={false}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.timeInput}>
-          <TouchableOpacity onPress={() => setEndTimePickerVisible(true)}>
-            <TextInput
-              theme={{ roundness: 10 }}
-              style={styles.input}
-              label="End Time"
-              mode="outlined"
-              value={endFormatted.timeStr}
-              editable={false}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
       <DatePickerModal
         locale={locale === 'kz' ? 'ru' : 'en'}
         mode="single"
@@ -255,7 +390,7 @@ const ManualOrderingPage = () => {
           setEndDatePickerVisible(false);
         }}
         validRange={{
-          startDate: startFormatted.dateObj, // Нельзя выбрать дату раньше даты начала
+          startDate: startFormatted.dateObj,
         }}
       />
       <TimePickerModal
@@ -266,34 +401,77 @@ const ManualOrderingPage = () => {
         hours={endFormatted.dateObj.getHours()}
         minutes={endFormatted.dateObj.getMinutes()}
       />
-      <Button
-        mode="contained"
-        onPress={handleSubmit(onSubmit)}
-        loading={isSubmitting}
-        disabled={isSubmitting}
-        style={styles.submitButton}
-        labelStyle={styles.submitButtonLabel}
-      >
-        Create Event
-      </Button>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     padding: 16,
-    backgroundColor: '#fff',
   },
-  placeInput: {
+  header: {
+    padding: 20,
+    justifyContent: 'flex-end',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
     marginBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: 'white',
+    marginBottom: 8,
+  },
+  headerDescription: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'white',
+  },
+  formContainer: {
+    paddingHorizontal: 20,
+    marginTop: -30,
+    paddingBottom: 40,
+  },
+  inputCard: {
+    borderRadius: 15,
+    marginBottom: 20,
+    elevation: 2,
+    padding: 15,
+    gap: 10,
+  },
+  chooseCard: {
+    padding: 15,
+    backgroundColor: 'white',
+  },
+  cardContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+  },
+  cardText: {
+    flex: 1,
+  },
+  cardLabel: {
+    fontSize: 16,
+    color: '#666',
+  },
+  cardValue: {
+    fontSize: 14,
+    color: '#999',
+  },
+  sectionHeader: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginVertical: 15,
+    paddingLeft: 10,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginVertical: 8,
-    color: '#333',
   },
   datetimeContainer: {
     flexDirection: 'row',
@@ -307,11 +485,8 @@ const styles = StyleSheet.create({
   timeInput: {
     flex: 1,
   },
-  input: {
-    backgroundColor: '#fff',
-  },
   submitButton: {
-    marginTop: 24,
+    marginTop: 8,
     borderRadius: 8,
     paddingVertical: 8,
   },

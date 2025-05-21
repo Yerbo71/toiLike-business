@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { operations } from '@/src/types/api2';
-import { getCurrentUser } from '@/src/core/rest/user/getCurrentUser';
+import { getCurrentUser } from '@/src/core/rest/user';
 
 type User = operations['getCurrentUser']['responses'][200]['content']['*/*'];
 
@@ -11,6 +11,7 @@ interface AuthContextType {
   user: User | null;
   signIn: (token: string) => Promise<void>;
   signOut: () => Promise<void>;
+  updateUser: (userData: User) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -19,6 +20,7 @@ export const AuthContext = createContext<AuthContextType>({
   user: null,
   signIn: async () => {},
   signOut: async () => {},
+  updateUser: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -48,7 +50,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     verifyAuth();
   }, []);
 
-  // Функция для входа
   const signIn = async (newToken: string) => {
     await AsyncStorage.setItem('accessToken', newToken);
     setToken(newToken);
@@ -62,17 +63,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Функция для выхода
   const signOut = async () => {
     await AsyncStorage.removeItem('accessToken');
     setToken(null);
     setIsAuthenticated(false);
     setUser(null);
   };
+  const updateUser = (userData: User) => {
+    setUser(userData);
+  };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, token, signIn, signOut, user }}
+      value={{ isAuthenticated, token, signIn, signOut, user, updateUser }}
     >
       {children}
     </AuthContext.Provider>

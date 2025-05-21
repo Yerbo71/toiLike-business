@@ -11,6 +11,8 @@ interface CTextInputProps {
   rules?: object;
   multiline?: boolean;
   secureTextEntry?: boolean;
+  inputType?: import('react-native').KeyboardTypeOptions;
+  editable?: boolean;
 }
 
 export const CTextInput: React.FC<CTextInputProps> = ({
@@ -20,6 +22,8 @@ export const CTextInput: React.FC<CTextInputProps> = ({
   rules,
   multiline,
   secureTextEntry,
+  inputType,
+  editable,
 }) => {
   const theme = useTheme();
   const [show, setShow] = useState(false);
@@ -32,38 +36,47 @@ export const CTextInput: React.FC<CTextInputProps> = ({
         render={({
           field: { onChange, onBlur, value },
           fieldState: { error },
-        }) => (
-          <>
-            <TextInput
-              label={label}
-              mode="outlined"
-              value={value}
-              onBlur={onBlur}
-              onChangeText={onChange}
-              error={!!error}
-              theme={{ roundness: 10 }}
-              multiline={multiline}
-              numberOfLines={multiline ? 4 : 1}
-              secureTextEntry={secureTextEntry && !show}
-              right={
-                secureTextEntry ? (
-                  <TextInput.Icon
-                    icon={show ? 'eye' : 'eye-off'}
-                    onPress={() => setShow(!show)}
-                  />
-                ) : undefined
-              }
-            />
-            {error && (
-              <Text
-                style={{ color: theme.colors.error, marginTop: 5 }}
-                variant="labelSmall"
-              >
-                {error.message}
-              </Text>
-            )}
-          </>
-        )}
+        }) => {
+          const formattedValue = Array.isArray(value)
+            ? value.map((item) => item.id).join(', ')
+            : typeof value === 'object'
+              ? value.id
+              : String(value || '');
+          return (
+            <>
+              <TextInput
+                label={label}
+                mode="outlined"
+                value={formattedValue}
+                editable={editable}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                error={!!error}
+                theme={{ roundness: 10 }}
+                multiline={multiline}
+                numberOfLines={multiline ? 4 : 1}
+                secureTextEntry={secureTextEntry && !show}
+                keyboardType={inputType || 'default'}
+                right={
+                  secureTextEntry ? (
+                    <TextInput.Icon
+                      icon={show ? 'eye' : 'eye-off'}
+                      onPress={() => setShow(!show)}
+                    />
+                  ) : undefined
+                }
+              />
+              {error && (
+                <Text
+                  style={{ color: theme.colors.error, marginTop: 5 }}
+                  variant="labelSmall"
+                >
+                  {error.message}
+                </Text>
+              )}
+            </>
+          );
+        }}
       />
     </View>
   );

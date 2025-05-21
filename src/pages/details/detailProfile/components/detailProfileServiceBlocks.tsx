@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Text, useTheme, Card } from 'react-native-paper';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useI18n } from '@/src/context/LocaleContext';
 
 interface Service {
   id: number;
@@ -19,6 +20,7 @@ const DetailProfileServiceBlock: React.FC<ServicesBlockProps> = ({
   services = [],
 }) => {
   const theme = useTheme();
+  const { t } = useI18n();
 
   return (
     <View style={styles.servicesContainer}>
@@ -26,7 +28,7 @@ const DetailProfileServiceBlock: React.FC<ServicesBlockProps> = ({
         variant="titleMedium"
         style={[styles.sectionTitle, { color: theme.colors.onSurface }]}
       >
-        Included Services
+        {t('detailsPage.includedServices')}
       </Text>
 
       <ScrollView
