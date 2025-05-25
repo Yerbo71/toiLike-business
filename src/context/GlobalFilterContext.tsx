@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+export type CityEnum = 'ALMATY' | 'ASTANA' | 'SHYMKENT';
+
 type GlobalFilterContextType = {
   city: string | null;
-  setCity: (city: string | null) => void;
+  setCity: (city: CityEnum) => void;
 };
 
 const GlobalFilterContext = createContext<GlobalFilterContextType | undefined>(
@@ -10,7 +12,7 @@ const GlobalFilterContext = createContext<GlobalFilterContextType | undefined>(
 );
 
 export const GlobalFilterProvider = ({ children }: { children: ReactNode }) => {
-  const [city, setCity] = useState<string | null>(null);
+  const [city, setCity] = useState<CityEnum>('ALMATY');
 
   return (
     <GlobalFilterContext.Provider value={{ city, setCity }}>

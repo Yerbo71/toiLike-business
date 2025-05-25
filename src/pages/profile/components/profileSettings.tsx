@@ -62,7 +62,7 @@ const ProfileSettings = () => {
         rightIcon="chevron-right"
         rightTitle={city || t('system.choose')}
         onPress={() => {
-          router.push('/(ordering)/cityChoose');
+          router.push('/(protected)/(flow)/cityChoose');
         }}
       />
 

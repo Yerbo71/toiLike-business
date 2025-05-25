@@ -4,6 +4,38 @@
  */
 
 export interface paths {
+    "/event-service/user-vendor/update/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updateUserVendor"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/update/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["updatePlace"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/event/update-event/{id}": {
         parameters: {
             query?: never;
@@ -94,6 +126,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["rateUserVendor_1"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["createPlace"];
         delete?: never;
         options?: never;
         head?: never;
@@ -388,6 +436,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user-vendor/delete/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deleteUserVendor"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/delete/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["deletePlace"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/event/delete-event/{id}": {
         parameters: {
             query?: never;
@@ -408,6 +488,57 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        UserVendorRequest: {
+            title: string;
+            description?: string;
+            /** Format: float */
+            experience?: number;
+            /** Format: float */
+            averageCost?: number;
+            /** @enum {string} */
+            serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
+        };
+        UserVendorResponse: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            description?: string;
+            /** Format: float */
+            experience?: number;
+            /** Format: float */
+            averageCost?: number;
+            serviceType: string;
+            /** Format: float */
+            rating?: number;
+            mainImage?: string;
+            secondaryImage?: string;
+        };
+        PlaceRequest: {
+            title: string;
+            /** @enum {string} */
+            cityEnum?: "ALMATY" | "ASTANA" | "SHYMKENT" | "ATYRAU" | "KOKSHETAU";
+            street?: string;
+            description?: string;
+            /** Format: float */
+            cost?: number;
+            mainImage?: string;
+            secondaryImage?: string;
+        };
+        PlaceResponse: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            /** @enum {string} */
+            cityEnum?: "ALMATY" | "ASTANA" | "SHYMKENT" | "ATYRAU" | "KOKSHETAU";
+            street?: string;
+            description?: string;
+            mainImage?: string;
+            secondaryImage?: string;
+            /** Format: float */
+            rating?: number;
+            /** Format: float */
+            cost?: number;
+        };
         EventRequest: {
             title: string;
             /** Format: date-time */
@@ -456,20 +587,6 @@ export interface components {
             /** @enum {string} */
             status?: "CONFIRMED" | "PENDING" | "REJECTED";
         };
-        PlaceResponse: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            city?: string;
-            street?: string;
-            description?: string;
-            mainImage?: string;
-            secondaryImage?: string;
-            /** Format: float */
-            rating?: number;
-            /** Format: float */
-            cost?: number;
-        };
         ApiResponse: {
             /** @enum {string} */
             status: "SUCCESS" | "FAIL";
@@ -481,31 +598,6 @@ export interface components {
             comment: string;
             /** Format: float */
             rating: number;
-        };
-        UserVendorRequest: {
-            title: string;
-            description?: string;
-            /** Format: float */
-            experience?: number;
-            /** Format: float */
-            averageCost?: number;
-            /** @enum {string} */
-            serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
-        };
-        UserVendorResponse: {
-            /** Format: int64 */
-            id: number;
-            title: string;
-            description?: string;
-            /** Format: float */
-            experience?: number;
-            /** Format: float */
-            averageCost?: number;
-            serviceType: string;
-            /** Format: float */
-            rating?: number;
-            mainImage?: string;
-            secondaryImage?: string;
         };
         EventVendorByUser: {
             /** Format: float */
@@ -644,6 +736,58 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    updateUserVendor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserVendorRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserVendorResponse"];
+                };
+            };
+        };
+    };
+    updatePlace: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlaceRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PlaceResponse"];
+                };
+            };
+        };
+    };
     updateEvent: {
         parameters: {
             query?: never;
@@ -790,6 +934,30 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    createPlace: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlaceRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PlaceResponse"];
                 };
             };
         };
@@ -1008,7 +1176,7 @@ export interface operations {
         parameters: {
             query?: {
                 q?: string;
-                city?: string;
+                cityEnum?: "ALMATY" | "ASTANA" | "SHYMKENT" | "ATYRAU" | "KOKSHETAU";
                 street?: string;
                 page?: number;
                 size?: number;
@@ -1200,6 +1368,50 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["FullEventTemplateResponse"];
+                };
+            };
+        };
+    };
+    deleteUserVendor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    deletePlace: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
                 };
             };
         };
