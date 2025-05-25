@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/vendorCreate/[id].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(application)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/cityChoose/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/cityChoose/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/api/apiConst.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api/apiConst.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/GlobalFilterContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/GlobalFilterContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(application)/myApplications/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/myServices/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/manualOrdering/[id].tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/cityChoose/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/cityChoose/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/modals/profileModals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/modals/profileModals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +122,7 @@
       <workItem from="1747844377644" duration="136000" />
       <workItem from="1747844730083" duration="13000" />
       <workItem from="1747844744197" duration="4088000" />
-      <workItem from="1748177155038" duration="2030000" />
+      <workItem from="1748177155038" duration="6380000" />
     </task>
     <servers />
   </component>

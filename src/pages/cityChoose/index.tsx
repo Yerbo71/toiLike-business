@@ -5,10 +5,10 @@ import { useI18n } from '@/src/context/LocaleContext';
 import { useGlobalFilters } from '@/src/context/GlobalFilterContext';
 import { CityEnum } from '@/src/context/GlobalFilterContext';
 
-const localizedCities: Record<CityEnum, { en: string; ru: string; kk: string }> = {
-  ALMATY: { en: 'Almaty', ru: 'Алматы', kk: 'Алматы' },
-  ASTANA: { en: 'Astana', ru: 'Астана', kk: 'Астана' },
-  SHYMKENT: { en: 'Shymkent', ru: 'Шымкент', kk: 'Шымкент' },
+const localizedCities: Record<CityEnum, { en: string; ru: string; kz: string }> = {
+  ALMATY: { en: 'Almaty', ru: 'Алматы', kz: 'Алматы' },
+  ASTANA: { en: 'Astana', ru: 'Астана', kz: 'Астана' },
+  SHYMKENT: { en: 'Shymkent', ru: 'Шымкент', kz: 'Шымкент' },
 };
 
 const CityChoosePage: React.FC = () => {
@@ -20,7 +20,7 @@ const CityChoosePage: React.FC = () => {
   const cityList = (Object.keys(localizedCities) as CityEnum[])
     .map((key) => ({
       key,
-      label: localizedCities[key][locale as 'en' | 'ru' | 'kk'],
+      label: localizedCities[key][locale as 'en' | 'ru' | 'kz'],
     }))
     .filter((city) =>
       city.label.toLowerCase().includes(searchQuery.toLowerCase()),

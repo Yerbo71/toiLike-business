@@ -44,38 +44,20 @@ const FooterMenuModal: FC<Props> = ({ close }) => {
             alignItems: 'center',
           }}
         >
-          <Text variant="titleMedium">{t('system.order')}</Text>
+          <Text variant="titleMedium">{t('system.createService')}</Text>
           <IconButton icon="close" onPress={close} />
         </View>
         <TouchableOpacity
           onPress={() => {
             close();
-            router.push('/(ordering)/manualOrdering');
+            // @ts-ignore
+            router.push('/(protected)/(flow)/vendorCreate/index');
           }}
         >
           <Card.Title
-            title={t('orderModal.orderOne.title')}
-            subtitle={t('orderModal.orderOne.description')}
+            title={t('serviceCreateModal.vendorCreate.title')}
+            subtitle={t('serviceCreateModal.vendorCreate.description')}
             left={(props) => <Avatar.Icon {...props} icon="list-status" />}
-            right={(props) => <IconButton {...props} icon="chevron-right" />}
-            style={{
-              borderStyle: 'solid',
-              borderWidth: 2,
-              borderRadius: 10,
-              borderColor: theme.colors.surfaceVariant,
-            }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            close();
-            router.push('/(ordering)/staffOrdering');
-          }}
-        >
-          <Card.Title
-            title={t('orderModal.orderTwo.title')}
-            subtitle={t('orderModal.orderTwo.description')}
-            left={(props) => <Avatar.Icon {...props} icon="account-star" />}
             right={(props) => <IconButton {...props} icon="chevron-right" />}
             style={{
               borderStyle: 'solid',

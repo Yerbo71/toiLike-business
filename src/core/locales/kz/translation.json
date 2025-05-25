@@ -2,6 +2,8 @@
   "system": {
     "home": "Басты бет",
     "applications": "Өтінімдер",
+    "myServices": "Менің сервисім",
+    "createService": "Жаңа сервис",
     "order": "Тапсырыс беру",
     "chats": "Чаттар",
     "profile": "Профиль",
@@ -46,6 +48,7 @@
     "perfectLocation": "Тамаша орналасқан жер",
     "selectCity": "Қаланы таңдау",
     "searchVenues": "Орындарды іздеу",
+    "resetPassword": "Құпия сөзді қалпына келтіру",
     "filters": "Фильтрлер",
     "total": "Жалпы",
     "apply": "Қолдану",
@@ -66,20 +69,16 @@
     "enabled": "Хабарламалар қосылды",
     "enabledMessage": "Енді сіз хабарламалар аласыз.",
     "disabled": "Хабарламалар өшірілді",
-    "disabledMessage": "Сіз енді хабарламалар алмайсыз."
+    "disabledMessage": "Сіз енді хабарламалар алмайсыз.",
+    "welcome": "ToiLike Business-ке қош келдіңіз!",
+    "welcomeMessage": "Бізге қосылғаныңызға рақмет! Қызметтерімізбен танысып, іс-шараларыңызды тиімді басқаруды бастаңыз.",
+    "startCreate": "Алғашқы іс-шараны құруды бастау",
+    "startCreateMessage": "Бүгін алғашқы іс-шараңызды құрып, ToiLike Business қызметін бастаңыз."
   },
-  "orderModal": {
-    "orderOne": {
-      "title": "Өтінім беру",
-      "description": "Сұранысты қолмен жасау"
-    },
-    "orderTwo": {
-      "title": "Маманның көмегі",
-      "description": "Ұйымдастыруды маманға тапсырыңыз"
-    },
-    "orderThree": {
-      "title": "ЖИ көмегі",
-      "description": "Ұйымдастыруды ЖИ-ға тапсырыңыз"
+  "serviceCreateModal": {
+    "vendorCreate": {
+      "title": "Жаңа жеткізуші жасау",
+      "description": "Жаңа жеткізуші жасауды бастаңыз"
     }
   },
   "withoutToken": {

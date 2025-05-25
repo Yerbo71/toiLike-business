@@ -9,9 +9,11 @@ import {
   Button,
 } from 'react-native-paper';
 import { useRouter } from 'expo-router';
+import { useI18n } from '@/src/context/LocaleContext';
 
 const HomeHeader = () => {
   const theme = useTheme();
+  const {t} = useI18n()
   const router = useRouter();
   const [visible, setVisible] = useState(false);
 
@@ -21,15 +23,15 @@ const HomeHeader = () => {
   const notifications = [
     {
       id: 1,
-      title: 'Welcome',
+      title: t("notifications.welcome"),
       message:
-        'Thank you for joining our platform! We’re excited to have you on board.',
+        t("notifications.welcomeMessage"),
     },
     {
       id: 2,
-      title: 'Start creating your event',
+      title: t("notifications.startCreate"),
       message:
-        'Begin by setting up your first event — choose a name, date, and invite participants!',
+        t("notifications.startCreateMessage"),
     },
   ];
 
@@ -44,7 +46,7 @@ const HomeHeader = () => {
           variant="titleMedium"
           style={[styles.logo, { color: theme.colors.primary }]}
         >
-          ToiLike
+          ToiLike Business
         </Text>
 
         <View style={styles.iconsContainer}>
@@ -82,7 +84,7 @@ const HomeHeader = () => {
 
             {notifications.length > 0 ? (
               notifications.map((notification) => (
-                <View key={notification.id} style={styles.notificationItem}>
+                <View key={notification.id} style={[styles.notificationItem, { borderBottomColor: theme.colors.primary }]}>
                   <Text variant="titleMedium">{notification.title}</Text>
                   <Text variant="bodyMedium">{notification.message}</Text>
                 </View>
@@ -142,7 +144,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
   },
   modalButton: {
     marginTop: 16,

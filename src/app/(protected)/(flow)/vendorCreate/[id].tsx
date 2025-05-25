@@ -9,7 +9,7 @@ import { View } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { useEvent } from '@/src/context/EventContext';
 
-export default function ManualOrdering() {
+export default function VendorCreate() {
   const { isAuthenticated, token } = useContext(AuthContext);
   const params = useLocalSearchParams();
   const eventId = Number(params.id);

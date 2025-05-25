@@ -2,6 +2,8 @@
   "system": {
     "home": "Главная",
     "applications": "Заявки",
+    "myServices": "Мои услуги",
+    "createService": "Создать услугу",
     "order": "Заказать",
     "chats": "Чаты",
     "profile": "Профиль",
@@ -67,20 +69,16 @@
     "enabled": "Уведомления включены",
     "enabledMessage": "Теперь вы будете получать уведомления.",
     "disabled": "Уведомления отключены",
-    "disabledMessage": "Вы больше не будете получать уведомления."
+    "disabledMessage": "Вы больше не будете получать уведомления.",
+    "welcome": "Добро пожаловать в ToiLike Business!",
+    "welcomeMessage": "Спасибо, что присоединились к нам! Ознакомьтесь с нашими услугами и начните эффективно управлять своими мероприятиями.",
+    "startCreate": "Начать создание первого мероприятия",
+    "startCreateMessage": "Создайте своё первое мероприятие и начните работу с ToiLike Business уже сегодня."
   },
-  "orderModal": {
-    "orderOne": {
-      "title": "Подать заявку",
-      "description": "Создать запрос вручную"
-    },
-    "orderTwo": {
-      "title": "Помощь специалиста",
-      "description": "Доверьте организацию специалисту"
-    },
-    "orderThree": {
-      "title": "Помощь ИИ",
-      "description": "Доверьте организацию ИИ"
+  "serviceCreateModal": {
+    "vendorCreate": {
+      "title": "Создать поставщика",
+      "description": "Создать нового поставщика"
     }
   },
   "withoutToken": {

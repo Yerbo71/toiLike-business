@@ -42,13 +42,14 @@ export const TechSupportModal = ({ visible, onDismiss }: ModalProps) => {
         ]}
       >
         <View style={styles.header}>
+          <View style={styles.placeholder} />
+          <Text style={styles.title}>{t('system.techSupport')}</Text>
           <IconButton
             icon="close"
             size={24}
             onPress={onDismiss}
             style={styles.closeButton}
           />
-          <Text style={styles.title}>{t('system.techSupport')}</Text>
         </View>
         <Divider />
 
@@ -128,14 +129,14 @@ export const AboutAppModal = ({ visible, onDismiss }: ModalProps) => {
         ]}
       >
         <View style={styles.header}>
+          <View style={styles.placeholder} />
+          <Text style={styles.title}>{t('system.aboutApp')}</Text>
           <IconButton
             icon="close"
             size={24}
             onPress={onDismiss}
             style={styles.closeButton}
           />
-          <Text style={styles.title}>{t('system.aboutApp')}</Text>
-          <View style={styles.placeholder} />
         </View>
         <Divider />
 
@@ -226,14 +227,14 @@ export const RatingModal = ({ visible, onDismiss }: ModalProps) => {
         ]}
       >
         <View style={styles.header}>
+          <View style={styles.placeholder} />
+          <Text style={styles.title}>{t('system.rating')}</Text>
           <IconButton
             icon="close"
             size={24}
             onPress={onDismiss}
             style={styles.closeButton}
           />
-          <Text style={styles.title}>{t('system.rating')}</Text>
-          <View style={styles.placeholder} />
         </View>
         <Divider />
 
@@ -325,6 +326,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+    paddingLeft: 8,
   },
   placeholder: {
     width: 40,

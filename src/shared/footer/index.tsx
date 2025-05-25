@@ -69,9 +69,9 @@ export const Footer = () => {
           }}
         />
         <Tabs.Screen
-          name="myApplications/index"
+          name="myServices/index"
           options={{
-            title: t('system.applications'),
+            title: t('system.myServices'),
             tabBarIcon: ({ color, focused }) => (
               <View style={focused ? styles.activeIconContainer : null}>
                 <Entypo name="text-document" size={24} color={color} />
@@ -82,7 +82,7 @@ export const Footer = () => {
         <Tabs.Screen
           name="empty/index"
           options={{
-            title: t('system.order'),
+            title: t('system.createService'),
             tabBarIcon: () => (
               <View style={styles.fabContainer}>
                 <LinearGradient

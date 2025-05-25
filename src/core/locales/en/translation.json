@@ -2,6 +2,8 @@
   "system": {
     "home": "Home",
     "applications": "Applications",
+    "myServices": "My Services",
+    "createService": "Create Service",
     "order": "Order",
     "chats": "Chats",
     "profile": "Profile",
@@ -67,20 +69,16 @@
     "enabled": "Notifications enabled",
     "enabledMessage": "You will now receive notifications.",
     "disabled": "Notifications disabled",
-    "disabledMessage": "You will no longer receive notifications."
+    "disabledMessage": "You will no longer receive notifications.",
+    "welcome": "Welcome to ToiLike Business!",
+    "welcomeMessage": "Thank you for joining us! Explore our services and start managing your events efficiently.",
+    "startCreate": "Start creating your first event",
+    "startCreateMessage": "Create your first event and get started with ToiLike Business today."
   },
-  "orderModal": {
-    "orderOne": {
-      "title": "Basic request",
-      "description": "Make a manual request"
-    },
-    "orderTwo": {
-      "title": "Expert assistance",
-      "description": "Delegate organization to an expert"
-    },
-    "orderThree": {
-      "title": "AI assistance",
-      "description": "Delegate organization to AI"
+  "serviceCreateModal": {
+    "vendorCreate": {
+      "title": "Create Vendor",
+      "description": "Make a vendor request"
     }
   },
   "withoutToken": {
