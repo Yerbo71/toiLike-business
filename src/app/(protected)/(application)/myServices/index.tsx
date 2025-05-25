@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '@/src/context/AuthContext';
-import { WithoutToken } from '@/src/shared/withoutToken';
-import MyApplicationsPage from '@/src/pages/myApplications';
+import React from 'react';
+import { View } from 'react-native';
 
 export default function MyApplications() {
-  const { isAuthenticated } = useContext(AuthContext);
-  return <>{isAuthenticated ? <MyApplicationsPage /> : <WithoutToken />}</>;
+  return  <View></View>
 }

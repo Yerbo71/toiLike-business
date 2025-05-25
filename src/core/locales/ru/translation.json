@@ -302,5 +302,39 @@
     "missingData": "Необходимо указать ID события",
     "defaultResponse": "Анализ завершен",
     "errorResponse": "Ошибка при загрузке анализа"
+  },
+  "vendorCreatePage": {
+    "headerTitle": "Создать подрядчика",
+    "headerDescription": "Оставьте заявку на подрядчика",
+    "vendorTitle": "Название подрядчика",
+    "description": "Описание",
+    "serviceType": "Тип услуги",
+    "experience": "Годы опыта",
+    "averageCost": "Средняя стоимость",
+    "mainImage": "Основное изображение",
+    "secondaryImage": "Дополнительное изображение",
+    "vendorCreated": "Подрядчик создан",
+    "vendorCreatedSuccess": "Подрядчик успешно создан"
+  },
+  "serviceTypes": {
+    "PRESENTERS": "Ведущие",
+    "SINGERS": "Певцы",
+    "DANCERS": "Танцоры",
+    "GROUP": "Группы",
+    "OPERATORS": "Операторы",
+    "PHOTOGRAPH": "Фотографы",
+    "MOBILOGRAPH": "Мобилографы",
+    "TRANSPORT": "Транспорт",
+    "DECORATORS": "Декораторы",
+    "ANIMATORS": "Аниматоры",
+    "TECHNICAL_STAFF": "Технический персонал",
+    "SECURITY": "Охрана",
+    "SOUND_ENGINEERS": "Звукорежиссёры",
+    "MEDICAL_WORKERS": "Медицинские работники",
+    "STYLISTS": "Стилисты",
+    "TECHNICAL_EQUIPMENT": "Техническое оборудование",
+    "HAIR_DRESSERS": "Парикмахеры",
+    "CLOTHING_SUPPLIERS": "Поставщики одежды",
+    "FLOWER_SUPPLIERS": "Поставщики цветов"
   }
 }

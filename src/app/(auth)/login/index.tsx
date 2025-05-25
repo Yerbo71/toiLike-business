@@ -30,9 +30,10 @@ export default function Login() {
     setIsPending(true);
     try {
       const response = await login(data);
+      console.log('response: ', response);
       await signIn(response.accessToken);
       // @ts-ignore
-      router.replace('/(protected)/(application)');
+      router.replace('/(protected)/');
     } catch (err) {
       Toast.show({
         type: 'error',
@@ -48,7 +49,7 @@ export default function Login() {
     theme.dark ? 'rgba(118, 64, 0, 0.8)' : 'rgba(255, 145, 0, 0.7)',
   ];
   return (
-    <View style={styles.backgroundContainer}>
+    <View style={[styles.backgroundContainer, { backgroundColor: theme.colors.background }]}>
       <LinearGradient colors={gradientColors} style={styles.gradientOverlay}>
         <Surface style={styles.formContainer}>
           <View style={styles.headerContainer}>
@@ -159,7 +160,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#f5f5f5',
   },
   gradientOverlay: {
     flex: 1,

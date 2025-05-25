@@ -135,27 +135,6 @@ export const Footer = () => {
             ),
           }}
         />
-        <Tabs.Screen
-          name="details/[id]"
-          options={{
-            href: null,
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen
-          name="vendorDetails/[id]"
-          options={{
-            href: null,
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen
-          name="placeDetails/[id]"
-          options={{
-            href: null,
-            headerShown: false,
-          }}
-        />
       </Tabs>
       {modalOpen && <FooterMenuModal close={close} />}
     </>

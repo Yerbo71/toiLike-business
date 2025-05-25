@@ -297,6 +297,39 @@
     "missingData": "Оқиға идентификаторы көрсетілуі керек",
     "defaultResponse": "Талдау аяқталды",
     "errorResponse": "Талдау жүктеу кезінде қате пайда болды"
+  },
+  "vendorCreatePage": {
+    "headerTitle": "Қызмет көрсетушіні қосу",
+    "headerDescription": "Қызмет көрсетушіге өтінім беріңіз",
+    "vendorTitle": "Қызмет көрсетуші атауы",
+    "description": "Сипаттама",
+    "serviceType": "Қызмет түрі",
+    "experience": "Тәжірибе жылдары",
+    "averageCost": "Орташа баға",
+    "mainImage": "Негізгі сурет",
+    "secondaryImage": "Қосымша сурет",
+    "vendorCreated": "Қызмет көрсетуші қосылды",
+    "vendorCreatedSuccess": "Қызмет көрсетуші сәтті қосылды"
+  },
+  "serviceTypes": {
+    "PRESENTERS": "Жүргізушілер",
+    "SINGERS": "Әншілер",
+    "DANCERS": "Бишілер",
+    "GROUP": "Топтар",
+    "OPERATORS": "Операторлар",
+    "PHOTOGRAPH": "Фотографтар",
+    "MOBILOGRAPH": "Мобилографтар",
+    "TRANSPORT": "Тасымалдау",
+    "DECORATORS": "Декораторлар",
+    "ANIMATORS": "Аниматорлар",
+    "TECHNICAL_STAFF": "Техникалық қызметкерлер",
+    "SECURITY": "Қауіпсіздік",
+    "SOUND_ENGINEERS": "Дыбыс режиссерлері",
+    "MEDICAL_WORKERS": "Медициналық қызметкерлер",
+    "STYLISTS": "Стилисттер",
+    "TECHNICAL_EQUIPMENT": "Техникалық жабдық",
+    "HAIR_DRESSERS": "Шаштараздар",
+    "CLOTHING_SUPPLIERS": "Киім жеткізушілер",
+    "FLOWER_SUPPLIERS": "Гүл жеткізушілер"
   }
-
 }

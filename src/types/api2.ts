@@ -495,6 +495,10 @@ export interface components {
             experience?: number;
             /** Format: float */
             averageCost?: number;
+            /** Format: binary */
+            mainImage?: string;
+            /** Format: binary */
+            secondaryImage?: string;
             /** @enum {string} */
             serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
         };
@@ -521,7 +525,9 @@ export interface components {
             description?: string;
             /** Format: float */
             cost?: number;
+            /** Format: binary */
             mainImage?: string;
+            /** Format: binary */
             secondaryImage?: string;
         };
         PlaceResponse: {
@@ -738,18 +744,16 @@ export type $defs = Record<string, never>;
 export interface operations {
     updateUserVendor: {
         parameters: {
-            query?: never;
+            query: {
+                request: components["schemas"]["UserVendorRequest"];
+            };
             header?: never;
             path: {
                 id: number;
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UserVendorRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {
@@ -940,16 +944,14 @@ export interface operations {
     };
     createPlace: {
         parameters: {
-            query?: never;
+            query: {
+                placeRequest: components["schemas"]["PlaceRequest"];
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PlaceRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {

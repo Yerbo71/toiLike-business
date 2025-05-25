@@ -60,7 +60,8 @@
     "manage": "Manage",
     "aiAnalysis": "AI Analysis",
     "services": "Services",
-    "venue": "Venue"
+    "venue": "Venue",
+    "change": "Change"
   },
   "notifications": {
     "permissionDenied": "Permission denied",
@@ -298,5 +299,39 @@
     "missingData": "Event ID is required",
     "defaultResponse": "Analysis completed",
     "errorResponse": "Error loading analysis"
+  },
+  "vendorCreatePage": {
+    "headerTitle": "Create Vendor",
+    "headerDescription": "Make a vendor request",
+    "vendorTitle": "Vendor Title",
+    "description": "Description",
+    "serviceType": "Service Type",
+    "experience": "Years of Experience",
+    "averageCost": "Average Cost",
+    "mainImage": "Main Image",
+    "secondaryImage": "Secondary Image",
+    "vendorCreated": "Vendor Created",
+    "vendorCreatedSuccess": "Vendor created successfully"
+  },
+  "serviceTypes": {
+    "PRESENTERS": "Presenters",
+    "SINGERS": "Singers",
+    "DANCERS": "Dancers",
+    "GROUP": "Group",
+    "OPERATORS": "Operators",
+    "PHOTOGRAPH": "Photography",
+    "MOBILOGRAPH": "Mobile Photography",
+    "TRANSPORT": "Transport",
+    "DECORATORS": "Decorators",
+    "ANIMATORS": "Animators",
+    "TECHNICAL_STAFF": "Technical Staff",
+    "SECURITY": "Security",
+    "SOUND_ENGINEERS": "Sound Engineers",
+    "MEDICAL_WORKERS": "Medical Workers",
+    "STYLISTS": "Stylists",
+    "TECHNICAL_EQUIPMENT": "Technical Equipment",
+    "HAIR_DRESSERS": "Hair Dressers",
+    "CLOTHING_SUPPLIERS": "Clothing Suppliers",
+    "FLOWER_SUPPLIERS": "Flower Suppliers"
   }
 }
