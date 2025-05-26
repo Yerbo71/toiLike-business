@@ -24,34 +24,13 @@ import * as ImagePicker from 'expo-image-picker';
 import type { operations } from '@/src/types/api2';
 import { postCreateUserVendor } from '@/src/core/rest/user-vendor-controller';
 import { Picker } from '@react-native-picker/picker';
+import { serviceTypes } from '@/src/constants/mock/values';
 
 interface Props {
   vendorCreateData?: operations['createUserVendor']['responses'][200]['content']['*/*'];
 }
 
 type FormData = operations['createUserVendor']['parameters']['query']['request'];
-
-const serviceTypes = [
-  'PRESENTERS',
-  'SINGERS',
-  'DANCERS',
-  'GROUP',
-  'OPERATORS',
-  'PHOTOGRAPH',
-  'MOBILOGRAPH',
-  'TRANSPORT',
-  'DECORATORS',
-  'ANIMATORS',
-  'TECHNICAL_STAFF',
-  'SECURITY',
-  'SOUND_ENGINEERS',
-  'MEDICAL_WORKERS',
-  'STYLISTS',
-  'TECHNICAL_EQUIPMENT',
-  'HAIR_DRESSERS',
-  'CLOTHING_SUPPLIERS',
-  'FLOWER_SUPPLIERS',
-] as const;
 
 const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
   const { t } = useI18n();
@@ -63,8 +42,6 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
   const {
     control,
     handleSubmit,
-    setValue,
-    formState: { errors },
   } = useForm<FormData>({
     mode: 'onSubmit',
     defaultValues: {

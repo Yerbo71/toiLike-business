@@ -314,6 +314,10 @@
     "vendorCreated": "Қызмет көрсетуші қосылды",
     "vendorCreatedSuccess": "Қызмет көрсетуші сәтті қосылды"
   },
+  "profileSubscription": {
+    "headerTitle": "Жазылымдар",
+    "headerDescription": "Жазылымдарды таңдаңыз және қызметтеріңізді жақсартыңыз"
+  },
   "serviceTypes": {
     "PRESENTERS": "Жүргізушілер",
     "SINGERS": "Әншілер",
@@ -334,5 +338,46 @@
     "HAIR_DRESSERS": "Шаштараздар",
     "CLOTHING_SUPPLIERS": "Киім жеткізушілер",
     "FLOWER_SUPPLIERS": "Гүл жеткізушілер"
+  },
+  "subscriptions": {
+    "title": "Мамандарға арналған жазылымдар",
+    "highlight": "Платформада көбірек тапсырыс алып, кеңейтілген мүмкіндіктерге қол жеткізу үшін лайықты тарифті таңдаңыз.",
+    "current_plan": "Ағымдағы жоспар",
+    "select_plan": "Таңдау",
+    "need_help": "Таңдауда көмек керек пе?",
+    "contact_us": "Бізбен хабарласыңыз",
+    "popular": "ТАНЫМАЛ",
+    "plans": {
+      "free": {
+        "name": "Тегін",
+        "price": "0 KZT",
+        "features": {
+          "limited_access": "Шектеулі қолжетімділік",
+          "few_orders": "Аз тапсырыстар",
+          "low_priority": "Іздеуде төмен басымдық"
+        }
+      },
+      "standard": {
+        "name": "Standard",
+        "price": "6 900 KZT ЖК үшін",
+        "price_note": "немесе 15 000 KZT ЖШС үшін",
+        "features": {
+          "more_orders": "Көбірек тапсырыстар",
+          "medium_priority": "Іздеуде орташа басымдық",
+          "analytics": "Аналитика мен акцияларға қолжетімділік"
+        }
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "15 000 KZT ЖК үшін",
+        "price_note": "немесе 25 000 KZT ЖШС үшін",
+        "features": {
+          "high_priority": "Іздеуде ең жоғары басымдық",
+          "recommendations": "Ұсынымдар мен таңдауларға қатысу",
+          "discounts": "Ақылы функцияларға жеңілдіктер",
+          "advanced_analytics": "Кеңейтілген аналитика және профиль"
+        }
+      }
+    }
   }
 }

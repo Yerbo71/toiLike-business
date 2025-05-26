@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, useTheme, Text } from 'react-native-paper';
 import { DetailAvatar, DetailRateBlock } from '@/src/shared';
 import ProfileSettings from '@/src/pages/profile/components/profileSettings';
@@ -7,6 +7,8 @@ import ProfileTechSupport from '@/src/pages/profile/components/profileTechSuppor
 import { AuthContext } from '@/src/context/AuthContext';
 import ProfileBackgroundImage from '@/src/pages/profile/components/profileBackground/profileBackgroundImage';
 import { useI18n } from '@/src/context/LocaleContext';
+import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 
 const ProfilePage = () => {
   const theme = useTheme();
@@ -33,6 +35,19 @@ const ProfilePage = () => {
 
       <View style={styles.bottomSection}>
         <DetailRateBlock rating={5} />
+        <TouchableOpacity
+          // @ts-ignore
+          onPress={() => router.push('/(protected)/(flow)/subscriptions')}
+        >
+          <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+            <Text style={styles.headerTitle}>
+              {t('profileSubscription.headerTitle')}
+            </Text>
+            <Text style={styles.headerDescription}>
+              {t('profileSubscription.headerDescription')}
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
         <ProfileSettings />
         <ProfileTechSupport />
         <Button
@@ -78,6 +93,23 @@ const styles = StyleSheet.create({
   signOutButton: {
     marginHorizontal: 15,
     marginTop: 15,
+  },
+  header: {
+    padding: 12,
+    justifyContent: 'flex-end',
+    borderRadius: 10,
+    marginHorizontal: 12,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: 'white',
+    marginBottom: 4,
+  },
+  headerDescription: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'white',
   },
 });
 

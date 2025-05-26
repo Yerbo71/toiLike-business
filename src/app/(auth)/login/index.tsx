@@ -30,7 +30,6 @@ export default function Login() {
     setIsPending(true);
     try {
       const response = await login(data);
-      console.log('response: ', response);
       await signIn(response.accessToken);
       // @ts-ignore
       router.replace('/(protected)/');

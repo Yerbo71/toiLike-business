@@ -61,13 +61,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signIn = async (newToken: string) => {
     await AsyncStorage.setItem('accessToken', newToken);
-    console.log('newToken: ', newToken);
     setToken(newToken);
+    setIsAuthenticated(true);
     try {
       const currentUser = await getCurrentUser(newToken);
-      console.log('currentUser: ', currentUser);
       setUser(currentUser);
-      setIsAuthenticated(true);
     } catch (error) {
       console.error('Error fetching user on signIn:', error);
       setUser(null);
