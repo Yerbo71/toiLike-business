@@ -139,7 +139,10 @@
     "alreadyHaveAccount": "Уже есть аккаунт? Войти",
     "successTitle": "Регистрация успешна",
     "successSubtitle": "Теперь вы можете войти!",
-    "errorTitle": "Ошибка регистрации"
+    "errorTitle": "Ошибка регистрации",
+    "businessType": "Тип бизнеса",
+    "businessTypeTOO": "TOO",
+    "businessTypeIP": "ИП"
   },
   "resetPassword": {
     "title": "Сброс пароля",

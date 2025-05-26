@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { Button, Text, useTheme, Surface } from 'react-native-paper';
+import { Button, Text, useTheme, Surface, RadioButton } from 'react-native-paper';
 import { useForm } from 'react-hook-form';
 import { router } from 'expo-router';
 import { CTextInput } from '@/src/shared';
@@ -14,19 +14,21 @@ type FormData = {
   email: string;
   password: string;
   confirmPassword?: string;
+  buzType: 'TOO' | 'IP';
 };
 
 export default function Registration() {
   const theme = useTheme();
   const [isPending, setIsPending] = useState(false);
   const { t } = useI18n();
-  const { control, handleSubmit, watch, reset } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset,setValue } = useForm<FormData>({
     mode: 'onSubmit',
     defaultValues: {
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
+      buzType: 'IP',
     },
   });
 
@@ -64,7 +66,7 @@ export default function Registration() {
   ];
 
   return (
-    <View style={styles.backgroundContainer}>
+    <View style={{...styles.backgroundContainer, backgroundColor: theme.colors.background}}>
       <LinearGradient colors={gradientColors} style={styles.gradientOverlay}>
         <Surface style={styles.formContainer}>
           <View style={styles.headerContainer}>
@@ -146,6 +148,39 @@ export default function Registration() {
             />
           </View>
 
+          <View >
+            <Text style={{...styles.radioGroupLabel,
+              color: theme.dark
+                ? theme.colors.onSurface
+                : theme.colors.onSurfaceVariant,}}>
+              {t('registrationPage.businessType')}
+            </Text>
+            <View style={styles.radioButtonsContainer}>
+              <View style={styles.radioButtonItem}>
+                <RadioButton
+                  value="TOO"
+                  status={watch('buzType') === 'TOO' ? 'checked' : 'unchecked'}
+                  onPress={() => setValue('buzType', 'TOO')}
+                  color={theme.colors.primary}
+                />
+                <Text onPress={() => control._formValues.buzType = 'TOO'}>
+                  {t('registrationPage.businessTypeTOO')}
+                </Text>
+              </View>
+              <View style={styles.radioButtonItem}>
+                <RadioButton
+                  value="IP"
+                  status={watch('buzType') === 'IP' ? 'checked' : 'unchecked'}
+                  onPress={() => setValue('buzType', 'IP')}
+                  color={theme.colors.primary}
+                />
+                <Text onPress={() => control._formValues.buzType = 'IP'}>
+                  {t('registrationPage.businessTypeIP')}
+                </Text>
+              </View>
+            </View>
+          </View>
+
           <Button
             mode="contained"
             onPress={handleSubmit(onSubmit)}
@@ -185,7 +220,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#f5f5f5',
   },
   gradientOverlay: {
     flex: 1,
@@ -194,6 +228,19 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     paddingHorizontal: 20,
+  },
+  radioGroupLabel: {
+    fontSize: 16,
+    marginLeft: 4,
+  },
+  radioButtonsContainer: {
+    flexDirection: 'row',
+    gap: 20,
+    marginTop: 4,
+  },
+  radioButtonItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   formContainer: {
     width: width > 500 ? 480 : width * 0.9,

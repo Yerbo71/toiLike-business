@@ -84,6 +84,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user/subscriptions/{subscriptionId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["subscribe"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/user/add-cache/{amount}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["addCache"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user-vendor/rate-user-vendor": {
         parameters: {
             query?: never;
@@ -206,6 +238,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["confirmEventService"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/user/subscriptions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAllSubscriptions"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -598,6 +646,136 @@ export interface components {
             status: "SUCCESS" | "FAIL";
             message: string;
         };
+        Event: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            /** Format: date-time */
+            startedAt?: string;
+            /** Format: date-time */
+            endedAt?: string;
+            description?: string;
+            place?: components["schemas"]["Place"];
+            user?: components["schemas"]["User"];
+            eventServices: components["schemas"]["EventVendor"][];
+        };
+        EventVendor: {
+            /** Format: int64 */
+            id: number;
+            /** Format: float */
+            cost: number;
+            event: components["schemas"]["Event"];
+            userVendor: components["schemas"]["UserVendor"];
+            /** @enum {string} */
+            status: "CONFIRMED" | "PENDING" | "REJECTED";
+        };
+        Place: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            /** @enum {string} */
+            cityEnum?: "ALMATY" | "ASTANA" | "SHYMKENT" | "ATYRAU" | "KOKSHETAU";
+            street?: string;
+            description?: string;
+            /** Format: float */
+            cost?: number;
+            mainImage?: string;
+            secondaryImage?: string;
+            events: components["schemas"]["Event"][];
+            placeRatings: components["schemas"]["PlaceRating"][];
+            user?: components["schemas"]["User"];
+        };
+        PlaceRating: {
+            /** Format: int64 */
+            id: number;
+            /** Format: float */
+            rating: number;
+            comment?: string;
+            user: components["schemas"]["User"];
+            place: components["schemas"]["Place"];
+        };
+        Role: {
+            /** Format: int64 */
+            id?: number;
+            /** @enum {string} */
+            name?: "ROLE_USER" | "ROLE_BUSINESS";
+        };
+        SocialMedia: {
+            url: string;
+            /** @enum {string} */
+            socialMediaType: "WHATS_UP" | "TELEGRAM" | "INSTAGRAM" | "OTHERS";
+        };
+        Subscription: {
+            /** Format: int64 */
+            id: number;
+            /** @enum {string} */
+            name: "FREE" | "STANDARD" | "PREMIUM";
+            description?: string;
+            /** Format: float */
+            price: number;
+            /** Format: float */
+            priceUl: number;
+            /** Format: int32 */
+            durationDays: number;
+            userSubscriptions: components["schemas"]["UserSubscription"][];
+        };
+        User: {
+            /** Format: int64 */
+            id: number;
+            username: string;
+            email: string;
+            password: string;
+            /** Format: float */
+            cache: number;
+            /** @enum {string} */
+            buzType?: "TOO" | "IP";
+            avatarImage?: string;
+            secondaryImage?: string;
+            placeRatings: components["schemas"]["PlaceRating"][];
+            userVendorRatings: components["schemas"]["UserVendorRating"][];
+            places: components["schemas"]["Place"][];
+            userVendor: components["schemas"]["UserVendor"][];
+            socialMedia: components["schemas"]["SocialMedia"][];
+            userSubscriptions: components["schemas"]["UserSubscription"][];
+            roles: components["schemas"]["Role"][];
+        };
+        UserSubscription: {
+            /** Format: int64 */
+            id: number;
+            user: components["schemas"]["User"];
+            subscription: components["schemas"]["Subscription"];
+            /** Format: date-time */
+            startDate: string;
+            /** Format: date-time */
+            endDate: string;
+            isActive: boolean;
+            active?: boolean;
+        };
+        UserVendor: {
+            /** Format: int64 */
+            id: number;
+            title: string;
+            description?: string;
+            /** Format: float */
+            experience?: number;
+            /** Format: float */
+            averageCost?: number;
+            mainImage?: string;
+            secondaryImage?: string;
+            user?: components["schemas"]["User"];
+            /** @enum {string} */
+            serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
+            userVendorRating: components["schemas"]["UserVendorRating"][];
+        };
+        UserVendorRating: {
+            /** Format: int64 */
+            id: number;
+            /** Format: float */
+            rating: number;
+            comment?: string;
+            user: components["schemas"]["User"];
+            userVendor: components["schemas"]["UserVendor"];
+        };
         RateRequest: {
             /** Format: int64 */
             id: number;
@@ -609,10 +787,9 @@ export interface components {
             /** Format: float */
             cost: number;
         };
-        SocialMedia: {
-            url: string;
+        SubscriptionResponse: {
             /** @enum {string} */
-            socialMediaType: "WHATS_UP" | "TELEGRAM" | "INSTAGRAM" | "OTHERS";
+            subscription?: "FREE" | "STANDARD" | "PREMIUM";
         };
         UserResponse: {
             /** Format: int64 */
@@ -622,6 +799,9 @@ export interface components {
             socialMedia: components["schemas"]["SocialMedia"][];
             avatarImage?: string;
             secondaryImage?: string;
+            /** Format: float */
+            cache: number;
+            subscription: components["schemas"]["SubscriptionResponse"][];
         };
         PageableResponseUserVendorResponse: {
             /** Format: int32 */
@@ -872,6 +1052,48 @@ export interface operations {
             };
         };
     };
+    subscribe: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                subscriptionId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserSubscription"];
+                };
+            };
+        };
+    };
+    addCache: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                amount: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     rateUserVendor: {
         parameters: {
             query?: never;
@@ -1054,6 +1276,26 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
+    getAllSubscriptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Subscription"][];
                 };
             };
         };

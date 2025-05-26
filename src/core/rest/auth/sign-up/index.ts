@@ -8,6 +8,7 @@ export type SignUpRequest =
 export const signUp = async (
   data: SignUpRequest,
 ): Promise<operations['signUp']['responses'][200]['content']['*/*']> => {
+  console.log('data signUp: ', data);
   const response = await axios.post(
     `${AUTH_BASE_URL}/auth-service/auth/sign-up`,
     data,

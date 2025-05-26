@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#f5f5f5',
   },
   gradientOverlay: {
     flex: 1,

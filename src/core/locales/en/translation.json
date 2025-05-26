@@ -140,7 +140,10 @@
     "alreadyHaveAccount": "Already have an account? Sign in",
     "successTitle": "Registration successful",
     "successSubtitle": "You can now sign in!",
-    "errorTitle": "Registration failed"
+    "errorTitle": "Registration failed",
+    "businessType": "Business type",
+    "businessTypeTOO": "TOO",
+    "businessTypeIP": "IP"
   },
   "resetPassword": {
     "title": "Reset Password",

@@ -139,7 +139,10 @@
     "alreadyHaveAccount": "Аккаунтыңыз бар ма? Кіру",
     "successTitle": "Тіркелу сәтті аяқталды",
     "successSubtitle": "Енді кіре аласыз!",
-    "errorTitle": "Тіркелу сәтсіз аяқталды"
+    "errorTitle": "Тіркелу сәтсіз аяқталды",
+    "businessType": "Бизнес түрі",
+    "businessTypeTOO": "ЖШС",
+    "businessTypeIP": "ЖК"
   },
   "resetPassword": {
     "title": "Құпия сөзді қалпына келтіру",

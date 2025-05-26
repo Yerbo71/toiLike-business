@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "generate-types-api1": "openapi-typescript http://2.132.45.243/8777/v3/api-docs -o src/types/api.ts",
+    "generate-types-api1": "openapi-typescript http://2.132.45.243:8777/v3/api-docs -o src/types/api.ts",
     "generate-types-api2": "openapi-typescript http://2.132.45.243:8085/v3/api-docs -o src/types/api2.ts"
   },
   "jest": {

@@ -157,6 +157,8 @@ export interface components {
             email: string;
             password: string;
             /** @enum {string} */
+            buzType?: "TOO" | "IP";
+            /** @enum {string} */
             role: "ROLE_USER" | "ROLE_BUSINESS";
         };
         Role: {
@@ -172,6 +174,8 @@ export interface components {
             email: string;
             password: string;
             isEnabled?: boolean;
+            /** @enum {string} */
+            buzType?: "TOO" | "IP";
             roles: components["schemas"]["Role"][];
             enabled?: boolean;
         };
