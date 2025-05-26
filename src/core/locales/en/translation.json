@@ -61,7 +61,8 @@
     "aiAnalysis": "AI Analysis",
     "services": "Services",
     "venue": "Venue",
-    "change": "Change"
+    "change": "Change",
+    "delete": "Delete"
   },
   "notifications": {
     "permissionDenied": "Permission denied",

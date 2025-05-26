@@ -1,1 +1,4 @@
 export * from "./postCreateUserVendor"
+export * from "./getUserVendorID"
+export * from "./getUserVendorByUser"
+export * from "./deleteUserVendor"

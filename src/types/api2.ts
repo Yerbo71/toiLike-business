@@ -308,6 +308,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user-vendor/get-user-vendor-by-user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getUserVendorByUser"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user-vendor/get-rating/{id}": {
         parameters: {
             query?: never;
@@ -396,6 +412,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getPlace"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/place/get-place-by-user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPlaceByUser"];
         put?: never;
         post?: never;
         delete?: never;
@@ -709,7 +741,7 @@ export interface components {
             /** Format: int64 */
             id: number;
             /** @enum {string} */
-            name: "FREE" | "STANDARD" | "PREMIUM";
+            name: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO";
             description?: string;
             /** Format: float */
             price: number;
@@ -717,6 +749,7 @@ export interface components {
             priceUl: number;
             /** Format: int32 */
             durationDays: number;
+            isBusiness: boolean;
             userSubscriptions: components["schemas"]["UserSubscription"][];
         };
         User: {
@@ -789,7 +822,7 @@ export interface components {
         };
         SubscriptionResponse: {
             /** @enum {string} */
-            subscription?: "FREE" | "STANDARD" | "PREMIUM";
+            subscription?: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO";
         };
         UserResponse: {
             /** Format: int64 */
@@ -1371,6 +1404,26 @@ export interface operations {
             };
         };
     };
+    getUserVendorByUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["UserVendorResponse"][];
+                };
+            };
+        };
+    };
     getUserVendorRating: {
         parameters: {
             query?: {
@@ -1505,6 +1558,26 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["PlaceResponse"];
+                };
+            };
+        };
+    };
+    getPlaceByUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PlaceResponse"][];
                 };
             };
         };

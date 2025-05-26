@@ -60,7 +60,8 @@
     "manage": "Редактировать",
     "aiAnalysis": "AI анализ",
     "services": "Услуги",
-    "venue": "Площадка"
+    "venue": "Площадка",
+    "delete": "Удалить"
   },
   "notifications": {
     "permissionDenied": "Разрешение не предоставлено",

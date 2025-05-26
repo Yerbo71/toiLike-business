@@ -60,7 +60,8 @@
     "manage": "Өзгерту",
     "aiAnalysis": "AI анализ",
     "services": "Қызметтер",
-    "venue": "Тойхана"
+    "venue": "Тойхана",
+    "delete": "Жою"
   },
   "notifications": {
     "permissionDenied": "Рұқсат берілмеді",

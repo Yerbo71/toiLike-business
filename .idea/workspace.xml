@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/subscriptions/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/subscriptions/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/deleteUserVendor/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorID/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/components/serviceCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(application)/myServices/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/myServices/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +123,7 @@
       <workItem from="1747844744197" duration="4088000" />
       <workItem from="1748177155038" duration="14858000" />
       <workItem from="1748194526776" duration="2108000" />
-      <workItem from="1748272385226" duration="7366000" />
+      <workItem from="1748272385226" duration="11400000" />
     </task>
     <servers />
   </component>

@@ -76,7 +76,6 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
     setIsSubmitting(true);
     try {
       const response = await postCreateUserVendor(data, mainImage || undefined, secondaryImage || undefined);
-
       Toast.show({
         type: 'success',
         text1: t('vendorCreatePage.vendorCreated'),

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import MyServicesPage from '@/src/pages/myServices';
 
 export default function MyApplications() {
-  return  <View></View>
+  return  <MyServicesPage/>
 }
