@@ -5,7 +5,7 @@ import {
   Animated,
   Easing,
   View,
-  Image,
+  Image, useColorScheme
 } from 'react-native';
 import { useI18n } from '@/src/context/LocaleContext';
 import { Controller, useForm } from 'react-hook-form';
@@ -14,7 +14,7 @@ import {
   Button,
   Icon,
   Surface,
-  Text,
+  Text, useTheme
 } from 'react-native-paper';
 import { AuthContext } from '@/src/context/AuthContext';
 import Toast from 'react-native-toast-message';
@@ -35,9 +35,11 @@ type FormData = operations['createUserVendor']['parameters']['query']['request']
 const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
   const { t } = useI18n();
   const { token } = useContext(AuthContext);
+  const colorScheme = useColorScheme();
+  const theme = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [mainImage, setMainImage] = useState<string | null>(null);
-  const [secondaryImage, setSecondaryImage] = useState<string | null>(null);
+  const [mainImage, setMainImage] = useState<string | null>(vendorCreateData?.mainImage || null);
+  const [secondaryImage, setSecondaryImage] = useState<string | null>(vendorCreateData?.secondaryImage || null);
 
   const {
     control,
@@ -49,6 +51,8 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
       description: vendorCreateData?.description || '',
       experience: vendorCreateData?.experience || 0,
       averageCost: vendorCreateData?.averageCost || 0,
+      mainImage: vendorCreateData?.mainImage || '',
+      secondaryImage: vendorCreateData?.secondaryImage || '',
       serviceType: vendorCreateData?.serviceType as typeof serviceTypes[number] || 'PRESENTERS',
     },
   });
@@ -81,7 +85,6 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
         text1: t('vendorCreatePage.vendorCreated'),
         text2: t('vendorCreatePage.vendorCreatedSuccess'),
       });
-
       router.replace('/(protected)/(application)/myServices');
     } catch (err) {
       Toast.show({
@@ -152,8 +155,8 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
             multiline
           />
 
-          <View style={styles.pickerContainer}>
-            <Text style={styles.pickerLabel}>{t('vendorCreatePage.serviceType')}</Text>
+          <View style={{...styles.pickerContainer, borderColor: colorScheme === 'dark' ? '#838383' : '#777777'}}>
+            <Text style={{...styles.pickerLabel, color: theme.colors.inverseSurface}}>{t('vendorCreatePage.serviceType')}</Text>
             <Controller
               control={control}
               name="serviceType"
@@ -161,8 +164,7 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
                 <Picker
                   selectedValue={value}
                   onValueChange={onChange}
-                  style={styles.picker}
-                  dropdownIconColor="#000"
+                  style={{...styles.picker,backgroundColor: theme.colors.surface,color: theme.colors.inverseSurface}}
                 >
                   {serviceTypes.map((type) => (
                     <Picker.Item
@@ -279,19 +281,15 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 4,
+    borderRadius: 12,
     marginBottom: 16,
     overflow: 'hidden',
   },
   pickerLabel: {
     padding: 8,
-    backgroundColor: '#f5f5f5',
-    color: '#333',
   },
   picker: {
     width: '100%',
-    backgroundColor: '#fff',
   },
   formContainer: {
     paddingHorizontal: 20,
