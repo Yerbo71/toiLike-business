@@ -9,14 +9,10 @@ export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) =>
   React.useEffect(() => {
     const requestInterceptor = axios.interceptors.request.use(
       (config) => {
-        const newConfig = { ...config };
         if (token) {
-          newConfig.headers.Authorization = `Bearer ${token}`;
+          config.headers.Authorization = `Bearer ${token}`;
         }
-        if (newConfig.data instanceof FormData) {
-          newConfig.headers['Content-Type'] = 'multipart/form-data';
-        }
-        return newConfig;
+        return config;
       },
       (error) => Promise.reject(error)
     );
@@ -25,6 +21,7 @@ export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) =>
       (response) => response,
       async (error) => {
         console.error('Axios error:', error);
+        console.log("Axios error response:", error.response);
         return Promise.reject(error);
       }
     );

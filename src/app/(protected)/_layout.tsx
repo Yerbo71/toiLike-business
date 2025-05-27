@@ -1,19 +1,15 @@
 import { Redirect } from 'expo-router';
 import { Slot } from 'expo-router';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '@/src/context/AuthContext';
 import { AxiosInterceptor } from "@/src/core/interceptor";
+import { LoadingView } from '@/src/shared';
 
 export default function ProtectedLayout() {
-  const { isAuthenticated } = useContext(AuthContext);
-  const [authChecked, setAuthChecked] = useState(false);
+  const { isAuthenticated,isLoading } = useContext(AuthContext);
 
-  useEffect(() => {
-    setAuthChecked(true);
-  }, [isAuthenticated]);
-
-  if (!authChecked) {
-    return null;
+  if (isLoading) {
+    return <LoadingView/>;
   }
 
   if (!isAuthenticated) {

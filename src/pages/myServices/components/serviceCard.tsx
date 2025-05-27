@@ -24,7 +24,7 @@ export const ServiceCard = ({ service }: { service: UserVendorResponse }) => {
   };
 
   return (
-      <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
+      <Card style={[styles.card, { backgroundColor: theme.colors.elevation.level1 }]}>
         {service.mainImage && (
           <Card.Cover
             source={{ uri: service.mainImage }}

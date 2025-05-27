@@ -24,7 +24,8 @@ function RootLayoutContent() {
             <GlobalFilterProvider>
               <StatusBar
                 barStyle={theme === 'Dark' ? 'light-content' : 'dark-content'}
-                backgroundColor={theme === 'Dark' ? '#2b2732' : '#f3edf6'}
+                backgroundColor={paperTheme.colors.surface}
+                translucent={false}
               />
                 <Stack>
                   <Stack.Screen

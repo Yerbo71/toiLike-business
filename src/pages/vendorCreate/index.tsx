@@ -22,9 +22,10 @@ import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 import type { operations } from '@/src/types/api2';
-import { postCreateUserVendor } from '@/src/core/rest/user-vendor-controller';
+import { postCreateUserVendor, putUserVendor } from '@/src/core/rest/user-vendor-controller';
 import { Picker } from '@react-native-picker/picker';
 import { serviceTypes } from '@/src/constants/mock/values';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
   vendorCreateData?: operations['createUserVendor']['responses'][200]['content']['*/*'];
@@ -38,8 +39,9 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
   const colorScheme = useColorScheme();
   const theme = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [mainImage, setMainImage] = useState<string | null>(vendorCreateData?.mainImage || null);
-  const [secondaryImage, setSecondaryImage] = useState<string | null>(vendorCreateData?.secondaryImage || null);
+  const [mainImage, setMainImage] = useState<string | undefined>(vendorCreateData?.mainImage || undefined);
+  const [secondaryImage, setSecondaryImage] = useState<string | undefined>(vendorCreateData?.secondaryImage || undefined);
+  const queryClient = useQueryClient();
 
   const {
     control,
@@ -48,11 +50,9 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
     mode: 'onSubmit',
     defaultValues: {
       title: vendorCreateData?.title || '',
-      description: vendorCreateData?.description || '',
-      experience: vendorCreateData?.experience || 0,
-      averageCost: vendorCreateData?.averageCost || 0,
-      mainImage: vendorCreateData?.mainImage || '',
-      secondaryImage: vendorCreateData?.secondaryImage || '',
+      description: vendorCreateData?.description || undefined,
+      experience: vendorCreateData?.experience || undefined,
+      averageCost: vendorCreateData?.averageCost || undefined,
       serviceType: vendorCreateData?.serviceType as typeof serviceTypes[number] || 'PRESENTERS',
     },
   });
@@ -76,15 +76,35 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
 
   const onSubmit = async (data: FormData) => {
     if (!token) return;
-
     setIsSubmitting(true);
+    console.log("Data being submitted: ", data);
     try {
-      const response = await postCreateUserVendor(data, mainImage || undefined, secondaryImage || undefined);
-      Toast.show({
-        type: 'success',
-        text1: t('vendorCreatePage.vendorCreated'),
-        text2: t('vendorCreatePage.vendorCreatedSuccess'),
-      });
+      if (vendorCreateData) {
+        await putUserVendor(
+          vendorCreateData.id,
+          data,
+          mainImage || undefined,
+          secondaryImage || undefined
+        );
+        Toast.show({
+          type: 'success',
+          text1: t('vendorCreatePage.vendorUpdated'),
+          text2: t('vendorCreatePage.vendorUpdatedSuccess'),
+        });
+        queryClient.refetchQueries({queryKey: ['myServices']});
+      } else {
+        await postCreateUserVendor(
+          data,
+          mainImage || undefined,
+          secondaryImage || undefined
+        );
+        Toast.show({
+          type: 'success',
+          text1: t('vendorCreatePage.vendorCreated'),
+          text2: t('vendorCreatePage.vendorCreatedSuccess'),
+        });
+        queryClient.refetchQueries({queryKey: ['myServices']});
+      }
       router.replace('/(protected)/(application)/myServices');
     } catch (err) {
       Toast.show({
@@ -184,6 +204,14 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
             label={t('vendorCreatePage.experience')}
             rules={{
               required: t('vendorCreatePage.experience') + ' ' + t('system.isRequired'),
+              min: {
+                value: 1,
+                message: t('vendorCreatePage.experience') + ' must be at least 1',
+              },
+              validate: (value: string) => {
+                const num = Number(value);
+                return !isNaN(num) && num > 0 || 'Please enter a valid number';
+              },
             }}
           />
 
@@ -193,6 +221,14 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
             label={t('vendorCreatePage.averageCost')}
             rules={{
               required: t('vendorCreatePage.averageCost') + ' ' + t('system.isRequired'),
+              min: {
+                value: 1,
+                message: t('vendorCreatePage.averageCost') + ' must be greater than 0',
+              },
+              validate: (value:string) => {
+                const num = Number(value);
+                return !isNaN(num) && num > 0 || 'Please enter a valid amount';
+              },
             }}
           />
 
@@ -216,6 +252,7 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
               {mainImage ? t('system.change') : t('system.choose')}
             </Button>
           </View>
+
 
           <Text style={styles.sectionHeader}>
             <Icon source="image-multiple" size={18} />
