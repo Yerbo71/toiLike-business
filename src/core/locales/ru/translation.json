@@ -80,6 +80,10 @@
     "vendorCreate": {
       "title": "Создать поставщика",
       "description": "Создать нового поставщика"
+    },
+    "placeCreate": {
+      "title": "Создать место",
+      "description": "Создать новое место"
     }
   },
   "withoutToken": {
@@ -318,7 +322,9 @@
     "mainImage": "Основное изображение",
     "secondaryImage": "Дополнительное изображение",
     "vendorCreated": "Подрядчик создан",
-    "vendorCreatedSuccess": "Подрядчик успешно создан"
+    "vendorCreatedSuccess": "Подрядчик успешно создан",
+    "vendorUpdated": "Подрядчик обновлен",
+    "vendorUpdatedSuccess": "Подрядчик успешно обновлен"
   },
   "profileSubscription": {
     "headerTitle": "Подписки",
@@ -344,6 +350,27 @@
     "HAIR_DRESSERS": "Парикмахеры",
     "CLOTHING_SUPPLIERS": "Поставщики одежды",
     "FLOWER_SUPPLIERS": "Поставщики цветов"
+  },
+  "placeCreatePage": {
+    "headerTitle": "Создать место",
+    "headerDescription": "Отправьте запрос на размещение",
+    "placeTitle": "Название места",
+    "description": "Описание",
+    "serviceType": "Тип услуги",
+    "cost": "Стоимость",
+    "street": "Улица",
+    "city": "Город",
+    "mainImage": "Главное изображение",
+    "secondaryImage": "Дополнительное изображение",
+    "placeCreated": "Место создано",
+    "placeCreatedSuccess": "Место успешно создано",
+    "placeUpdated": "Место обновлен",
+    "placeUpdatedSuccess": "Место успешно обновлен"
+  },
+  "cityEnums": {
+    "ALMATY": "Алматы",
+    "ASTANA": "Астана",
+    "SHYMKENT": "Шымкент"
   },
   "subscriptions": {
     "title": "Подписки для специалистов",

@@ -81,6 +81,10 @@
     "vendorCreate": {
       "title": "Create Vendor",
       "description": "Make a vendor request"
+    },
+    "placeCreate": {
+      "title": "Create Place",
+      "description": "Make a place request"
     }
   },
   "withoutToken": {
@@ -315,7 +319,9 @@
     "mainImage": "Main Image",
     "secondaryImage": "Secondary Image",
     "vendorCreated": "Vendor Created",
-    "vendorCreatedSuccess": "Vendor created successfully"
+    "vendorCreatedSuccess": "Vendor created successfully",
+    "vendorUpdated": "Vendor updated successfully",
+    "vendorUpdatedSuccess": "Vendor updated successfully"
   },
   "profileSubscription": {
     "headerTitle": "Subscriptions",
@@ -341,6 +347,27 @@
     "HAIR_DRESSERS": "Hair Dressers",
     "CLOTHING_SUPPLIERS": "Clothing Suppliers",
     "FLOWER_SUPPLIERS": "Flower Suppliers"
+  },
+  "placeCreatePage": {
+    "headerTitle": "Create Place",
+    "headerDescription": "Make a place request",
+    "placeTitle": "Place Title",
+    "description": "Description",
+    "serviceType": "Service Type",
+    "cost": "Cost",
+    "street": "Street",
+    "city": "City",
+    "mainImage": "Main Image",
+    "secondaryImage": "Secondary Image",
+    "placeCreated": "Place Created",
+    "placeCreatedSuccess": "Place created successfully",
+    "placeUpdated": "Vendor place successfully",
+    "placeUpdatedSuccess": "Vendor place successfully"
+  },
+  "cityEnums": {
+    "ALMATY": "Almaty",
+    "ASTANA": "Astana",
+    "SHYMKENT": "Shymkent"
   },
   "subscriptions": {
     "title": "Subscriptions for Professionals",

@@ -80,6 +80,10 @@
     "vendorCreate": {
       "title": "Жаңа жеткізуші жасау",
       "description": "Жаңа жеткізуші жасауды бастаңыз"
+    },
+    "placeCreate": {
+      "title": "Жаңа орын жасау",
+      "description": "Жаңа орын жасауды бастаңыз"
     }
   },
   "withoutToken": {
@@ -313,7 +317,9 @@
     "mainImage": "Негізгі сурет",
     "secondaryImage": "Қосымша сурет",
     "vendorCreated": "Қызмет көрсетуші қосылды",
-    "vendorCreatedSuccess": "Қызмет көрсетуші сәтті қосылды"
+    "vendorCreatedSuccess": "Қызмет көрсетуші сәтті қосылды",
+    "vendorUpdated": "Қызмет көрсетуші жаңартылды",
+    "vendorUpdatedSuccess": "Қызмет көрсетуші сәтті жаңартылды"
   },
   "profileSubscription": {
     "headerTitle": "Жазылымдар",
@@ -339,6 +345,27 @@
     "HAIR_DRESSERS": "Шаштараздар",
     "CLOTHING_SUPPLIERS": "Киім жеткізушілер",
     "FLOWER_SUPPLIERS": "Гүл жеткізушілер"
+  },
+  "placeCreatePage": {
+    "headerTitle": "Орын жасау",
+    "headerDescription": "Орынға сұраныс жіберіңіз",
+    "placeTitle": "Орын атауы",
+    "description": "Сипаттама",
+    "serviceType": "Қызмет түрі",
+    "cost": "Бағасы",
+    "street": "Көше",
+    "city": "Қала",
+    "mainImage": "Негізгі сурет",
+    "secondaryImage": "Қосымша сурет",
+    "placeCreated": "Орын жасалды",
+    "placeCreatedSuccess": "Орын сәтті жасалды",
+    "placeUpdated": "Орын көрсетуші жаңартылды",
+    "placeUpdatedSuccess": "Орын көрсетуші сәтті жаңартылды"
+  },
+  "cityEnums": {
+    "ALMATY": "Алматы",
+    "ASTANA": "Астана",
+    "SHYMKENT": "Шымкент"
   },
   "subscriptions": {
     "title": "Мамандарға арналған жазылымдар",

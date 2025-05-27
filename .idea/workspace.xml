@@ -5,15 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/putUserVendor/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/placeCreate/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/deletePlace/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/getPlaceByUser/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/getPlaceID/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/postCreatePlace/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/putPlace/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/placeCreate/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/interceptor/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/interceptor/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/postCreateUserVendor/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/postCreateUserVendor/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/myServices/components/serviceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/components/serviceCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/mock/values.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/mock/values.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +126,7 @@
       <workItem from="1748177155038" duration="14858000" />
       <workItem from="1748194526776" duration="2108000" />
       <workItem from="1748272385226" duration="13497000" />
-      <workItem from="1748361315862" duration="8793000" />
+      <workItem from="1748361315862" duration="11781000" />
     </task>
     <servers />
   </component>

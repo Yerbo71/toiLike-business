@@ -57,7 +57,27 @@ const FooterMenuModal: FC<Props> = ({ close }) => {
           <Card.Title
             title={t('serviceCreateModal.vendorCreate.title')}
             subtitle={t('serviceCreateModal.vendorCreate.description')}
-            left={(props) => <Avatar.Icon {...props} icon="list-status" />}
+            left={(props) => <Avatar.Icon {...props} icon="account-cash" />}
+            right={(props) => <IconButton {...props} icon="chevron-right" />}
+            style={{
+              borderStyle: 'solid',
+              borderWidth: 2,
+              borderRadius: 10,
+              borderColor: theme.colors.surfaceVariant,
+            }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            close();
+            // @ts-ignore
+            router.push('/(protected)/(flow)/placeCreate/index');
+          }}
+        >
+          <Card.Title
+            title={t('serviceCreateModal.placeCreate.title')}
+            subtitle={t('serviceCreateModal.placeCreate.description')}
+            left={(props) => <Avatar.Icon {...props} icon="fireplace-off" />}
             right={(props) => <IconButton {...props} icon="chevron-right" />}
             style={{
               borderStyle: 'solid',

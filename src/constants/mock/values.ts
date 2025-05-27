@@ -42,3 +42,9 @@ export const serviceTypes = [
   'FLOWER_SUPPLIERS',
 ] as const;
 
+export const cityEnums = [
+  'ALMATY',
+  'ASTANA',
+  'SHYMKENT',
+] as const;
+
