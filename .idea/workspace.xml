@@ -5,21 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/placeCreate/[id].tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/deletePlace/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/getPlaceByUser/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/getPlaceID/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/postCreatePlace/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/place-controller/putPlace/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/placeCreate/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/components/placeCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/myPlaceList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/myVendorsList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/mock/values.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/mock/values.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/placeCreate/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/placeCreate/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/vendorCreate/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/vendorCreate/[id].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/footer/components/footerMenuModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/place-controller/putPlace/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/place-controller/putPlace/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/components/serviceCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/components/serviceCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/placeCreate/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/placeCreate/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/vendorCreate/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +73,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\pages\myServices\blocks\myVendorsList\components" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(flow)" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)\chat" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)" />
-      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(application)" />
     </key>
   </component>
   <component name="RunManager" selected="npm.generate-types-api2">
@@ -126,7 +129,8 @@
       <workItem from="1748177155038" duration="14858000" />
       <workItem from="1748194526776" duration="2108000" />
       <workItem from="1748272385226" duration="13497000" />
-      <workItem from="1748361315862" duration="11781000" />
+      <workItem from="1748361315862" duration="11828000" />
+      <workItem from="1748443932815" duration="9054000" />
     </task>
     <servers />
   </component>

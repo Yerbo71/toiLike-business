@@ -61,7 +61,9 @@
     "aiAnalysis": "AI анализ",
     "services": "Қызметтер",
     "venue": "Тойхана",
-    "delete": "Жою"
+    "delete": "Жою",
+    "myVendors": "Менің жеткізушілерім",
+    "myPlaces": "Менің орындарым"
   },
   "notifications": {
     "permissionDenied": "Рұқсат берілмеді",

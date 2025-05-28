@@ -17,7 +17,7 @@ export const ServiceCard = ({ service }: { service: UserVendorResponse }) => {
   const handleDelete = async () => {
     try {
       await deleteUserVendor(service.id);
-      queryClient.refetchQueries({queryKey: ['myServices']});
+      queryClient.refetchQueries({queryKey: ['myVendors']});
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +27,9 @@ export const ServiceCard = ({ service }: { service: UserVendorResponse }) => {
       <Card style={[styles.card, { backgroundColor: theme.colors.elevation.level1 }]}>
         {service.mainImage && (
           <Card.Cover
-            source={{ uri: service.mainImage }}
+            source={{
+              uri: `${service.mainImage}?t=${Date.now()}`
+            }}
             style={styles.cardCover}
           />
         )}
@@ -53,8 +55,13 @@ export const ServiceCard = ({ service }: { service: UserVendorResponse }) => {
           <View style={styles.cardFooter}>
             <View style={styles.footerLeft}>
               {service.serviceType && (
-                <Text variant="labelMedium" style={{ color: theme.colors.secondary }}>
+                <Text variant="labelMedium" style={{ color: theme.colors.primary }}>
                   {service.serviceType}
+                </Text>
+              )}
+              {service.experience && (
+                <Text variant="labelMedium" style={{ color: theme.colors.primary }}>
+                  {t('system.experience')} {service.experience} {t('system.years')}
                 </Text>
               )}
             </View>

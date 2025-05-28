@@ -91,7 +91,9 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
           text1: t('vendorCreatePage.vendorUpdated'),
           text2: t('vendorCreatePage.vendorUpdatedSuccess'),
         });
-        queryClient.refetchQueries({queryKey: ['myServices']});
+        queryClient.refetchQueries({queryKey: ['myVendors']});
+        setMainImage(undefined);
+        setSecondaryImage(undefined);
       } else {
         await postCreateUserVendor(
           data,
@@ -103,7 +105,9 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
           text1: t('vendorCreatePage.vendorCreated'),
           text2: t('vendorCreatePage.vendorCreatedSuccess'),
         });
-        queryClient.refetchQueries({queryKey: ['myServices']});
+        queryClient.refetchQueries({queryKey: ['myVendors']});
+        setMainImage(undefined);
+        setSecondaryImage(undefined);
       }
       router.replace('/(protected)/(application)/myServices');
     } catch (err) {
@@ -135,6 +139,14 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
       }),
     ]).start();
   }, []);
+
+  const getImageUri = (imageUri: string | undefined) => {
+    if (!imageUri) return undefined;
+    if (imageUri.startsWith('http') || imageUri.startsWith('https')) {
+      return `${imageUri}?t=${Date.now()}`;
+    }
+    return imageUri;
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -240,9 +252,15 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
 
           <View style={styles.imageContainer}>
             {mainImage ? (
-              <Image source={{ uri: mainImage }} style={styles.image} />
+              <Image
+                source={{ uri: getImageUri(mainImage) }}
+                style={styles.image}
+                key={`main-${Date.now()}`}
+              />
             ) : (
-              <View style={styles.placeholder} />
+              <View style={{...styles.placeholder,backgroundColor: theme.colors.elevation.level4,borderColor: theme.colors.inverseSurface}} >
+                <Icon source="image" size={25} />
+              </View>
             )}
             <Button
               mode="outlined"
@@ -262,9 +280,15 @@ const VendorCreatePage: FC<Props> = ({ vendorCreateData }) => {
 
           <View style={styles.imageContainer}>
             {secondaryImage ? (
-              <Image source={{ uri: secondaryImage }} style={styles.image} />
+              <Image
+                source={{ uri: getImageUri(secondaryImage) }}
+                style={styles.image}
+                key={`secondary-${Date.now()}`}
+              />
             ) : (
-              <View style={styles.placeholder} />
+              <View style={{...styles.placeholder,backgroundColor: theme.colors.elevation.level4,borderColor: theme.colors.inverseSurface}} >
+                <Icon source="image" size={25} />
+              </View>
             )}
             <Button
               mode="outlined"
@@ -370,7 +394,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   imageButton: {
     flex: 1,

@@ -62,7 +62,9 @@
     "services": "Services",
     "venue": "Venue",
     "change": "Change",
-    "delete": "Delete"
+    "delete": "Delete",
+    "myVendors": "My Vendors",
+    "myPlaces": "My Places"
   },
   "notifications": {
     "permissionDenied": "Permission denied",

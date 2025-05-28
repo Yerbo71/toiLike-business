@@ -2,15 +2,15 @@ import axios from 'axios';
 import type { operations } from '@/src/types/api2';
 import { EVENT_BASE_URL } from '@/src/constants/api/apiConst';
 
-type PutUpdateUserVendorResponse = operations['updatePlace']['responses'][200]['content']['*/*'];
-type UserVendorRequest = operations['updatePlace']['requestBody']['content']['application/json'];
+type PutUpdatePlaceResponse = operations['updatePlace']['responses'][200]['content']['*/*'];
+type UserPlaceRequest= operations['updatePlace']['requestBody']['content']['application/json'];
 
 export const putPlace = async (
   id: number,
-  request: UserVendorRequest,
+  request: UserPlaceRequest,
   mainImageUri?: string,
   secondaryImageUri?: string
-): Promise<PutUpdateUserVendorResponse> => {
+): Promise<PutUpdatePlaceResponse> => {
   const formData = new FormData();
 
   Object.entries(request).forEach(([key, value]) => {

@@ -91,7 +91,7 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
           text1: t('placeCreatePage.placeUpdated'),
           text2: t('placeCreatePage.placeUpdatedSuccess'),
         });
-        queryClient.refetchQueries({queryKey: ['myServices']});
+        queryClient.refetchQueries({queryKey: ['myPlaces']});
       } else {
         await postCreatePlace(
           data,
@@ -103,7 +103,7 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
           text1: t('placeCreatePage.placeCreated'),
           text2: t('placeCreatePage.placeCreatedSuccess'),
         });
-        queryClient.refetchQueries({queryKey: ['myServices']});
+        queryClient.refetchQueries({queryKey: ['myPlaces']});
       }
       router.replace('/(protected)/(application)/myServices');
     } catch (err) {
@@ -135,6 +135,15 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
       }),
     ]).start();
   }, []);
+
+  const getImageUri = (imageUri: string | undefined) => {
+    if (!imageUri) return undefined;
+    if (imageUri.startsWith('http') || imageUri.startsWith('https')) {
+      return `${imageUri}?t=${Date.now()}`;
+    }
+    return imageUri;
+  };
+
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -209,8 +218,8 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
 
           <CTextInput
             control={control}
-            name="averageCost"
-            label={t('vendorCreatePage.averageCost')}
+            name="cost"
+            label={t('placeCreatePage.cost')}
             rules={{
               required: t('placeCreatePage.cost') + ' ' + t('system.isRequired'),
               min: {
@@ -232,9 +241,15 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
 
           <View style={styles.imageContainer}>
             {mainImage ? (
-              <Image source={{ uri: mainImage }} style={styles.image} />
+              <Image
+                source={{ uri: getImageUri(mainImage) }}
+                style={styles.image}
+                key={`main-${Date.now()}`}
+              />
             ) : (
-              <View style={styles.placeholder} />
+              <View style={{...styles.placeholder,backgroundColor: theme.colors.elevation.level4,borderColor: theme.colors.inverseSurface}} >
+                <Icon source="image" size={25} />
+              </View>
             )}
             <Button
               mode="outlined"
@@ -254,9 +269,15 @@ const PlaceCreatePage: FC<Props> = ({ placeCreateData }) => {
 
           <View style={styles.imageContainer}>
             {secondaryImage ? (
-              <Image source={{ uri: secondaryImage }} style={styles.image} />
+              <Image
+                source={{ uri: getImageUri(secondaryImage) }}
+                style={styles.image}
+                key={`secondary-${Date.now()}`}
+              />
             ) : (
-              <View style={styles.placeholder} />
+              <View style={{...styles.placeholder,backgroundColor: theme.colors.elevation.level4,borderColor: theme.colors.inverseSurface}} >
+                <Icon source="image" size={25} />
+              </View>
             )}
             <Button
               mode="outlined"
@@ -362,7 +383,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   imageButton: {
     flex: 1,

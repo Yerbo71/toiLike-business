@@ -1,8 +1,8 @@
 import React from 'react';
 import VendorCreatePage from '@/src/pages/vendorCreate/index';
-import { useLocalSearchParams } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import {getUserVendorID} from "@/src/core/rest/user-vendor-controller"
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { ActivityIndicator, View,Text } from 'react-native';
 import { useI18n } from '@/src/context/LocaleContext';
 
@@ -10,12 +10,22 @@ export default function VendorCreate() {
   const params = useLocalSearchParams();
   const vendorServiceId = Number(params.id);
   const { t } = useI18n();
+  const queryClient = useQueryClient();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        queryClient.removeQueries({queryKey: ['user-vendor-id', vendorServiceId]});
+      };
+    }, [vendorServiceId])
+  );
+
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['user-vendor-id', vendorServiceId],
     queryFn: () => getUserVendorID(vendorServiceId),
     enabled: !!vendorServiceId,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0,
   });
 
   if (isLoading) {

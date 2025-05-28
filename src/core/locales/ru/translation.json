@@ -61,7 +61,9 @@
     "aiAnalysis": "AI анализ",
     "services": "Услуги",
     "venue": "Площадка",
-    "delete": "Удалить"
+    "delete": "Удалить",
+    "myVendors": "Мои подрядчики",
+    "myPlaces": "Мои площадки"
   },
   "notifications": {
     "permissionDenied": "Разрешение не предоставлено",
