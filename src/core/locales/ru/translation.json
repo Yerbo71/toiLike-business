@@ -63,7 +63,8 @@
     "venue": "Площадка",
     "delete": "Удалить",
     "myVendors": "Мои подрядчики",
-    "myPlaces": "Мои площадки"
+    "myPlaces": "Мои площадки",
+    "yourSubscriptionsIs": "Ваша подписка "
   },
   "notifications": {
     "permissionDenied": "Разрешение не предоставлено",
@@ -382,37 +383,7 @@
     "need_help": "Нужна помощь с выбором?",
     "contact_us": "Свяжитесь с нами",
     "popular": "ПОПУЛЯРНЫЙ",
-    "plans": {
-      "free": {
-        "name": "Бесплатная",
-        "price": "0 KZT",
-        "features": {
-          "limited_access": "Ограниченный доступ",
-          "few_orders": "Мало заказов",
-          "low_priority": "Нижний приоритет в поиске"
-        }
-      },
-      "standard": {
-        "name": "Standard",
-        "price": "6 900 KZT для ИП",
-        "price_note": "или 15 000 KZT для ТОО",
-        "features": {
-          "more_orders": "Больше заказов",
-          "medium_priority": "Средний приоритет в поиске",
-          "analytics": "Доступ к аналитике и акциям"
-        }
-      },
-      "premium": {
-        "name": "Premium",
-        "price": "15 000 KZT для ИП",
-        "price_note": "или 25 000 KZT для ТОО",
-        "features": {
-          "high_priority": "Максимальный приоритет в поиске",
-          "recommendations": "Участие в рекомендациях и подборках",
-          "discounts": "Скидки на платные функции",
-          "advanced_analytics": "Расширенная аналитика и профиль"
-        }
-      }
-    }
+    "for_individuals": "Для ИП",
+    "for_legal_entities": "Для ТОО"
   }
 }

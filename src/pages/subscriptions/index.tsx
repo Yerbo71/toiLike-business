@@ -1,156 +1,194 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, ScrollView, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { Card, Title, Paragraph, Button, List, Divider, Text, useTheme } from 'react-native-paper';
 import { useI18n } from '@/src/context/LocaleContext';
 import { LinearGradient } from 'expo-linear-gradient';
+import type { operations } from '@/src/types/api2';
+import { AuthContext } from '@/src/context/AuthContext';
+import { postSubscription } from '@/src/core/rest/user';
 
-const SubscriptionsPage: React.FC = () => {
+interface Props {
+  subscriptionData: operations['getAllSubscriptions']['responses'][200]['content']['*/*'];
+}
+
+const SubscriptionsPage: React.FC<Props> = ({ subscriptionData }) => {
   const { t } = useI18n();
   const theme = useTheme();
+  const { user,updateUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState<number | null>(null);
+  const checkedSubscription = user?.subscription[0].subscription || 'FREE';
 
-  const styles = createStyles(theme);
+  const sortedSubscriptions = [...subscriptionData].sort((a, b) => {
+    if (a.name === 'FREE') return -1;
+    if (b.name === 'FREE') return 1;
+    if (a.name.includes('STANDARD')) return -1;
+    if (b.name.includes('STANDARD')) return 1;
+    return 0;
+  });
+
+  const handleSubscription = async (subscriptionId: number) => {
+    try {
+      setLoading(subscriptionId);
+      const response = await postSubscription(subscriptionId);
+      Alert.alert(t('system.success'));
+    } catch (error) {
+      Alert.alert(t('system.error'));
+      console.error('Subscription error:', error);
+    } finally {
+      setLoading(null);
+    }
+  };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={{...styles.container, backgroundColor: theme.colors.background}}>
       <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
         <Title style={styles.title}>{t('subscriptions.title')}</Title>
       </LinearGradient>
 
-      <Card style={styles.highlightCard}>
+      <Card style={{
+        ...styles.highlightCard,
+        backgroundColor: theme.colors.surfaceVariant,
+        borderLeftColor: theme.colors.primary,
+        borderLeftWidth: 4
+      }}>
         <Card.Content>
-          <Paragraph style={styles.highlightText}>
+          <Paragraph style={{
+            ...styles.highlightText,
+            color: theme.colors.onSurfaceVariant
+          }}>
             {t('subscriptions.highlight')}
           </Paragraph>
         </Card.Content>
       </Card>
 
-      {/* Free plan */}
-      <Card style={styles.planCard}>
-        <Card.Content>
-          <Title style={styles.planName}>{t('subscriptions.plans.free.name')}</Title>
-          <Paragraph style={styles.planPrice}>{t('subscriptions.plans.free.price')}</Paragraph>
+      {sortedSubscriptions.map((subscription) => {
+        const isCurrentPlan = checkedSubscription === subscription.name;
+        const isPopular = subscription.name.includes('STANDARD');
+        const descriptionLines = subscription?.description?.split('\n').filter(line => line.trim() !== '');
 
-          <List.Section>
-            <List.Item
-              title={t('subscriptions.plans.free.features.limited_access')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.free.features.few_orders')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.free.features.low_priority')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-          </List.Section>
-        </Card.Content>
-        <Card.Actions>
-          <Button
-            mode="outlined"
-            style={styles.currentButton}
-            labelStyle={{ color: theme.colors.primary }}
+        return (
+          <Card
+            key={subscription.id}
+            style={[
+              styles.planCard,
+              { backgroundColor: theme.colors.surface },
+              isPopular && {
+                ...styles.popularCard,
+                borderColor: theme.colors.primary,
+                borderWidth: 2
+              },
+              isCurrentPlan && {
+                ...styles.currentPlanCard,
+                borderColor: theme.colors.outline,
+                borderWidth: 1
+              }
+            ]}
           >
-            {t('subscriptions.current_plan')}
-          </Button>
-        </Card.Actions>
-      </Card>
+            {isPopular && (
+              <View style={{
+                ...styles.popularBadge,
+                backgroundColor: theme.colors.primary
+              }}>
+                <Text style={{
+                  ...styles.popularBadgeText,
+                  color: theme.colors.onPrimary
+                }}>
+                  {t('subscriptions.popular')}
+                </Text>
+              </View>
+            )}
 
-      {/* Standard plan */}
-      <Card style={[styles.planCard, styles.popularCard]}>
-        <View style={styles.popularBadge}>
-          <Text style={styles.popularBadgeText}>{t('subscriptions.popular')}</Text>
-        </View>
-        <Card.Content>
-          <Title style={styles.planName}>{t('subscriptions.plans.standard.name')}</Title>
-          <Paragraph style={styles.planPrice}>{t('subscriptions.plans.standard.price')}</Paragraph>
-          <Paragraph style={styles.priceNote}>{t('subscriptions.plans.standard.price_note')}</Paragraph>
+            <Card.Content>
+              <Title style={{
+                ...styles.planName,
+                color: theme.colors.inverseSurface
+              }}>
+                {subscription.name.replace('_PRO', '').replace('_', ' ')}
+              </Title>
 
-          <List.Section>
-            <List.Item
-              title={t('subscriptions.plans.standard.features.more_orders')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.standard.features.medium_priority')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.standard.features.analytics')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-          </List.Section>
-        </Card.Content>
-        <Card.Actions>
-          <Button
-            mode="contained"
-            style={styles.selectButton}
-            labelStyle={{ color: theme.colors.onPrimary }}
-          >
-            {t('subscriptions.select_plan')}
-          </Button>
-        </Card.Actions>
-      </Card>
+              <Paragraph style={{
+                ...styles.planPrice,
+                color: theme.colors.primary
+              }}>
+                {t("subscriptions.for_individuals")} {subscription.price} KZT
+              </Paragraph>
 
-      {/* Premium plan */}
-      <Card style={styles.planCard}>
-        <Card.Content>
-          <Title style={styles.planName}>{t('subscriptions.plans.premium.name')}</Title>
-          <Paragraph style={styles.planPrice}>{t('subscriptions.plans.premium.price')}</Paragraph>
-          <Paragraph style={styles.priceNote}>{t('subscriptions.plans.premium.price_note')}</Paragraph>
+              {subscription.priceUl > 0 && (
+                <Paragraph style={{
+                  ...styles.priceNote,
+                  color: theme.colors.secondary
+                }}>
+                  {t("subscriptions.for_legal_entities")} {subscription.priceUl} KZT
+                </Paragraph>
+              )}
 
-          <List.Section>
-            <List.Item
-              title={t('subscriptions.plans.premium.features.high_priority')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.premium.features.recommendations')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.premium.features.discounts')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-            <Divider />
-            <List.Item
-              title={t('subscriptions.plans.premium.features.advanced_analytics')}
-              left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
-            />
-          </List.Section>
-        </Card.Content>
-        <Card.Actions>
-          <Button
-            mode="contained"
-            style={styles.selectButton}
-            labelStyle={{ color: theme.colors.onPrimary }}
-          >
-            {t('subscriptions.select_plan')}
-          </Button>
-        </Card.Actions>
-      </Card>
+              <List.Section>
+                {descriptionLines?.map((line, index) => (
+                  <React.Fragment key={index}>
+                    <List.Item
+                      title={line}
+                      left={() => <List.Icon icon="chevron-right" color={theme.colors.primary} />}
+                    />
+                    {index < descriptionLines.length - 1 && <Divider />}
+                  </React.Fragment>
+                ))}
+              </List.Section>
+            </Card.Content>
+
+            <Card.Actions>
+              {isCurrentPlan ? (
+                <Button
+                  mode="outlined"
+                  style={{
+                    ...styles.currentButton,
+                    borderColor: theme.colors.outline
+                  }}
+                  labelStyle={{ color: theme.colors.primary }}
+                >
+                  {t('subscriptions.current_plan')}
+                </Button>
+              ) : (
+                <Button
+                  mode="contained"
+                  style={{
+                    ...styles.selectButton,
+                    backgroundColor: theme.colors.primary
+                  }}
+                  labelStyle={{ color: theme.colors.onPrimary }}
+                  onPress={() => handleSubscription(subscription.id)}
+                  disabled={loading === subscription.id}
+                >
+                  {loading === subscription.id ? (
+                    <ActivityIndicator animating={true} color={theme.colors.onPrimary} />
+                  ) : (
+                    t('subscriptions.select_plan')
+                  )}
+                </Button>
+              )}
+            </Card.Actions>
+          </Card>
+        );
+      })}
 
       <View style={styles.helpContainer}>
-        <Paragraph style={styles.helpText}>
-          {t('subscriptions.need_help')} <Text style={styles.helpLink}>{t('subscriptions.contact_us')}</Text>
+        <Paragraph style={{
+          ...styles.helpText,
+          color: theme.colors.inverseSurface
+        }}>
+          {t('subscriptions.need_help')} <Text style={{
+          ...styles.helpLink,
+          color: theme.colors.primary
+        }}>{t('subscriptions.contact_us')}</Text>
         </Paragraph>
       </View>
     </ScrollView>
   );
 };
 
-// @ts-ignore
-const createStyles = (theme: ReactNativePaper.Theme) => StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: theme.colors.background,
   },
   header: {
     padding: 12,
@@ -166,36 +204,28 @@ const createStyles = (theme: ReactNativePaper.Theme) => StyleSheet.create({
   },
   highlightCard: {
     marginBottom: 20,
-    backgroundColor: theme.colors.surfaceVariant,
-    borderLeftWidth: 4,
-    borderLeftColor: theme.colors.notification,
   },
   highlightText: {
     fontSize: 16,
     lineHeight: 24,
-    color: theme.colors.onSurfaceVariant,
   },
   planCard: {
     marginBottom: 20,
     position: 'relative',
     overflow: 'hidden',
-    backgroundColor: theme.colors.surface,
+    padding: 4,
   },
-  popularCard: {
-    borderWidth: 2,
-    borderColor: theme.colors.primary,
-  },
+  popularCard: {},
+  currentPlanCard: {},
   popularBadge: {
     position: 'absolute',
     top: 10,
     right: -30,
-    backgroundColor: theme.colors.primary,
     padding: 5,
     width: 120,
     transform: [{ rotate: '45deg' }],
   },
   popularBadgeText: {
-    color: theme.colors.onPrimary,
     textAlign: 'center',
     fontSize: 12,
     fontWeight: 'bold',
@@ -203,28 +233,23 @@ const createStyles = (theme: ReactNativePaper.Theme) => StyleSheet.create({
   planName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: theme.colors.text,
   },
   planPrice: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: theme.colors.primary,
     marginVertical: 8,
   },
   priceNote: {
     fontSize: 14,
-    color: theme.colors.secondary,
     marginBottom: 12,
   },
   currentButton: {
     flex: 1,
     marginHorizontal: 8,
-    borderColor: theme.colors.outline,
   },
   selectButton: {
     flex: 1,
     marginHorizontal: 8,
-    backgroundColor: theme.colors.primary,
   },
   helpContainer: {
     marginVertical: 30,
@@ -232,10 +257,8 @@ const createStyles = (theme: ReactNativePaper.Theme) => StyleSheet.create({
   },
   helpText: {
     fontSize: 16,
-    color: theme.colors.text,
   },
   helpLink: {
-    color: theme.colors.primary,
     fontWeight: 'bold',
   },
 });

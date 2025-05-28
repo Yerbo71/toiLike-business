@@ -34,20 +34,35 @@ const ProfilePage = () => {
       </View>
 
       <View style={styles.bottomSection}>
-        <DetailRateBlock rating={5} />
-        <TouchableOpacity
-          // @ts-ignore
-          onPress={() => router.push('/(protected)/(flow)/subscriptions')}
-        >
-          <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+        <DetailRateBlock rating={user?.rating || 0} commentCount={user?.comment || 0} />
+        {user?.subscription[0].subscription !== "PREMIUM_PRO" && (
+          <TouchableOpacity
+            // @ts-ignore
+            onPress={() => router.push('/(protected)/(flow)/subscriptions')}
+          >
+            <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+              <Text style={styles.headerTitle}>
+                {t('profileSubscription.headerTitle')}
+              </Text>
+              <Text style={styles.headerDescription}>
+                {t('profileSubscription.headerDescription')}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        ) }
+
+          <LinearGradient
+            colors={['#2884e7', '#ff6b6b']}
+            style={styles.header}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
             <Text style={styles.headerTitle}>
-              {t('profileSubscription.headerTitle')}
-            </Text>
-            <Text style={styles.headerDescription}>
-              {t('profileSubscription.headerDescription')}
+              {t('system.yourSubscriptionsIs')}{' '}
+                {user?.subscription?.[0]?.subscription?.toLowerCase()}
             </Text>
           </LinearGradient>
-        </TouchableOpacity>
+        )
         <ProfileSettings />
         <ProfileTechSupport />
         <Button

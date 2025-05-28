@@ -19,6 +19,7 @@ interface DetailRateBlockProps {
   ratings?: Rating[];
   commentCount?: number;
   showDetails?: boolean;
+  cache?: number;
 }
 
 export const DetailRateBlock: React.FC<DetailRateBlockProps> = ({
@@ -26,6 +27,7 @@ export const DetailRateBlock: React.FC<DetailRateBlockProps> = ({
   ratings = [],
   commentCount = 0,
   showDetails = false,
+  cache = 0,
 }) => {
   const theme = useTheme();
   const roundedRating = Math.round(rating * 10) / 10;
@@ -54,6 +56,17 @@ export const DetailRateBlock: React.FC<DetailRateBlockProps> = ({
           />
           <Text style={[styles.commentText, { color: theme.colors.onSurface }]}>
             {commentCount}
+          </Text>
+        </View>
+
+        <View style={styles.commentContainer}>
+          <FontAwesome
+            name="money"
+            size={16}
+            color={theme.colors.onSurface}
+          />
+          <Text style={[styles.commentText, { color: theme.colors.onSurface }]}>
+            {cache}
           </Text>
         </View>
       </View>

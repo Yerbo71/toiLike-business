@@ -260,6 +260,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user/subscriptions-business": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAllBusinessSubscriptions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user/get-current-user": {
         parameters: {
             query?: never;
@@ -460,6 +476,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getAllEventsByUser"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/event-vendor/get-daily-summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getDailyInfo"];
         put?: never;
         post?: never;
         delete?: never;
@@ -741,7 +773,7 @@ export interface components {
             /** Format: int64 */
             id: number;
             /** @enum {string} */
-            name: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO";
+            name: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO" | "FREE";
             description?: string;
             /** Format: float */
             price: number;
@@ -750,7 +782,6 @@ export interface components {
             /** Format: int32 */
             durationDays: number;
             isBusiness: boolean;
-            userSubscriptions: components["schemas"]["UserSubscription"][];
         };
         User: {
             /** Format: int64 */
@@ -795,6 +826,8 @@ export interface components {
             averageCost?: number;
             mainImage?: string;
             secondaryImage?: string;
+            /** Format: int32 */
+            priority?: number;
             user?: components["schemas"]["User"];
             /** @enum {string} */
             serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
@@ -822,7 +855,7 @@ export interface components {
         };
         SubscriptionResponse: {
             /** @enum {string} */
-            subscription?: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO";
+            subscription?: "STANDARD" | "STANDARD_PRO" | "PREMIUM_PRO" | "FREE";
         };
         UserResponse: {
             /** Format: int64 */
@@ -832,6 +865,10 @@ export interface components {
             socialMedia: components["schemas"]["SocialMedia"][];
             avatarImage?: string;
             secondaryImage?: string;
+            /** Format: float */
+            rating: number;
+            /** Format: int32 */
+            comment: number;
             /** Format: float */
             cache: number;
             subscription: components["schemas"]["SubscriptionResponse"][];
@@ -877,6 +914,18 @@ export interface components {
             /** Format: int32 */
             totalPages: number;
             list: components["schemas"]["EventResponse"][];
+        };
+        DailyEventSummaryDto: {
+            /** Format: date */
+            date: string;
+            /** Format: int64 */
+            pendingCount: number;
+            /** Format: int64 */
+            confirmedCount: number;
+            /** Format: int64 */
+            rejectedCount: number;
+            /** Format: double */
+            sumCost: number;
         };
         FullEventVendorResponse: {
             /** Format: int64 */
@@ -981,18 +1030,16 @@ export interface operations {
     };
     updatePlace: {
         parameters: {
-            query?: never;
+            query: {
+                placeRequest: components["schemas"]["PlaceRequest"];
+            };
             header?: never;
             path: {
                 id: number;
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PlaceRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description OK */
             200: {
@@ -1333,6 +1380,26 @@ export interface operations {
             };
         };
     };
+    getAllBusinessSubscriptions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["Subscription"][];
+                };
+            };
+        };
+    };
     getCurrentUser: {
         parameters: {
             query?: never;
@@ -1620,6 +1687,29 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["PageableResponseEventResponse"];
+                };
+            };
+        };
+    };
+    getDailyInfo: {
+        parameters: {
+            query: {
+                startTime: string;
+                endTime: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["DailyEventSummaryDto"][];
                 };
             };
         };

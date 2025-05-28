@@ -64,7 +64,8 @@
     "change": "Change",
     "delete": "Delete",
     "myVendors": "My Vendors",
-    "myPlaces": "My Places"
+    "myPlaces": "My Places",
+    "yourSubscriptionsIs": "Your Subscriptions is "
   },
   "notifications": {
     "permissionDenied": "Permission denied",
@@ -379,37 +380,7 @@
     "need_help": "Need help choosing?",
     "contact_us": "Contact Us",
     "popular": "POPULAR",
-    "plans": {
-      "free": {
-        "name": "Free",
-        "price": "0 KZT",
-        "features": {
-          "limited_access": "Limited access",
-          "few_orders": "Few orders",
-          "low_priority": "Low search priority"
-        }
-      },
-      "standard": {
-        "name": "Standard",
-        "price": "6,900 KZT for IP",
-        "price_note": "or 15,000 KZT for TOO",
-        "features": {
-          "more_orders": "More orders",
-          "medium_priority": "Medium search priority",
-          "analytics": "Access to analytics and promotions"
-        }
-      },
-      "premium": {
-        "name": "Premium",
-        "price": "15,000 KZT for IP",
-        "price_note": "or 25,000 KZT for TOO",
-        "features": {
-          "high_priority": "Highest search priority",
-          "recommendations": "Participation in recommendations and collections",
-          "discounts": "Discounts on paid features",
-          "advanced_analytics": "Advanced analytics and profile"
-        }
-      }
-    }
+    "for_individuals": "For Individuals",
+    "for_legal_entities": "For Legal Entities"
   }
 }

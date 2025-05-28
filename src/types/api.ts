@@ -100,22 +100,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/auth-service/auth/get-current-user": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["getCurrentUser"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/auth-service/auth/check-username-availability": {
         parameters: {
             query?: never;
@@ -176,6 +160,8 @@ export interface components {
             isEnabled?: boolean;
             /** @enum {string} */
             buzType?: "TOO" | "IP";
+            /** Format: float */
+            cache: number;
             roles: components["schemas"]["Role"][];
             enabled?: boolean;
         };
@@ -342,26 +328,6 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ApiResponse"];
-                };
-            };
-        };
-    };
-    getCurrentUser: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["User"];
                 };
             };
         };
