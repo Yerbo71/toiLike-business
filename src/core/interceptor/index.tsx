@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import { useRouter } from 'expo-router';
 import { AuthContext } from '@/src/context/AuthContext';
 import axios from 'axios';
 
-
 export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
   const { token } = useContext(AuthContext);
+  const router = useRouter();
 
   React.useEffect(() => {
     const requestInterceptor = axios.interceptors.request.use(
@@ -12,6 +13,7 @@ export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) =>
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
+        config.headers.locale = 'en';
         return config;
       },
       (error) => Promise.reject(error)
@@ -21,7 +23,12 @@ export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) =>
       (response) => response,
       async (error) => {
         console.error('Axios error:', error);
-        console.log("Axios error response:", error.response);
+        if (error.response?.status === 401) {
+          console.log('Unauthorized, redirecting to login...');
+          // @ts-ignore
+          router.push('/(auth)/login)');
+        }
+
         return Promise.reject(error);
       }
     );
@@ -30,7 +37,7 @@ export const AxiosInterceptor = ({ children }: { children: React.ReactNode }) =>
       axios.interceptors.request.eject(requestInterceptor);
       axios.interceptors.response.eject(responseInterceptor);
     };
-  }, [token]);
+  }, [token, router]);
 
   return <>{children}</>;
 };

@@ -37,12 +37,17 @@ export default function ConfirmEmail() {
       setTimeout(() => {
         router.push('/(auth)/login');
       }, 500);
-    } catch (err) {
+    }    catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.message || t('confirmEmail.errorMessage');
+
       Toast.show({
         type: 'error',
         text1: t('confirmEmail.errorTitle'),
-        text2: (err as Error).message || t('confirmEmail.errorMessage'),
+        text2: errorMessage,
       });
+
+      console.log('reset error', err);
     } finally {
       setIsPending(false);
     }

@@ -33,13 +33,18 @@ export default function Login() {
       await signIn(response.accessToken);
       // @ts-ignore
       router.replace('/(protected)/');
-    } catch (err) {
+    } catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.message || t('loginPage.errorSubtitle');
+
       Toast.show({
         type: 'error',
-        text1: 'Error',
-        text2: (err as Error).message,
+        text1: t('loginPage.errorTitle'),
+        text2: errorMessage,
       });
-    } finally {
+
+      console.log('login error', err);
+    }  finally {
       setIsPending(false);
     }
   };

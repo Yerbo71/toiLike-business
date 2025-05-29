@@ -36,13 +36,20 @@ export default function SendResetCode() {
         pathname: '/(auth)/confirm-reset-code',
         params: { email: data.email },
       });
-    } catch (err) {
+    }
+    catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.message || t('resetPasswordEmail.errorMessage');
+
       Toast.show({
         type: 'error',
         text1: t('resetPasswordEmail.errorTitle'),
-        text2: (err as Error).message || t('resetPasswordEmail.errorMessage'),
+        text2: errorMessage,
       });
-    } finally {
+
+      console.log('registration error', err);
+    }
+    finally {
       setIsPending(false);
     }
   };

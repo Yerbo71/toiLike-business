@@ -126,7 +126,9 @@
     "usernameOrEmailRequired": "Username or email is required",
     "usernameOrEmailMin": "Username or email must be at least 4 characters",
     "passwordRequired": "Password is required",
-    "passwordMin": "Password must be at least 6 characters"
+    "passwordMin": "Password must be at least 6 characters",
+    "errorTitle": "Login failed",
+    "errorSubtitle": "Login failed. Please try again."
   },
   "registrationPage": {
     "title": "Start your business with ToiLike Business!",
@@ -151,7 +153,8 @@
     "errorTitle": "Registration failed",
     "businessType": "Business type",
     "businessTypeTOO": "TOO",
-    "businessTypeIP": "IP"
+    "businessTypeIP": "IP",
+    "errorSubtitle": "Registration failed. Please try again."
   },
   "resetPassword": {
     "title": "Reset Password",

@@ -150,7 +150,8 @@
     "errorTitle": "Ошибка регистрации",
     "businessType": "Тип бизнеса",
     "businessTypeTOO": "TOO",
-    "businessTypeIP": "ИП"
+    "businessTypeIP": "ИП",
+    "errorSubtitle": "Ошибка регистрации. Пожалуйста, попробуйте ещё раз."
   },
   "resetPassword": {
     "title": "Сброс пароля",

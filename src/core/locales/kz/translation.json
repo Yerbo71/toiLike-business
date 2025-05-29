@@ -150,7 +150,8 @@
     "errorTitle": "Тіркелу сәтсіз аяқталды",
     "businessType": "Бизнес түрі",
     "businessTypeTOO": "ЖШС",
-    "businessTypeIP": "ЖК"
+    "businessTypeIP": "ЖК",
+    "errorSubtitle": "Тіркелу сәтсіз аяқталды. Қайтадан көріңіз."
   },
   "resetPassword": {
     "title": "Құпия сөзді қалпына келтіру",

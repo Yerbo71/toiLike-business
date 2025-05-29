@@ -14,7 +14,7 @@ type FormData = {
   email: string;
   password: string;
   confirmPassword?: string;
-  buzType: 'TOO' | 'IP';
+  buzType: 'IP' | 'TOO';
 };
 
 export default function Registration() {
@@ -48,12 +48,16 @@ export default function Registration() {
         pathname: '/(auth)/confirm-email',
         params: { email: data.email },
       });
-    } catch (err) {
+    } catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.message || t('registrationPage.errorSubtitle');
+
       Toast.show({
         type: 'error',
         text1: t('registrationPage.errorTitle'),
-        text2: (err as Error).message,
+        text2: errorMessage,
       });
+
       console.log('registration error', err);
     } finally {
       setIsPending(false);
@@ -158,17 +162,6 @@ export default function Registration() {
             <View style={styles.radioButtonsContainer}>
               <View style={styles.radioButtonItem}>
                 <RadioButton
-                  value="TOO"
-                  status={watch('buzType') === 'TOO' ? 'checked' : 'unchecked'}
-                  onPress={() => setValue('buzType', 'TOO')}
-                  color={theme.colors.primary}
-                />
-                <Text onPress={() => control._formValues.buzType = 'TOO'}>
-                  {t('registrationPage.businessTypeTOO')}
-                </Text>
-              </View>
-              <View style={styles.radioButtonItem}>
-                <RadioButton
                   value="IP"
                   status={watch('buzType') === 'IP' ? 'checked' : 'unchecked'}
                   onPress={() => setValue('buzType', 'IP')}
@@ -176,6 +169,17 @@ export default function Registration() {
                 />
                 <Text onPress={() => control._formValues.buzType = 'IP'}>
                   {t('registrationPage.businessTypeIP')}
+                </Text>
+              </View>
+              <View style={styles.radioButtonItem}>
+                <RadioButton
+                  value="TOO"
+                  status={watch('buzType') === 'TOO' ? 'checked' : 'unchecked'}
+                  onPress={() => setValue('buzType', 'TOO')}
+                  color={theme.colors.primary}
+                />
+                <Text onPress={() => control._formValues.buzType = 'TOO'}>
+                  {t('registrationPage.businessTypeTOO')}
                 </Text>
               </View>
             </View>
