@@ -64,7 +64,8 @@
     "delete": "Удалить",
     "myVendors": "Мои подрядчики",
     "myPlaces": "Мои площадки",
-    "yourSubscriptionsIs": "Ваша подписка "
+    "yourSubscriptionsIs": "Ваша подписка ",
+    "replenishment": "Пополнение"
   },
   "notifications": {
     "permissionDenied": "Разрешение не предоставлено",
@@ -385,6 +386,23 @@
     "contact_us": "Свяжитесь с нами",
     "popular": "ПОПУЛЯРНЫЙ",
     "for_individuals": "Для ИП",
-    "for_legal_entities": "Для ТОО"
+    "for_legal_entities": "Для ТОО",
+    "successTitle": "Подписка активирована",
+    "successMessage": "Ваша подписка была успешно активирована.",
+    "errorTitle": "Ошибка активации подписки",
+    "errorMessage": "Не удалось активировать подписку. Пожалуйста, попробуйте ещё раз."
+  },
+  "addCache": {
+    "title": "Пополнение счёта",
+    "currentBalance": "Текущий баланс",
+    "amountLabel": "Сумма пополнения",
+    "addButton": "Пополнить счёт",
+    "success": "Успешно!",
+    "invalidAmount": "Некорректная сумма",
+    "note": "Средства зачисляются мгновенно",
+    "successTitle": "Пополнение успешно",
+    "successMessage": "Ваш счёт был успешно пополнен.",
+    "errorTitle": "Ошибка пополнения",
+    "errorMessage": "Не удалось пополнить счёт. Попробуйте снова."
   }
 }

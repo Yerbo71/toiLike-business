@@ -65,7 +65,8 @@
     "delete": "Delete",
     "myVendors": "My Vendors",
     "myPlaces": "My Places",
-    "yourSubscriptionsIs": "Your Subscriptions is "
+    "yourSubscriptionsIs": "Your Subscriptions is ",
+    "replenishment": "Replenishment"
   },
   "notifications": {
     "permissionDenied": "Permission denied",
@@ -384,6 +385,23 @@
     "contact_us": "Contact Us",
     "popular": "POPULAR",
     "for_individuals": "For Individuals",
-    "for_legal_entities": "For Legal Entities"
+    "for_legal_entities": "For Legal Entities",
+    "successTitle": "Subscription Activated",
+    "successMessage": "Your subscription has been successfully activated.",
+    "errorTitle": "Subscription Activation Failed",
+    "errorMessage": "Failed to activate subscription. Please try again."
+  },
+  "addCache": {
+    "title": "Top Up Balance",
+    "currentBalance": "Current Balance",
+    "amountLabel": "Top-Up Amount",
+    "addButton": "Top Up",
+    "success": "Success!",
+    "invalidAmount": "Invalid amount",
+    "note": "Funds are credited instantly",
+    "successTitle": "Top-Up Successful",
+    "successMessage": "Your balance has been successfully topped up.",
+    "errorTitle": "Top-Up Failed",
+    "errorMessage": "Failed to top up balance. Please try again."
   }
 }

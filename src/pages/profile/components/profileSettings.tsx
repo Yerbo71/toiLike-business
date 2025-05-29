@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Menu, Surface } from 'react-native-paper';
 import { ChevronButton } from '@/src/shared/chevronButton';
 import { useI18n } from '@/src/context/LocaleContext';
 import { router } from 'expo-router';
 import { Alert } from 'react-native';
 import { useGlobalFilters } from '@/src/context/GlobalFilterContext';
+import { AuthContext } from '@/src/context/AuthContext';
 
 const ProfileSettings = () => {
   const { locale, setLocale, t } = useI18n();
+  const {user} = useContext(AuthContext)
   const [menuVisible, setMenuVisible] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const stringLocale =
     locale === 'ru' ? 'Русский' : locale === 'kz' ? 'Қазақша' : 'English';
   const { city } = useGlobalFilters();
+  const money = user?.cache ? user.cache.toLocaleString() : '0';
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
   const closeMenu = () => setMenuVisible(false);
@@ -63,6 +66,17 @@ const ProfileSettings = () => {
         rightTitle={city || t('system.choose')}
         onPress={() => {
           router.push('/(protected)/(flow)/cityChoose');
+        }}
+      />
+
+      <ChevronButton
+        leftIcon="hand-coin"
+        leftTitle={t('system.replenishment')}
+        rightIcon="chevron-right"
+        rightTitle={money || t('system.choose')}
+        onPress={() => {
+          // @ts-ignore
+          router.push('/(protected)/(flow)/addCache');
         }}
       />
 

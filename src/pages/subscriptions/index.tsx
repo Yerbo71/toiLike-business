@@ -5,7 +5,9 @@ import { useI18n } from '@/src/context/LocaleContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { operations } from '@/src/types/api2';
 import { AuthContext } from '@/src/context/AuthContext';
-import { postSubscription } from '@/src/core/rest/user';
+import { getCurrentUser, postSubscription } from '@/src/core/rest/user';
+import Toast from 'react-native-toast-message';
+import { router } from 'expo-router';
 
 interface Props {
   subscriptionData: operations['getAllSubscriptions']['responses'][200]['content']['*/*'];
@@ -14,7 +16,7 @@ interface Props {
 const SubscriptionsPage: React.FC<Props> = ({ subscriptionData }) => {
   const { t } = useI18n();
   const theme = useTheme();
-  const { user,updateUser } = useContext(AuthContext);
+  const { user,token,updateUser } = useContext(AuthContext);
   const [loading, setLoading] = useState<number | null>(null);
   const checkedSubscription = user?.subscription[0].subscription || 'FREE';
 
@@ -30,11 +32,28 @@ const SubscriptionsPage: React.FC<Props> = ({ subscriptionData }) => {
     try {
       setLoading(subscriptionId);
       const response = await postSubscription(subscriptionId);
-      Alert.alert(t('system.success'));
-    } catch (error) {
-      Alert.alert(t('system.error'));
-      console.error('Subscription error:', error);
-    } finally {
+      Toast.show({
+        type: 'success',
+        text1: t('subscriptions.successTitle'),
+        text2: t('subscriptions.successMessage'),
+      });
+      if (token) {
+        const updatedUser = await getCurrentUser(token);
+        updateUser(updatedUser);
+      }
+      router.push('/(protected)/(application)/profile');
+    } catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.message || t('subscriptions.errorMessage');
+
+      Toast.show({
+        type: 'error',
+        text1: t('subscriptions.errorTitle'),
+        text2: errorMessage,
+      });
+
+      console.log('subscription error', err);
+    }finally {
       setLoading(null);
     }
   };

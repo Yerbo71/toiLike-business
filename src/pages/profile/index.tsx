@@ -35,6 +35,19 @@ const ProfilePage = () => {
 
       <View style={styles.bottomSection}>
         <DetailRateBlock rating={user?.rating || 0} commentCount={user?.comment || 0} />
+
+        <LinearGradient
+          colors={['#2884e7', '#ff6b6b']}
+          style={styles.header}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        >
+          <Text style={styles.headerTitle}>
+            {t('system.yourSubscriptionsIs')}{' '}
+            {user?.subscription?.[0]?.subscription?.toLowerCase()}
+          </Text>
+        </LinearGradient>
+
         {user?.subscription[0].subscription !== "PREMIUM_PRO" && (
           <TouchableOpacity
             // @ts-ignore
@@ -51,18 +64,6 @@ const ProfilePage = () => {
           </TouchableOpacity>
         ) }
 
-          <LinearGradient
-            colors={['#2884e7', '#ff6b6b']}
-            style={styles.header}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-          >
-            <Text style={styles.headerTitle}>
-              {t('system.yourSubscriptionsIs')}{' '}
-                {user?.subscription?.[0]?.subscription?.toLowerCase()}
-            </Text>
-          </LinearGradient>
-        )
         <ProfileSettings />
         <ProfileTechSupport />
         <Button

@@ -64,7 +64,8 @@
     "delete": "Жою",
     "myVendors": "Менің жеткізушілерім",
     "myPlaces": "Менің орындарым",
-    "yourSubscriptionsIs": "Сіздің жазылымыңыз "
+    "yourSubscriptionsIs": "Сіздің жазылымыңыз ",
+    "replenishment": "Толтыру"
   },
   "notifications": {
     "permissionDenied": "Рұқсат берілмеді",
@@ -380,6 +381,23 @@
     "contact_us": "Бізбен хабарласыңыз",
     "popular": "ТАНЫМАЛ",
     "for_individuals": "ЖК үшін",
-    "for_legal_entities": "ЖШС үшін"
+    "for_legal_entities": "ЖШС үшін",
+    "successTitle": "Жазылым қосылды",
+    "successMessage": "Сіздің жазылымыз сәтті қосылды.",
+    "errorTitle": "Жазылымды қосу сәтсіз аяқталды",
+    "errorMessage": "Жазылымды қосу кезінде қате пайда болды. Қайтадан көріңіз."
+  },
+  "addCache": {
+    "title": "Шотты толтыру",
+    "currentBalance": "Ағымдағы баланс",
+    "amountLabel": "Толтыру сомасы",
+    "addButton": "Толтыру",
+    "success": "Сәтті!",
+    "invalidAmount": "Қате сома",
+    "note": "Қаражат бірден есептеледі",
+    "successTitle": "Толтыру сәтті өтті",
+    "successMessage": "Сіздің шотыңыз сәтті толтырылды.",
+    "errorTitle": "Толтыру қатесі",
+    "errorMessage": "Шотты толтыру сәтсіз аяқталды. Қайталап көріңіз."
   }
 }
