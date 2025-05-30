@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/addCache/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/addCache/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getDailySummary/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeProgressChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(flow)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user/post-add-cache/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user/post-add-cache/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user/post-subscription/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user/post-subscription/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/components/profileSettings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/subscriptions/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/subscriptions/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeCarousel.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeEventsBlock.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homePlacesBlock.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeSearchBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeVendorsBlock.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +68,7 @@
     &quot;npm.generate-types-api1.executor&quot;: &quot;Run&quot;,
     &quot;npm.generate-types-api2.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -125,7 +133,9 @@
       <workItem from="1748272385226" duration="13497000" />
       <workItem from="1748361315862" duration="11828000" />
       <workItem from="1748443932815" duration="16163000" />
-      <workItem from="1748534245888" duration="10836000" />
+      <workItem from="1748534245888" duration="10884000" />
+      <workItem from="1748622094930" duration="9114000" />
+      <workItem from="1748634561391" duration="1710000" />
     </task>
     <servers />
   </component>

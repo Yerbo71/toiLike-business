@@ -100,6 +100,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/user/select-lending-template/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["selectLendingTemplate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/user/add-cache/{amount}": {
         parameters: {
             query?: never;
@@ -626,8 +642,10 @@ export interface components {
             serviceType: string;
             /** Format: float */
             rating?: number;
+            isAIRecommended: boolean;
             mainImage?: string;
             secondaryImage?: string;
+            airecommended?: boolean;
         };
         PlaceRequest: {
             title: string;
@@ -667,6 +685,7 @@ export interface components {
             /** Format: int64 */
             placeId: number;
             eventServices: components["schemas"]["EventServiceRequest"][];
+            emailList: string[];
         };
         EventServiceRequest: {
             /** Format: int64 */
@@ -795,6 +814,8 @@ export interface components {
             buzType?: "TOO" | "IP";
             avatarImage?: string;
             secondaryImage?: string;
+            /** Format: int64 */
+            preferedLendingTemplate?: number;
             placeRatings: components["schemas"]["PlaceRating"][];
             userVendorRatings: components["schemas"]["UserVendorRating"][];
             places: components["schemas"]["Place"][];
@@ -828,10 +849,12 @@ export interface components {
             secondaryImage?: string;
             /** Format: int32 */
             priority?: number;
+            isAIRecommended?: boolean;
             user?: components["schemas"]["User"];
             /** @enum {string} */
             serviceType: "PRESENTERS" | "SINGERS" | "DANCERS" | "GROUP" | "OPERATORS" | "PHOTOGRAPH" | "MOBILOGRAPH" | "TRANSPORT" | "DECORATORS" | "ANIMATORS" | "TECHNICAL_STAFF" | "SECURITY" | "SOUND_ENGINEERS" | "MEDICAL_WORKERS" | "STYLISTS" | "TECHNICAL_EQUIPMENT" | "HAIR_DRESSERS" | "CLOTHING_SUPPLIERS" | "FLOWER_SUPPLIERS";
             userVendorRating: components["schemas"]["UserVendorRating"][];
+            airecommended?: boolean;
         };
         UserVendorRating: {
             /** Format: int64 */
@@ -1151,6 +1174,26 @@ export interface operations {
                 content: {
                     "*/*": components["schemas"]["UserSubscription"];
                 };
+            };
+        };
+    };
+    selectLendingTemplate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
