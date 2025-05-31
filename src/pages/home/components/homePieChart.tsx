@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
+import { Card, useTheme } from 'react-native-paper';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -16,58 +17,80 @@ interface HomeChartsProps {
 
 const screenWidth = Dimensions.get('window').width;
 
+const COLORS = {
+  CONFIRMED: '#00C853',
+  REJECTED: '#FF3D00',
+  PENDING: '#FFAB00',
+  BACKGROUND: '#F5F5F5',
+};
+
+const MIN_VALUE = 0.1;
+
 export const HomePieChart: React.FC<HomeChartsProps> = ({ data }) => {
+  const theme = useTheme();
   if (!data || data.length === 0) {
     return null;
   }
 
+  const { confirmedCount, rejectedCount, pendingCount } = data[0];
+  const total = confirmedCount + rejectedCount + pendingCount;
+
+  const showPlaceholders = total === 0;
+
+  const chartData = [
+    {
+      name: 'Confirmed',
+      population: showPlaceholders
+        ? MIN_VALUE
+        : Math.max(confirmedCount, MIN_VALUE),
+      color: COLORS.CONFIRMED,
+      legendFontColor: theme.dark
+        ? theme.colors.onSurface
+        : theme.colors.onSurfaceVariant,
+      legendFontSize: 12,
+    },
+    {
+      name: 'Rejected',
+      population: showPlaceholders
+        ? MIN_VALUE
+        : Math.max(rejectedCount, MIN_VALUE),
+      color: COLORS.REJECTED,
+      legendFontColor: theme.dark
+        ? theme.colors.onSurface
+        : theme.colors.onSurfaceVariant,
+      legendFontSize: 12,
+    },
+    {
+      name: 'Pending',
+      population: showPlaceholders
+        ? MIN_VALUE
+        : Math.max(pendingCount, MIN_VALUE),
+      color: COLORS.PENDING,
+      legendFontColor: theme.dark
+        ? theme.colors.onSurface
+        : theme.colors.onSurfaceVariant,
+      legendFontSize: 12,
+    },
+  ];
+
   return (
-    <View style={styles.chartContainer}>
+    <Card style={{ margin: 8 }}>
       <PieChart
-        data={[
-          {
-            name: 'Confirmed',
-            population: data[0].confirmedCount,
-            color: '#4CAF50',
-            legendFontColor: '#7F7F7F',
-          },
-          {
-            name: 'Rejected',
-            population: data[0].rejectedCount,
-            color: '#F44336',
-            legendFontColor: '#7F7F7F',
-          },
-          {
-            name: 'Pending',
-            population: data[0].pendingCount,
-            color: '#FFC107',
-            legendFontColor: '#7F7F7F',
-          },
-        ]}
+        data={chartData}
         width={screenWidth * 0.9}
-        height={200}
+        height={220}
         chartConfig={{
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          backgroundGradientFrom: '#fff',
+          backgroundGradientTo: '#fff',
         }}
         accessor="population"
         backgroundColor="transparent"
-        absolute
         paddingLeft="15"
+        absolute
+        hasLegend={true}
+        avoidFalseZero
       />
-    </View>
+    </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  chartContainer: {
-    marginBottom: 16,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    padding: 8,
-  },
-});

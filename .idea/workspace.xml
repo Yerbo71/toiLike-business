@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getDailySummary/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/home/components/homeProgressChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeCarousel.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeEventsBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homePlacesBlock.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeSearchBar.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeVendorsBlock.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeProgressChart.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/myPlaceList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/myPlaceList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/myVendorsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/myVendorsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,11 +127,23 @@
       <workItem from="1748443932815" duration="16163000" />
       <workItem from="1748534245888" duration="10884000" />
       <workItem from="1748622094930" duration="9114000" />
-      <workItem from="1748634561391" duration="1710000" />
+      <workItem from="1748634561391" duration="1751000" />
+      <workItem from="1748681555373" duration="6548000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

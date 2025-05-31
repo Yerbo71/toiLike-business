@@ -18,13 +18,7 @@ export const MyPlaceList = () => {
   const [manualRefreshing, setManualRefreshing] = useState(false);
   const { t } = useI18n();
 
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-    isRefetching,
-  } = useQuery({
+  const { data, isLoading, error, refetch, isRefetching } = useQuery({
     queryKey: ['myPlaces'],
     queryFn: () => getPlaceByUser(),
     staleTime: 5 * 60 * 1000,
@@ -42,7 +36,11 @@ export const MyPlaceList = () => {
   if (isLoading && !manualRefreshing) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator animating={true} size="large" />
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color={theme.colors.primary}
+        />
       </View>
     );
   }
@@ -116,10 +114,7 @@ export const MyPlaceList = () => {
       </Text>
       <View style={styles.cardsContainer}>
         {data.map((place) => (
-          <PlaceCard
-            key={place.id}
-            place={place}
-          />
+          <PlaceCard key={place.id} place={place} />
         ))}
       </View>
     </ScrollView>

@@ -34,7 +34,11 @@ const ProfilePage = () => {
       </View>
 
       <View style={styles.bottomSection}>
-        <DetailRateBlock rating={user?.rating || 0} commentCount={user?.comment || 0} />
+        <DetailRateBlock
+          rating={user?.rating || 0}
+          commentCount={user?.comment || 0}
+          cache={user?.cache || 0}
+        />
 
         <LinearGradient
           colors={['#2884e7', '#ff6b6b']}
@@ -48,12 +52,15 @@ const ProfilePage = () => {
           </Text>
         </LinearGradient>
 
-        {user?.subscription[0].subscription !== "PREMIUM_PRO" && (
+        {user?.subscription[0].subscription !== 'PREMIUM_PRO' && (
           <TouchableOpacity
             // @ts-ignore
             onPress={() => router.push('/(protected)/(flow)/subscriptions')}
           >
-            <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+            <LinearGradient
+              colors={['#6200ee', '#ff6b6b']}
+              style={styles.header}
+            >
               <Text style={styles.headerTitle}>
                 {t('profileSubscription.headerTitle')}
               </Text>
@@ -62,7 +69,7 @@ const ProfilePage = () => {
               </Text>
             </LinearGradient>
           </TouchableOpacity>
-        ) }
+        )}
 
         <ProfileSettings />
         <ProfileTechSupport />

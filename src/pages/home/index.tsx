@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import {
   ActivityIndicator,
   RefreshControl,
@@ -13,37 +13,39 @@ import { Button, Text, useTheme } from 'react-native-paper';
 import { useI18n } from '@/src/context/LocaleContext';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { HomePieChart } from '@/src/pages/home/components/homePieChart';
-import { HomeProgressChart } from '@/src/pages/home/components/homeProgressChart';
 import { HomeBarChart } from '@/src/pages/home/components/homeBarChart';
 import { HomeLineChart } from '@/src/pages/home/components/homeLineChart';
+import { AuthContext } from '@/src/context/AuthContext';
+import { HomeCalendar } from '@/src/pages/home/components/homeCalendar';
 
 const MOCK_DATA = [
   {
     date: '2025-05-30',
-    pendingCount: 5,
-    confirmedCount: 12,
-    rejectedCount: 3,
-    sumCost: 2450.75,
+    pendingCount: 0,
+    confirmedCount: 0,
+    rejectedCount: 0,
+    sumCost: 0,
   },
   {
     date: '2025-05-29',
-    pendingCount: 3,
-    confirmedCount: 8,
-    rejectedCount: 2,
-    sumCost: 1800.5,
+    pendingCount: 0,
+    confirmedCount: 0,
+    rejectedCount: 0,
+    sumCost: 0,
   },
   {
     date: '2025-05-28',
-    pendingCount: 7,
-    confirmedCount: 15,
-    rejectedCount: 1,
-    sumCost: 3200.0,
+    pendingCount: 0,
+    confirmedCount: 0,
+    rejectedCount: 0,
+    sumCost: 0,
   },
 ];
 
 const HomePage = () => {
   const theme = useTheme();
   const [manualRefreshing, setManualRefreshing] = useState(false);
+  const { user } = useContext(AuthContext);
   const { t } = useI18n();
   const [selectedRange, setSelectedRange] = useState({
     startDate: '2025-05-20T17:00:36.625Z',
@@ -110,34 +112,22 @@ const HomePage = () => {
         }
       >
         <HomeHeader />
-        <View style={styles.containerChart}>
-          <HomePieChart data={MOCK_DATA} />
-          <HomeProgressChart data={MOCK_DATA} />
-          <HomeBarChart data={MOCK_DATA} />
-          <HomeLineChart data={MOCK_DATA} />
-        </View>
-        <View style={styles.listContainer}>
-          {/*{(!data?.length || data.length === 0) && (*/}
-          {/*  <View style={styles.emptyContainer}>*/}
-          {/*    <MaterialCommunityIcons*/}
-          {/*      name="calendar-blank"*/}
-          {/*      size={48}*/}
-          {/*      color={theme.colors.onSurfaceVariant}*/}
-          {/*    />*/}
-          {/*    <Text variant="titleMedium" style={{ marginTop: 12 }}>*/}
-          {/*      {t('system.notFound')}*/}
-          {/*    </Text>*/}
-          {/*    <Button*/}
-          {/*      mode="outlined"*/}
-          {/*      style={{ marginTop: 12 }}*/}
-          {/*      onPress={onRefresh}*/}
-          {/*      loading={isRefetching}*/}
-          {/*    >*/}
-          {/*      {t('system.refresh')}*/}
-          {/*    </Button>*/}
-          {/*  </View>*/}
-          {/*)}*/}
-        </View>
+        <HomeCalendar
+          data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
+        />
+        {user?.subscription[0].subscription !== 'FREE' && (
+          <View style={styles.containerChart}>
+            <HomePieChart
+              data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
+            />
+            <HomeBarChart
+              data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
+            />
+            <HomeLineChart
+              data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
+            />
+          </View>
+        )}
       </ScrollView>
     </>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { Card, useTheme } from 'react-native-paper';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -17,6 +18,7 @@ interface HomeChartsProps {
 const screenWidth = Dimensions.get('window').width;
 
 export const HomeLineChart: React.FC<HomeChartsProps> = ({ data }) => {
+  const theme = useTheme();
   if (!data || data.length === 0) {
     return null;
   }
@@ -24,7 +26,7 @@ export const HomeLineChart: React.FC<HomeChartsProps> = ({ data }) => {
   return (
     <View>
       {data.length > 1 && (
-        <View style={styles.chartContainer}>
+        <Card style={{ margin: 8 }}>
           <LineChart
             data={{
               labels: data.map((item) =>
@@ -40,28 +42,19 @@ export const HomeLineChart: React.FC<HomeChartsProps> = ({ data }) => {
             width={screenWidth * 0.9}
             height={200}
             chartConfig={{
-              backgroundGradientFrom: '#fff',
-              backgroundGradientTo: '#fff',
+              barRadius: 10,
+              backgroundGradientFrom: theme.colors.elevation.level1,
+              backgroundGradientTo: theme.colors.elevation.level1,
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              labelColor: (opacity = 1) =>
+                theme.dark
+                  ? `rgba(${theme.colors.onSurface}, ${opacity})`
+                  : `rgba(${theme.colors.onSurfaceVariant}, ${opacity})`,
             }}
             bezier
           />
-        </View>
+        </Card>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  chartContainer: {
-    marginBottom: 16,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    padding: 8,
-  },
-});

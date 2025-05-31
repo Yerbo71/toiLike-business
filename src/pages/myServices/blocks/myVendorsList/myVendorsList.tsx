@@ -18,13 +18,7 @@ export const MyVendorsList = () => {
   const [manualRefreshing, setManualRefreshing] = useState(false);
   const { t } = useI18n();
 
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-    isRefetching,
-  } = useQuery({
+  const { data, isLoading, error, refetch, isRefetching } = useQuery({
     queryKey: ['myVendors'],
     queryFn: () => getUserVendorByUser(),
     staleTime: 5 * 60 * 1000,
@@ -42,7 +36,11 @@ export const MyVendorsList = () => {
   if (isLoading && !manualRefreshing) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator animating={true} size="large" />
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color={theme.colors.primary}
+        />
       </View>
     );
   }
@@ -116,10 +114,7 @@ export const MyVendorsList = () => {
       </Text>
       <View style={styles.cardsContainer}>
         {data.map((service) => (
-          <ServiceCard
-            key={service.id}
-            service={service}
-          />
+          <ServiceCard key={service.id} service={service} />
         ))}
       </View>
     </ScrollView>

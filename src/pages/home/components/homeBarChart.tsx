@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { BarChart, PieChart } from 'react-native-chart-kit';
+import { Card, useTheme } from 'react-native-paper';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -17,12 +18,13 @@ interface HomeChartsProps {
 const screenWidth = Dimensions.get('window').width;
 
 export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
+  const theme = useTheme();
   if (!data || data.length === 0) {
     return null;
   }
 
   return (
-    <View style={styles.chartContainer}>
+    <Card style={{ margin: 8 }}>
       <BarChart
         data={{
           labels: ['Confirmed', 'Rejected', 'Pending'],
@@ -41,29 +43,20 @@ export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
         yAxisLabel=""
         yAxisSuffix=""
         chartConfig={{
-          backgroundColor: '#ffffff',
-          backgroundGradientFrom: '#ffffff',
-          backgroundGradientTo: '#ffffff',
+          backgroundColor: theme.colors.elevation.level2,
+          backgroundGradientFrom: theme.colors.elevation.level1,
+          backgroundGradientTo: theme.colors.elevation.level1,
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           barPercentage: 0.5,
+          barRadius: 5,
+          labelColor: (opacity = 1) =>
+            theme.dark
+              ? `rgba(${theme.colors.onSurface}, ${opacity})`
+              : `rgba(${theme.colors.onSurfaceVariant}, ${opacity})`,
         }}
         verticalLabelRotation={0}
         fromZero
       />
-    </View>
+    </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  chartContainer: {
-    marginBottom: 16,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    padding: 8,
-  },
-});
