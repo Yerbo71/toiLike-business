@@ -5,7 +5,6 @@ const ChatsLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="chat/[id]/index" />
-      <Stack.Screen name="chat/gemini/[eventId]" />
     </Stack>
   );
 };
