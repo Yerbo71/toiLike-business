@@ -5,11 +5,12 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import HomeHeader from '@/src/pages/home/components/homeHeader';
 import { useQuery } from '@tanstack/react-query';
 import { getDailySummary } from '@/src/core/rest/user-vendor-controller';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { Button, Text, useTheme, TextInput, Surface } from 'react-native-paper';
 import { useI18n } from '@/src/context/LocaleContext';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { HomePieChart } from '@/src/pages/home/components/homePieChart';
@@ -17,6 +18,7 @@ import { HomeBarChart } from '@/src/pages/home/components/homeBarChart';
 import { HomeLineChart } from '@/src/pages/home/components/homeLineChart';
 import { AuthContext } from '@/src/context/AuthContext';
 import { HomeCalendar } from '@/src/pages/home/components/homeCalendar';
+import { DatePickerModal, TimePickerModal } from 'react-native-paper-dates';
 
 const MOCK_DATA = [
   {
@@ -46,11 +48,24 @@ const HomePage = () => {
   const theme = useTheme();
   const [manualRefreshing, setManualRefreshing] = useState(false);
   const { user } = useContext(AuthContext);
-  const { t } = useI18n();
-  const [selectedRange, setSelectedRange] = useState({
-    startDate: '2025-05-20T17:00:36.625Z',
-    endDate: '2025-05-30T17:00:36.625Z',
+  const { t, locale } = useI18n();
+  const [selectedRange, setSelectedRange] = useState(() => {
+    const now = new Date();
+    const startDate = new Date(now);
+    startDate.setDate(startDate.getDate() - 15);
+
+    const endDate = new Date(now);
+    endDate.setDate(endDate.getDate() + 15);
+
+    return {
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+    };
   });
+  const [startDatePickerVisible, setStartDatePickerVisible] = useState(false);
+  const [startTimePickerVisible, setStartTimePickerVisible] = useState(false);
+  const [endDatePickerVisible, setEndDatePickerVisible] = useState(false);
+  const [endTimePickerVisible, setEndTimePickerVisible] = useState(false);
 
   const { data, isLoading, isError, refetch, isRefetching } = useQuery({
     queryKey: ['dailySummary', selectedRange],
@@ -67,6 +82,81 @@ const HomePage = () => {
       setManualRefreshing(false);
     }
   }, [refetch]);
+
+  const createSafeDate = (date?: Date | string | number) => {
+    try {
+      const d = date ? new Date(date) : new Date();
+      return isNaN(d.getTime()) ? new Date() : d;
+    } catch {
+      return new Date();
+    }
+  };
+
+  const formatDateTime = (date: Date) => ({
+    dateStr: date.toLocaleDateString(locale === 'kz' ? 'ru-RU' : 'en-US'),
+    timeStr: date.toLocaleTimeString(locale === 'kz' ? 'ru-RU' : 'en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+    }),
+    dateObj: date,
+  });
+
+  const handleStartDateChange = (date: Date) => {
+    const current = formatDateTime(createSafeDate(selectedRange.startDate));
+    const newDate = new Date(date);
+    newDate.setHours(current.dateObj.getHours(), current.dateObj.getMinutes());
+    setSelectedRange((prev) => ({
+      ...prev,
+      startDate: newDate.toISOString(),
+    }));
+  };
+
+  const handleStartTimeChange = ({
+    hours,
+    minutes,
+  }: {
+    hours: number;
+    minutes: number;
+  }) => {
+    const current = formatDateTime(createSafeDate(selectedRange.startDate));
+    const newDate = new Date(current.dateObj);
+    newDate.setHours(hours, minutes);
+    setSelectedRange((prev) => ({
+      ...prev,
+      startDate: newDate.toISOString(),
+    }));
+  };
+
+  const handleEndDateChange = (date: Date) => {
+    const current = formatDateTime(createSafeDate(selectedRange.endDate));
+    const newDate = new Date(date);
+    newDate.setHours(current.dateObj.getHours(), current.dateObj.getMinutes());
+    setSelectedRange((prev) => ({
+      ...prev,
+      endDate: newDate.toISOString(),
+    }));
+  };
+
+  const handleEndTimeChange = ({
+    hours,
+    minutes,
+  }: {
+    hours: number;
+    minutes: number;
+  }) => {
+    const current = formatDateTime(createSafeDate(selectedRange.endDate));
+    const newDate = new Date(current.dateObj);
+    newDate.setHours(hours, minutes);
+    setSelectedRange((prev) => ({
+      ...prev,
+      endDate: newDate.toISOString(),
+    }));
+  };
+
+  const startFormatted = formatDateTime(
+    createSafeDate(selectedRange.startDate),
+  );
+  const endFormatted = formatDateTime(createSafeDate(selectedRange.endDate));
 
   if (isLoading && !manualRefreshing) {
     return (
@@ -102,7 +192,8 @@ const HomePage = () => {
     <>
       <ScrollView
         stickyHeaderIndices={[0]}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={{ flexGrow: 1 }}
+        style={{ flex: 1 }}
         refreshControl={
           <RefreshControl
             refreshing={isRefetching}
@@ -112,6 +203,71 @@ const HomePage = () => {
         }
       >
         <HomeHeader />
+        <Surface style={styles.dateRangeContainer}>
+          <Text style={styles.dateRangeTitle}>
+            <MaterialCommunityIcons name="calendar-range" size={18} />
+            {t('homePage.dateRange') || 'Date Range'}
+          </Text>
+
+          <Text style={styles.sectionLabel}>
+            {t('homePage.startDate') || 'Start Date & Time'}
+          </Text>
+
+          <View style={styles.datetimeContainer}>
+            <View style={styles.dateInput}>
+              <TouchableOpacity onPress={() => setStartDatePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label={t('homePage.startDate') || 'Start Date'}
+                  mode="outlined"
+                  value={startFormatted.dateStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.timeInput}>
+              <TouchableOpacity onPress={() => setStartTimePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label={t('homePage.startTime') || 'Start Time'}
+                  mode="outlined"
+                  value={startFormatted.timeStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <Text style={styles.sectionLabel}>
+            {t('homePage.endDate') || 'End Date & Time'}
+          </Text>
+
+          <View style={styles.datetimeContainer}>
+            <View style={styles.dateInput}>
+              <TouchableOpacity onPress={() => setEndDatePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label={t('homePage.endDate') || 'End Date'}
+                  mode="outlined"
+                  value={endFormatted.dateStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.timeInput}>
+              <TouchableOpacity onPress={() => setEndTimePickerVisible(true)}>
+                <TextInput
+                  theme={{ roundness: 10 }}
+                  label={t('homePage.endTime') || 'End Time'}
+                  mode="outlined"
+                  value={endFormatted.timeStr}
+                  editable={false}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Surface>
+
         <HomeCalendar
           data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
         />
@@ -123,21 +279,64 @@ const HomePage = () => {
             <HomeBarChart
               data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
             />
-            <HomeLineChart
-              data={data && data.length === 0 ? MOCK_DATA : data || MOCK_DATA}
-            />
           </View>
         )}
       </ScrollView>
+
+      {/* Date/Time Picker Modals */}
+      <DatePickerModal
+        locale={locale === 'kz' ? 'ru' : 'en'}
+        mode="single"
+        visible={startDatePickerVisible}
+        onDismiss={() => setStartDatePickerVisible(false)}
+        date={startFormatted.dateObj}
+        onConfirm={({ date }) => {
+          if (date) {
+            handleStartDateChange(date);
+          }
+          setStartDatePickerVisible(false);
+        }}
+        validRange={{
+          endDate: endFormatted.dateObj,
+        }}
+      />
+      <TimePickerModal
+        locale={locale}
+        visible={startTimePickerVisible}
+        onDismiss={() => setStartTimePickerVisible(false)}
+        onConfirm={handleStartTimeChange}
+        hours={startFormatted.dateObj.getHours()}
+        minutes={startFormatted.dateObj.getMinutes()}
+      />
+      <DatePickerModal
+        locale={locale === 'kz' ? 'ru' : 'en'}
+        mode="single"
+        visible={endDatePickerVisible}
+        onDismiss={() => setEndDatePickerVisible(false)}
+        date={endFormatted.dateObj}
+        onConfirm={({ date }) => {
+          if (date) {
+            handleEndDateChange(date);
+          }
+          setEndDatePickerVisible(false);
+        }}
+        validRange={{
+          startDate: startFormatted.dateObj,
+        }}
+      />
+      <TimePickerModal
+        locale={locale}
+        visible={endTimePickerVisible}
+        onDismiss={() => setEndTimePickerVisible(false)}
+        onConfirm={handleEndTimeChange}
+        hours={endFormatted.dateObj.getHours()}
+        minutes={endFormatted.dateObj.getMinutes()}
+      />
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 32,
-    flex: 1,
-  },
   listContainer: {
     flex: 1,
     width: '100%',
@@ -145,7 +344,7 @@ const styles = StyleSheet.create({
   containerChart: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 16,
+    marginTop: 12,
   },
   emptyContainer: {
     flex: 1,
@@ -181,6 +380,36 @@ const styles = StyleSheet.create({
   },
   pageText: {
     marginHorizontal: 16,
+  },
+  dateRangeContainer: {
+    margin: 16,
+    padding: 16,
+    borderRadius: 12,
+    elevation: 2,
+  },
+  dateRangeTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 16,
+  },
+  sectionLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    marginBottom: 8,
+    marginTop: 8,
+    color: '#666',
+  },
+  datetimeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+    marginBottom: 8,
+  },
+  dateInput: {
+    flex: 2,
+  },
+  timeInput: {
+    flex: 1,
   },
 });
 

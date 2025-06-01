@@ -65,7 +65,17 @@
     "myVendors": "Менің жеткізушілерім",
     "myPlaces": "Менің орындарым",
     "yourSubscriptionsIs": "Сіздің жазылымыңыз ",
-    "replenishment": "Толтыру"
+    "replenishment": "Толтыру",
+    "applicationsFromClients": "Клиенттерден өтінімдер",
+    "applicationsConfirmed": "Қабылданған өтінімдер",
+    "applicationsRejected": "Бас тартылған өтінімдер",
+    "price": "Бағасы",
+    "serviceCost": "Қызмет бағасы",
+    "reject": "Бас тарту",
+    "confirm": "Қабылдау",
+    "confirmed": "Қабылданған",
+    "rejected": "Бас тартылған",
+    "pending": "Күтуде"
   },
   "notifications": {
     "permissionDenied": "Рұқсат берілмеді",
@@ -182,7 +192,12 @@
   "homePage": {
     "popularEvents": "Танымал іс-шаралар",
     "popularVendors": "Танымал жеткізушілер",
-    "popularPlaces": "Танымал орындар"
+    "popularPlaces": "Танымал орындар",
+    "dateRange": "Күндер аралығы",
+    "startDate": "Басталу күні",
+    "startTime": "Басталу уақыты",
+    "endDate": "Аяқталу күні",
+    "endTime": "Аяқталу уақыты"
   },
   "detailsPage": {
     "contact": "Байланыс",

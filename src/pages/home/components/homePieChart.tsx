@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 import { Card, useTheme } from 'react-native-paper';
+import { useI18n } from '@/src/context/LocaleContext';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -27,6 +28,7 @@ const COLORS = {
 const MIN_VALUE = 0.1;
 
 export const HomePieChart: React.FC<HomeChartsProps> = ({ data }) => {
+  const { t } = useI18n();
   const theme = useTheme();
   if (!data || data.length === 0) {
     return null;
@@ -39,7 +41,7 @@ export const HomePieChart: React.FC<HomeChartsProps> = ({ data }) => {
 
   const chartData = [
     {
-      name: 'Confirmed',
+      name: t('system.confirmed'),
       population: showPlaceholders
         ? MIN_VALUE
         : Math.max(confirmedCount, MIN_VALUE),
@@ -50,7 +52,7 @@ export const HomePieChart: React.FC<HomeChartsProps> = ({ data }) => {
       legendFontSize: 12,
     },
     {
-      name: 'Rejected',
+      name: t('system.rejected'),
       population: showPlaceholders
         ? MIN_VALUE
         : Math.max(rejectedCount, MIN_VALUE),
@@ -61,7 +63,7 @@ export const HomePieChart: React.FC<HomeChartsProps> = ({ data }) => {
       legendFontSize: 12,
     },
     {
-      name: 'Pending',
+      name: t('system.pending'),
       population: showPlaceholders
         ? MIN_VALUE
         : Math.max(pendingCount, MIN_VALUE),

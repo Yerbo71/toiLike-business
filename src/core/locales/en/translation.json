@@ -66,7 +66,17 @@
     "myVendors": "My Vendors",
     "myPlaces": "My Places",
     "yourSubscriptionsIs": "Your Subscriptions is ",
-    "replenishment": "Replenishment"
+    "replenishment": "Replenishment",
+    "applicationsFromClients": "Applications from clients",
+    "applicationsConfirmed": "Confirmed applications",
+    "applicationsRejected": "Rejected applications",
+    "price": "Price",
+    "serviceCost": "Service cost",
+    "reject": "Reject",
+    "confirm": "Confirm",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected",
+    "pending": "Pending"
   },
   "notifications": {
     "permissionDenied": "Permission denied",
@@ -185,7 +195,12 @@
   "homePage": {
     "popularEvents": "Popular events",
     "popularVendors": "Popular vendors",
-    "popularPlaces": "Popular places"
+    "popularPlaces": "Popular places",
+    "dateRange": "Date range",
+    "startDate": "Start date",
+    "startTime": "Start time",
+    "endDate": "End date",
+    "endTime": "End time"
   },
   "detailsPage": {
     "contact": "Contact",

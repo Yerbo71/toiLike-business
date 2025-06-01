@@ -8,19 +8,22 @@ import {
 } from 'react-native';
 import { Text, useTheme, Button } from 'react-native-paper';
 import { useQuery } from '@tanstack/react-query';
-import { getFindApprovalEvents } from '@/src/core/rest/user-vendor-controller';
+import {
+  getConfirmed,
+  getRejected,
+} from '@/src/core/rest/user-vendor-controller';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useI18n } from '@/src/context/LocaleContext';
 import { ApplicationCard } from '@/src/pages/myServices/blocks/components/applicationCard';
 
-export const VendorsApplications = () => {
+export const RejectedApplications = () => {
   const theme = useTheme();
   const [manualRefreshing, setManualRefreshing] = useState(false);
   const { t } = useI18n();
 
   const { data, isLoading, error, refetch, isRefetching } = useQuery({
-    queryKey: ['vendorApplications'],
-    queryFn: () => getFindApprovalEvents(0, 100),
+    queryKey: ['vendorRejectedApplications'],
+    queryFn: () => getRejected(0, 100),
     staleTime: 5 * 60 * 1000,
   });
 
@@ -114,7 +117,7 @@ export const VendorsApplications = () => {
       </Text>
       <View style={styles.cardsContainer}>
         {data.list.map((service) => (
-          <ApplicationCard service={service} key={service.id} actions />
+          <ApplicationCard service={service} key={service.id} />
         ))}
       </View>
     </ScrollView>

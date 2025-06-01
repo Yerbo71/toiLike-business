@@ -5,17 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getRejected/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/postReject/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/components/applicationCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/confirmedApplications/confirmApplications.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/rejectedApplications/rejectedApplications.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getUserVendorByUser/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/confirm-email/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/confirm-email/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/en/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/en/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/kz/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/kz/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/locales/ru/translation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/postConfirm/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/postConfirm/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/addCache/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/addCache/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeBarChart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeCalendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homeLineChart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/components/homePieChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home/components/homeProgressChart.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/myPlaceList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myPlaceList/myPlaceList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/myVendorsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/myVendorsList/myVendorsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/vendorApplications/components/vendorApplicationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/rest/user-vendor-controller/getConfirmed/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/blocks/vendorApplications/vendorsApplications.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/blocks/vendorApplications/vendorsApplications.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/myServices/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/myServices/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,11 +78,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\pages\myServices\blocks\components" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\pages\myServices\blocks\myVendorsList\components" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(flow)" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)" />
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)\chat" />
-      <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\app\(protected)\(chats)" />
     </key>
   </component>
   <component name="RunManager" selected="npm.generate-types-api2">
@@ -128,7 +139,9 @@
       <workItem from="1748534245888" duration="10884000" />
       <workItem from="1748622094930" duration="9114000" />
       <workItem from="1748634561391" duration="1751000" />
-      <workItem from="1748681555373" duration="6548000" />
+      <workItem from="1748681555373" duration="14747000" />
+      <workItem from="1748700678450" duration="711000" />
+      <workItem from="1748771459754" duration="12834000" />
     </task>
     <servers />
   </component>

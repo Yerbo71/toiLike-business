@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { Card, Text, useTheme } from 'react-native-paper';
+import { useI18n } from '@/src/context/LocaleContext';
+import { formatDate, SupportedLocale } from '@/src/core/utils';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -15,8 +17,93 @@ interface HomeChartsProps {
   data: DailyEventSummaryDto[];
 }
 
+LocaleConfig.locales['ru'] = {
+  monthNames: [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+  ],
+  monthNamesShort: [
+    'Янв',
+    'Фев',
+    'Мар',
+    'Апр',
+    'Май',
+    'Июн',
+    'Июл',
+    'Авг',
+    'Сен',
+    'Окт',
+    'Ноя',
+    'Дек',
+  ],
+  dayNames: [
+    'Воскресенье',
+    'Понедельник',
+    'Вторник',
+    'Среда',
+    'Четверг',
+    'Пятница',
+    'Суббота',
+  ],
+  dayNamesShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  today: 'Сегодня',
+};
+
+LocaleConfig.locales['kz'] = {
+  monthNames: [
+    'Қаңтар',
+    'Ақпан',
+    'Наурыз',
+    'Сәуір',
+    'Мамыр',
+    'Маусым',
+    'Шілде',
+    'Тамыз',
+    'Қыркүйек',
+    'Қазан',
+    'Қараша',
+    'Желтоқсан',
+  ],
+  monthNamesShort: [
+    'Қаң',
+    'Ақп',
+    'Нау',
+    'Сәу',
+    'Мам',
+    'Мау',
+    'Шіл',
+    'Там',
+    'Қыр',
+    'Қаз',
+    'Қар',
+    'Жел',
+  ],
+  dayNames: [
+    'Жексенбі',
+    'Дүйсенбі',
+    'Сейсенбі',
+    'Сәрсенбі',
+    'Бейсенбі',
+    'Жұма',
+    'Сенбі',
+  ],
+  dayNamesShort: ['Жк', 'Дс', 'Сс', 'Ср', 'Бс', 'Жм', 'Сн'],
+  today: 'Бүгін',
+};
+
 export const HomeCalendar: React.FC<HomeChartsProps> = ({ data }) => {
   const theme = useTheme();
+  const { locale, t } = useI18n();
 
   const markedDates = data.reduce((acc, item) => {
     const hasEvents =
@@ -24,51 +111,35 @@ export const HomeCalendar: React.FC<HomeChartsProps> = ({ data }) => {
       item.rejectedCount > 0 ||
       item.pendingCount > 0;
 
-    acc[item.date] = {
-      selected: true,
-      marked: hasEvents,
-      selectedColor: theme.colors.primary,
-      dotColor: theme.colors.secondary,
-      customData: {
-        confirmed: item.confirmedCount,
-        rejected: item.rejectedCount,
-        pending: item.pendingCount,
-        sumCost: item.sumCost,
-      },
-    };
+    if (hasEvents) {
+      acc[item.date] = {
+        marked: true,
+        dotColor: '#4CAF50',
+        selectedColor: theme.colors.primary,
+        dots: [
+          ...(item.confirmedCount > 0
+            ? [{ key: 'confirmed', color: '#4CAF50' }]
+            : []),
+          ...(item.rejectedCount > 0
+            ? [{ key: 'rejected', color: '#F44336' }]
+            : []),
+          ...(item.pendingCount > 0
+            ? [{ key: 'pending', color: '#FFC107' }]
+            : []),
+        ],
+        customData: {
+          confirmed: item.confirmedCount,
+          rejected: item.rejectedCount,
+          pending: item.pendingCount,
+          sumCost: item.sumCost,
+        },
+      };
+    }
     return acc;
   }, {} as any);
 
-  const renderDay = (day: any) => {
-    const dateStr = day.date.dateString;
-    const dayData = markedDates[dateStr]?.customData;
-
-    return (
-      <View style={styles.dayContainer}>
-        <Text style={[styles.dayText, { color: theme.colors.onSurface }]}>
-          {day.day}
-        </Text>
-        {dayData && (
-          <View style={styles.eventIndicators}>
-            {dayData.confirmed > 0 && (
-              <View style={[styles.indicator, styles.confirmedIndicator]}>
-                <Text style={styles.indicatorText}>{dayData.confirmed}</Text>
-              </View>
-            )}
-            {dayData.rejected > 0 && (
-              <View style={[styles.indicator, styles.rejectedIndicator]}>
-                <Text style={styles.indicatorText}>{dayData.rejected}</Text>
-              </View>
-            )}
-            {dayData.pending > 0 && (
-              <View style={[styles.indicator, styles.pendingIndicator]}>
-                <Text style={styles.indicatorText}>{dayData.pending}</Text>
-              </View>
-            )}
-          </View>
-        )}
-      </View>
-    );
+  const onDayPress = (day: any) => {
+    const dayData = markedDates[day.dateString]?.customData;
   };
 
   const renderHeader = (date: any) => {
@@ -104,25 +175,62 @@ export const HomeCalendar: React.FC<HomeChartsProps> = ({ data }) => {
             textDayHeaderFontFamily: 'medium',
           }}
           markedDates={markedDates}
-          dayComponent={renderDay}
+          markingType={'multi-dot'}
+          onDayPress={onDayPress}
           renderHeader={renderHeader}
           hideExtraDays
           firstDay={1}
           enableSwipeMonths
+          current={new Date().toISOString().split('T')[0]}
         />
+
+        <View style={styles.summaryContainer}>
+          {data.map((item) => (
+            <View key={item.date} style={styles.summaryItem}>
+              <Text
+                style={[styles.summaryDate, { color: theme.colors.onSurface }]}
+              >
+                {formatDate(item.date, locale as SupportedLocale)}
+              </Text>
+              <View style={styles.summaryStats}>
+                {item.confirmedCount > 0 && (
+                  <View style={[styles.statItem, styles.confirmedStat]}>
+                    <Text style={styles.statText}>✓ {item.confirmedCount}</Text>
+                  </View>
+                )}
+                {item.rejectedCount > 0 && (
+                  <View style={[styles.statItem, styles.rejectedStat]}>
+                    <Text style={styles.statText}>✗ {item.rejectedCount}</Text>
+                  </View>
+                )}
+                {item.pendingCount > 0 && (
+                  <View style={[styles.statItem, styles.pendingStat]}>
+                    <Text style={styles.statText}>⏳ {item.pendingCount}</Text>
+                  </View>
+                )}
+              </View>
+            </View>
+          ))}
+        </View>
 
         <View style={styles.legendContainer}>
           <View style={styles.legendItem}>
             <View style={[styles.legendColor, styles.confirmedLegend]} />
-            <Text style={{ color: theme.colors.onSurface }}>Confirmed</Text>
+            <Text style={{ color: theme.colors.onSurface }}>
+              {t('system.confirmed')}
+            </Text>
           </View>
           <View style={styles.legendItem}>
             <View style={[styles.legendColor, styles.rejectedLegend]} />
-            <Text style={{ color: theme.colors.onSurface }}>Rejected</Text>
+            <Text style={{ color: theme.colors.onSurface }}>
+              {t('system.rejected')}
+            </Text>
           </View>
           <View style={styles.legendItem}>
             <View style={[styles.legendColor, styles.pendingLegend]} />
-            <Text style={{ color: theme.colors.onSurface }}>Pending</Text>
+            <Text style={{ color: theme.colors.onSurface }}>
+              {t('system.pending')}
+            </Text>
           </View>
         </View>
       </Card.Content>
@@ -132,50 +240,54 @@ export const HomeCalendar: React.FC<HomeChartsProps> = ({ data }) => {
 
 const styles = StyleSheet.create({
   card: {
-    margin: 16,
-    padding: 8,
+    padding: 2,
+    marginHorizontal: 16,
   },
   calendar: {
     borderRadius: 8,
     overflow: 'hidden',
   },
-  dayContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-  },
-  dayText: {
-    fontSize: 14,
-  },
   header: {
     padding: 10,
     alignItems: 'center',
   },
-  eventIndicators: {
+  summaryContainer: {
+    marginTop: 16,
+    paddingHorizontal: 8,
+  },
+  summaryItem: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 2,
-  },
-  indicator: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginHorizontal: 1,
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
   },
-  indicatorText: {
-    fontSize: 8,
+  summaryDate: {
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  summaryStats: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  statItem: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  statText: {
+    fontSize: 12,
     color: 'white',
+    fontWeight: 'bold',
   },
-  confirmedIndicator: {
+  confirmedStat: {
     backgroundColor: '#4CAF50',
   },
-  rejectedIndicator: {
+  rejectedStat: {
     backgroundColor: '#F44336',
   },
-  pendingIndicator: {
+  pendingStat: {
     backgroundColor: '#FFC107',
   },
   legendContainer: {

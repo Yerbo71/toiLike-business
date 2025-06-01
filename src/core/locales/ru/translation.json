@@ -65,7 +65,17 @@
     "myVendors": "Мои подрядчики",
     "myPlaces": "Мои площадки",
     "yourSubscriptionsIs": "Ваша подписка ",
-    "replenishment": "Пополнение"
+    "replenishment": "Пополнение",
+    "applicationsFromClients": "Заявки от клиентов",
+    "applicationsConfirmed": "Принятые заявки",
+    "applicationsRejected": "Отклоненные заявки",
+    "price": "Цена",
+    "serviceCost": "Стоимость услуги",
+    "reject": "Отклонить",
+    "confirm": "Принять",
+    "confirmed": "Принятая",
+    "rejected": "Отклоненная",
+    "pending": "В ожидании"
   },
   "notifications": {
     "permissionDenied": "Разрешение не предоставлено",
@@ -182,7 +192,12 @@
   "homePage": {
     "popularEvents": "Популярные события",
     "popularVendors": "Популярные поставщики",
-    "popularPlaces": "Популярные места"
+    "popularPlaces": "Популярные места",
+    "dateRange": "Диапазон дат",
+    "startDate": "Дата начала",
+    "startTime": "Время начала",
+    "endDate": "Дата окончания",
+    "endTime": "Время окончания"
   },
   "detailsPage": {
     "contact": "Контакт",

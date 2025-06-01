@@ -244,6 +244,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/event-vendor/rejecit/{eventVendorId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["confirmRejectService"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/event-vendor/confirm/{eventVendorId}": {
         parameters: {
             query?: never;
@@ -516,6 +532,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/event-service/event-vendor/find-rejected-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["findRejectedEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/event-service/event-vendor/find-confirmed-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["findConfirmedEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/event-service/event-vendor/find-approval-events": {
         parameters: {
             query?: never;
@@ -703,6 +751,7 @@ export interface components {
             totalCost: number;
             description?: string;
             place?: components["schemas"]["PlaceResponse"];
+            emailList: string[];
             eventServices: components["schemas"]["EventVendorResponse"][];
         };
         EventVendorResponse: {
@@ -738,6 +787,7 @@ export interface components {
             /** Format: date-time */
             endedAt?: string;
             description?: string;
+            emailList?: string;
             place?: components["schemas"]["Place"];
             user?: components["schemas"]["User"];
             eventServices: components["schemas"]["EventVendor"][];
@@ -894,6 +944,8 @@ export interface components {
             comment: number;
             /** Format: float */
             cache: number;
+            /** Format: int64 */
+            preferedTemplate: number;
             subscription: components["schemas"]["SubscriptionResponse"][];
         };
         PageableResponseUserVendorResponse: {
@@ -1381,6 +1433,28 @@ export interface operations {
             };
         };
     };
+    confirmRejectService: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventVendorId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ApiResponse"];
+                };
+            };
+        };
+    };
     confirmEventService: {
         parameters: {
             query?: never;
@@ -1753,6 +1827,52 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["DailyEventSummaryDto"][];
+                };
+            };
+        };
+    };
+    findRejectedEvents: {
+        parameters: {
+            query: {
+                page: number;
+                size: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageableResponseFullEventVendorResponse"];
+                };
+            };
+        };
+    };
+    findConfirmedEvents: {
+        parameters: {
+            query: {
+                page: number;
+                size: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["PageableResponseFullEventVendorResponse"];
                 };
             };
         };

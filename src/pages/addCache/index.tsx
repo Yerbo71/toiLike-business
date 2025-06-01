@@ -1,6 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet} from 'react-native';
-import { Button, Text, TextInput, Card, useTheme, ActivityIndicator, Title } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import {
+  Button,
+  Text,
+  TextInput,
+  Card,
+  useTheme,
+  Title,
+} from 'react-native-paper';
 import { useI18n } from '@/src/context/LocaleContext';
 import { AuthContext } from '@/src/context/AuthContext';
 import { postAddCache } from '@/src/core/rest/user';
@@ -52,7 +59,7 @@ const AddCachePage = () => {
       });
 
       console.log('add Cache error', err);
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -63,7 +70,9 @@ const AddCachePage = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <Card style={[styles.card, { backgroundColor: theme.colors.surface }]}>
         <Card.Content>
           <Title style={[styles.title, { color: theme.colors.onSurface }]}>
@@ -75,17 +84,17 @@ const AddCachePage = () => {
           </Text>
 
           <View style={styles.quickAmountContainer}>
-            {quickAmounts.map(value => (
+            {quickAmounts.map((value) => (
               <Button
                 key={value}
-                mode={selectedAmount === value ? "contained" : "outlined"}
+                mode={selectedAmount === value ? 'contained' : 'outlined'}
                 style={styles.quickButton}
                 onPress={() => handleQuickSelect(value)}
                 theme={{
                   colors: {
                     primary: theme.colors.primary,
-                    surface: theme.colors.surface
-                  }
+                    surface: theme.colors.surface,
+                  },
                 }}
               >
                 {value} KZT
@@ -100,7 +109,7 @@ const AddCachePage = () => {
             keyboardType="numeric"
             mode="outlined"
             style={styles.input}
-            theme={{ colors: { primary: theme.colors.primary } ,roundness: 10}}
+            theme={{ colors: { primary: theme.colors.primary }, roundness: 10 }}
             right={<TextInput.Affix text="KZT" />}
           />
 
@@ -112,11 +121,7 @@ const AddCachePage = () => {
             style={styles.button}
             theme={{ colors: { primary: theme.colors.primary } }}
           >
-            {loading ? (
-              <ActivityIndicator animating={true} color={theme.colors.onPrimary} />
-            ) : (
-              t('addCache.addButton')
-            )}
+            {t('addCache.addButton')}
           </Button>
 
           <Text style={[styles.note, { color: theme.colors.onSurfaceVariant }]}>

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import { BarChart, PieChart } from 'react-native-chart-kit';
+import { Dimensions } from 'react-native';
+import { BarChart } from 'react-native-chart-kit';
 import { Card, useTheme } from 'react-native-paper';
+import { useI18n } from '@/src/context/LocaleContext';
 
 interface DailyEventSummaryDto {
   date: string;
@@ -18,6 +19,7 @@ interface HomeChartsProps {
 const screenWidth = Dimensions.get('window').width;
 
 export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
+  const { t } = useI18n();
   const theme = useTheme();
   if (!data || data.length === 0) {
     return null;
@@ -27,7 +29,11 @@ export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
     <Card style={{ margin: 8 }}>
       <BarChart
         data={{
-          labels: ['Confirmed', 'Rejected', 'Pending'],
+          labels: [
+            t('system.confirmed'),
+            t('system.rejected'),
+            t('system.pending'),
+          ],
           datasets: [
             {
               data: [
@@ -42,6 +48,7 @@ export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
         height={220}
         yAxisLabel=""
         yAxisSuffix=""
+        flatColor
         chartConfig={{
           backgroundColor: theme.colors.elevation.level2,
           backgroundGradientFrom: theme.colors.elevation.level1,
@@ -55,7 +62,6 @@ export const HomeBarChart: React.FC<HomeChartsProps> = ({ data }) => {
               : `rgba(${theme.colors.onSurfaceVariant}, ${opacity})`,
         }}
         verticalLabelRotation={0}
-        fromZero
       />
     </Card>
   );
