@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c663cf-e7fa-4a40-a011-fb03116cccef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/rest/chat/getAllChats/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/chat/getChatHistory/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/rest/chat/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/chat/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/chats/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(application)/chats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(application)/chats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(chats)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(chats)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(chats)/chat/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(protected)/(chats)/chat/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(protected)/(chats)/chat/gemini/[eventId].tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/api/apiConst.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api/apiConst.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/api2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/api2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/profile/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,27 +36,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Makima/Desktop/Event_repo/toiLike-business",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.generate-types-api1.executor": "Run",
-    "npm.generate-types-api2.executor": "Run",
-    "npm.generate-types-api3.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Makima/Desktop/Event_repo/toiLike-business&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.generate-types-api1.executor&quot;: &quot;Run&quot;,
+    &quot;npm.generate-types-api2.executor&quot;: &quot;Run&quot;,
+    &quot;npm.generate-types-api3.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Makima\\Desktop\\Event_repo\\toiLike-business\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Makima\Desktop\Event_repo\toiLike-business\src\pages\myServices\blocks\components" />
@@ -146,7 +134,9 @@
       <workItem from="1748681555373" duration="14747000" />
       <workItem from="1748700678450" duration="711000" />
       <workItem from="1748771459754" duration="12942000" />
-      <workItem from="1748807710030" duration="1306000" />
+      <workItem from="1748807710030" duration="1354000" />
+      <workItem from="1748883768845" duration="1482000" />
+      <workItem from="1748886567864" duration="219000" />
     </task>
     <servers />
   </component>

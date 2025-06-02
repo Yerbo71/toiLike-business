@@ -52,24 +52,19 @@ const ProfilePage = () => {
           </Text>
         </LinearGradient>
 
-        {user?.subscription[0].subscription !== 'PREMIUM_PRO' && (
-          <TouchableOpacity
-            // @ts-ignore
-            onPress={() => router.push('/(protected)/(flow)/subscriptions')}
-          >
-            <LinearGradient
-              colors={['#6200ee', '#ff6b6b']}
-              style={styles.header}
-            >
-              <Text style={styles.headerTitle}>
-                {t('profileSubscription.headerTitle')}
-              </Text>
-              <Text style={styles.headerDescription}>
-                {t('profileSubscription.headerDescription')}
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          // @ts-ignore
+          onPress={() => router.push('/(protected)/(flow)/subscriptions')}
+        >
+          <LinearGradient colors={['#6200ee', '#ff6b6b']} style={styles.header}>
+            <Text style={styles.headerTitle}>
+              {t('profileSubscription.headerTitle')}
+            </Text>
+            <Text style={styles.headerDescription}>
+              {t('profileSubscription.headerDescription')}
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
 
         <ProfileSettings />
         <ProfileTechSupport />
